@@ -94,4 +94,8 @@ public class Filme {
 	public void setDiaDeEstreia(String diaDeEstreia) {
 		this.diaDeEstreia = diaDeEstreia;
 	}
+
+	public void avaliarFilme(int avaliacao) {
+
+	}
 }

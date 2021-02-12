@@ -5,27 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbb34ff4-2c88-4de8-a55f-b37a97d295d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Administrador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/ClienteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iAdministradorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iClienteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.ejb.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.jms.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.persistence.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.resource.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.servlet.jsp.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/javax.transaction.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cupom.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cupom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Filme.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Filme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ingresso.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ingresso.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Premio.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Premio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ranking.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ranking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/ClienteService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,13 +55,15 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -94,6 +80,7 @@
       <workItem from="1612895346776" duration="653000" />
       <workItem from="1612898108064" duration="90000" />
       <workItem from="1613151322236" duration="7386000" />
+      <workItem from="1613171475209" duration="1012000" />
     </task>
     <servers />
   </component>
