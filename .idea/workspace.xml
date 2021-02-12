@@ -5,29 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbb34ff4-2c88-4de8-a55f-b37a97d295d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Administrador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/ClienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iAdministradorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iClienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.ejb.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.jms.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.persistence.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.resource.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.servlet.jsp.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/javax.transaction.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cupom.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cupom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Filme.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Filme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Ingresso.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ingresso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Premio.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Premio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Ranking.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ranking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cupom.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cupom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Filme.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Filme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ingresso.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ingresso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Premio.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Premio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ranking.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Ranking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Usuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1oFvpqY7HyXEzSCWNZZZ8E1U6C1" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -35,6 +60,15 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../school" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marti\OneDrive\Documentos\GitHub\PDS-cinema\PDSCinemaApplicantion\src\main\java\com\PDSCinema\PDSCinemaApplicantion\model" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.PDSCinema.PDSCinemaApplicantion" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
@@ -59,7 +93,7 @@
       <updated>1612895342497</updated>
       <workItem from="1612895346776" duration="653000" />
       <workItem from="1612898108064" duration="90000" />
-      <workItem from="1613151322236" duration="357000" />
+      <workItem from="1613151322236" duration="7386000" />
     </task>
     <servers />
   </component>
@@ -77,5 +111,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
