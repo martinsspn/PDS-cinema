@@ -1,22 +1,22 @@
 package com.PDSCinema.PDSCinemaApplicantion.model;
 
 public class Cupom {
-	int codigo;
-	int tipoDeCupom;
+	String codigo;
+	String tipoDeCupom;
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
-	public int getTipoDeCupom() {
+	public String getTipoDeCupom() {
 		return tipoDeCupom;
 	}
 
-	public void setTipoDeCupom(int tipoDeCupom) {
+	public void setTipoDeCupom(String tipoDeCupom) {
 		this.tipoDeCupom = tipoDeCupom;
 	}
 }
