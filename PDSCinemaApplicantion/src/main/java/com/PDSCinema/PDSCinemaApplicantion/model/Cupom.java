@@ -16,7 +16,7 @@ public class Cupom {
 		return tipoDeCupom;
 	}
 
-	public void setTipoDeCupom(String tipoDeCupom) {
+	public void setTipoDeCupom(String _Cupom, String tipoDeCupom) {
 		this.tipoDeCupom = tipoDeCupom;
 	}
 }

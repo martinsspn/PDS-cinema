@@ -1,6 +1,7 @@
 package com.PDSCinema.PDSCinemaApplicantion.service;
 
 import com.PDSCinema.PDSCinemaApplicantion.model.Cupom;
+import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
 import com.PDSCinema.PDSCinemaApplicantion.model.Premio;
 
 public class AdmistradorService implements iAdministradorService{
@@ -8,6 +9,12 @@ public class AdmistradorService implements iAdministradorService{
     @Override
     public void cadastrarFilmes(String name, int duracao, int avaliacao, String sinopse, String classificacaoIndicativa, String genero,
             String diaDeEstreia) {
+        Filme filme = new Filme();
+        filme.setName(name);
+        filme.setAvaliacao(avaliacao);
+        filme.setSinopse(sinopse);
+        filme.setClassificacaoIndicativa(classificacaoIndicativa);
+        filme.setGenero(genero);
 
     }
 
@@ -17,9 +24,9 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public void cadastrarCupons(String _Cupom, String tipoDeCupom) {
+    public void cadastrarCupons(String _cupom, String tipoDeCupom) {
         Cupom cupom = new Cupom();
-        cupom.setTipoDeCupom(_Cupom, tipoDeCupom);
+        cupom.setTipoDeCupom(_cupom, tipoDeCupom);
     }
 
     @Override
