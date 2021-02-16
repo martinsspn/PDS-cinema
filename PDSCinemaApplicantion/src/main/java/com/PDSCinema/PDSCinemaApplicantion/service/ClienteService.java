@@ -5,7 +5,6 @@ import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
 public class ClienteService implements iClienteService{
     @Override
     public void comprarIngresso() {
-
     }
 
     @Override
@@ -14,13 +13,13 @@ public class ClienteService implements iClienteService{
     }
 
     @Override
-    public void avaliarServico() {
-
+    public void avaliarServico(Filme filme, int avaliacao) {
+        filme.avaliarServico(avaliacao);
     }
 
     @Override
-    public void avaliarHorario() {
-
+    public void avaliarHorario(Filme filme, int avaliacao) {
+        filme.avaliarHorario(avaliacao);
     }
 
     @Override
