@@ -1,11 +1,21 @@
 package com.PDSCinema.PDSCinemaApplicantion.service;
 
 import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
+import com.PDSCinema.PDSCinemaApplicantion.model.Cliente;
 import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
+import com.PDSCinema.PDSCinemaApplicantion.model.Ingresso;
 
 public class ClienteService implements iClienteService{
+    private Cliente cliente;
+
     @Override
-    public void comprarIngresso() {
+    public int comprarIngresso(Ingresso ingresso, float valor) {
+        if(valor == ingresso.getPreco()){
+            cliente.getIngressos().add(ingresso);
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     @Override

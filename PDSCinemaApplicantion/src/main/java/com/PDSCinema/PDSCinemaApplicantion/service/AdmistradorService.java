@@ -1,10 +1,12 @@
 package com.PDSCinema.PDSCinemaApplicantion.service;
 
+import com.PDSCinema.PDSCinemaApplicantion.model.Administrador;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cupom;
 import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
 import com.PDSCinema.PDSCinemaApplicantion.model.Premio;
 
 public class AdmistradorService implements iAdministradorService{
+    private Administrador adm;
 
     @Override
     public void cadastrarFilmes(String name, int duracao, int avaliacao, String sinopse, String classificacaoIndicativa, String genero,
