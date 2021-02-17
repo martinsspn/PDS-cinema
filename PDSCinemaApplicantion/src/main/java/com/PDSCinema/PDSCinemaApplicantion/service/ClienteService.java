@@ -9,17 +9,17 @@ public class ClienteService implements iClienteService{
     }
 
     @Override
-    public void avaliarFilme(Filme filme, int avaliacao) {
-        filme.avaliarFilme(avaliacao);
+    public void avaliarFilme(CinemaService cinema, int avaliacao) {
+        cinema.avaliarFilme(avaliacao);
     }
 
     @Override
-    public void avaliarServico(Cinema cinema, int avaliacao) {
+    public void avaliarServico(CinemaService cinema, int avaliacao) {
         cinema.avaliarServico(avaliacao);
     }
 
     @Override
-    public void avaliarHorario(Cinema cinema, int avaliacao) {
+    public void avaliarHorario(CinemaService cinema, int avaliacao) {
         cinema.avaliarHorario(avaliacao);
     }
 

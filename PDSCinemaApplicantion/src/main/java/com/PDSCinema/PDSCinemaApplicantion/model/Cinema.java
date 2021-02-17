@@ -39,12 +39,4 @@ public class Cinema {
     public void setMediaHorarios(float mediaHorarios) {
         this.mediaHorarios = mediaHorarios;
     }
-
-    public void avaliarServico(int avaliacao){
-
-    }
-
-    public void avaliarHorario(int avaliacao){
-
-    }
 }

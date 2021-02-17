@@ -5,9 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbb34ff4-2c88-4de8-a55f-b37a97d295d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cinema.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_persistence_javax_persistence_api_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_dom4j_dom4j_2_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_0_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_5_4_27_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_entitymanager_5_4_10_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_27_0_GA.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_1_3_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_1_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/CinemaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iCinemaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PDS-cinema.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PDS-cinema.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cinema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Filme.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Filme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iAdministradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iAdministradorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iClienteService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,13 +45,21 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1oFvpqY7HyXEzSCWNZZZ8E1U6C1" />
   <component name="ProjectLevelVcsManager">
@@ -43,7 +78,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -53,7 +88,7 @@
       <recent name="com.PDSCinema.PDSCinemaApplicantion" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.PdsCinemaApplicantionApplicationTests">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -80,8 +115,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PdsCinemaApplicantionApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PDSCinemaApplicantion" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.PDSCinema.PDSCinemaApplicantion.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.PDSCinema.PDSCinemaApplicantion" />
+      <option name="MAIN_CLASS_NAME" value="com.PDSCinema.PDSCinemaApplicantion.PdsCinemaApplicantionApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PdsCinemaApplicantionApplicationTests" />
         <item itemvalue="Application.PdsCinemaApplicantionApplication" />
       </list>
     </recent_temporary>

@@ -17,22 +17,41 @@ public class AdmistradorService implements iAdministradorService{
         filme.setGenero(genero);
 
     }
-
-    @Override
-    public void removerFilmes() {
-
-    }
-
     @Override
     public void cadastrarCupons(String _cupom, String tipoDeCupom) {
         Cupom cupom = new Cupom();
         cupom.setTipoDeCupom(_cupom, tipoDeCupom);
     }
-
     @Override
     public void cadastrarPremios(String descricao) {
         Premio premio = new Premio();
         premio.setDescricao(descricao);
+
+    }
+
+    @Override
+    public Filme buscarFilme(String nome){
+
+    }
+    @Override
+    public Cupom buscarCupons(String codigo){
+
+    }
+    @Override
+    public Premio buscarPremio(String codigo){
+
+    }
+
+    @Override
+    public void removerFilmes(Filme filme) {
+
+    }
+    @Override
+    public void removerCupons(Cupom cupom){
+
+    }
+    @Override
+    public void removerPremios(Premio premio){
 
     }
 }
