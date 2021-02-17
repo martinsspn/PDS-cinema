@@ -95,7 +95,4 @@ public class Filme {
 		this.diaDeEstreia = diaDeEstreia;
 	}
 
-	public void avaliarFilme(int avaliacao) {
-
-	}
 }

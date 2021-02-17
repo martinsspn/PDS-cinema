@@ -5,9 +5,9 @@ import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
 
 public interface iClienteService {
     void comprarIngresso();
-    void avaliarFilme(Filme filme, int avaliacao);
-    void avaliarServico(Cinema cinema, int avaliacao);
-    void avaliarHorario(Cinema cinema, int avaliacao);
+    void avaliarFilme(CinemaService cinema, int avaliacao);
+    void avaliarServico(CinemaService cinema, int avaliacao);
+    void avaliarHorario(CinemaService cinema, int avaliacao);
     void utilizarCupom();
     void compartilharCupom();
     void resgatarPremio();

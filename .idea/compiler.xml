@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="PDSCinemaApplicantion" />
+        <module name="PDS-cinema" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="PDS-cinema" target="8" />
       <module name="PDSCinemaApplicantion" target="1.8" />
     </bytecodeTargetLevel>
   </component>
