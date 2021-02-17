@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dbb34ff4-2c88-4de8-a55f-b37a97d295d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cinema.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cupom.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/model/Cupom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/ClienteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iAdministradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iAdministradorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iClienteService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
