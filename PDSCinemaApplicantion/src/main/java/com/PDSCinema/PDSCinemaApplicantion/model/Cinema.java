@@ -5,6 +5,8 @@ import java.util.List;
 public class Cinema {
     private List<Integer> salas;
     private List<String> filmesEmCartaz;
+    private List<Float> avaliacoesServico;
+    private List<Float> avaliacoesHorarios;
     private float mediaServico;
     private float mediaHorarios;
 
@@ -38,5 +40,20 @@ public class Cinema {
 
     public void setMediaHorarios(float mediaHorarios) {
         this.mediaHorarios = mediaHorarios;
+    }
+    public List<Float> getAvaliacoesServico() {
+        return avaliacoesServico;
+    }
+
+    public void setAvaliacoesServico(List<Float> avaliacoesServico) {
+        this.avaliacoesServico = avaliacoesServico;
+    }
+
+    public List<Float> getAvaliacoesHorarios() {
+        return avaliacoesHorarios;
+    }
+
+    public void setAvaliacoesHorarios(List<Float> avaliacoesHorarios) {
+        this.avaliacoesHorarios = avaliacoesHorarios;
     }
 }
