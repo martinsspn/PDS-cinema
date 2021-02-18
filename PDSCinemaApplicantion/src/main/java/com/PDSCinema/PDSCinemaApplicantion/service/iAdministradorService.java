@@ -11,6 +11,7 @@ public interface iAdministradorService {
     void cadastrarPremios(String descricao);
 
     Filme buscarFilme(String nome);
+    Filme buscarFilmeGenero(String genero);
     Cupom buscarCupons(String codigo);
     Premio buscarPremio(String codigo);
 
