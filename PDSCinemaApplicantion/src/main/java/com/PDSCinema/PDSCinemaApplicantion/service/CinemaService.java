@@ -1,6 +1,7 @@
 package com.PDSCinema.PDSCinemaApplicantion.service;
 
 import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
+import java.util.List;
 
 public class CinemaService implements iCinemaService{
     private Cinema cinema;
@@ -18,7 +19,7 @@ public class CinemaService implements iCinemaService{
 
     } 
     @Override
-    public <Cliente> buscarTodosCliente(){
+    public List <Cliente> buscarTodosCliente(){
 
     }
      @Override
@@ -34,7 +35,7 @@ public class CinemaService implements iCinemaService{
 
     } 
     @Override
-    public <Administrador> buscarTodosADM(){
+    public List <Administrador> buscarTodosADM(){
 
     }
      @Override
