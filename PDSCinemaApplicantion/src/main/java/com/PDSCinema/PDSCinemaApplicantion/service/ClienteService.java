@@ -44,7 +44,8 @@ public class ClienteService implements iClienteService{
     }
 
     @Override
-    public void resgatarPremio() {
-
+    public void resgatarPremio(Premio premio) {
+        premio.getIdPremio()
+        premio.getDescricao()
     }
 }
