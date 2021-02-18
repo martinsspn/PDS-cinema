@@ -35,6 +35,10 @@ public class AdmistradorService implements iAdministradorService{
     public Filme buscarFilme(String nome){
 
     }
+     @Override
+    public Filme buscarFilmeGenero(String genero){
+
+    }
     @Override
     public Cupom buscarCupons(String codigo){
 
