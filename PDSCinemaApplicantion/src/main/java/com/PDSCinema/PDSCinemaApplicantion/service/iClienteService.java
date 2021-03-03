@@ -6,7 +6,7 @@ import com.PDSCinema.PDSCinemaApplicantion.model.Ingresso;
 
 public interface iClienteService {
     int avaliarServico(Cinema cinema, int avaliacao);
-    int avaliarHorario(Cinema cinema, int avaliacao);
+    int avaliarHorario(Cinema cinema, String horario ,int avaliacao);
     int utilizarCupom();
 	int compartilharCupom();
     int resgatarPremio();

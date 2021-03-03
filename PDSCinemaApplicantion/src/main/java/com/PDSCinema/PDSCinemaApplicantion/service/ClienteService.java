@@ -1,5 +1,8 @@
 package com.PDSCinema.PDSCinemaApplicantion.service;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
 import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
 import com.PDSCinema.PDSCinemaApplicantion.model.Ingresso;
@@ -51,14 +54,31 @@ public class ClienteService implements iClienteService{
     }
 
     @Override
-    public int avaliarHorario(Cinema cinema, int avaliacao) {
-		if(avaliacao > 5 || avaliacao < 0) {
-			throw new NumberFormatException();
+    public int avaliarHorario(Cinema cinema, string horario, int avaliacao) {
+		try {
+			if(avaliacao > 5 || avaliacao < 0) {
+				throw new NumberFormatException();
+			}
+			int index = 0;
+			List <String> horarios = cinema.getHorarios();
+			for(int i=0;i<horarios.size();i++) {
+				if(horarios.get(i) == horario) {
+					index = i;
+				}else {
+					if(i == horarios.size()-1) {
+						throw new IOException();
+					}
+				}
+			}
+			cinema.getAvaliacoesHorarios().set(index, cinema.getAvaliacoesHorarios().get(index)+avaliacao);
+			cinema.getQuantAvHorarios().set(index, cinema.getQuantAvHorarios().get(index)+1);
+			return 0;
+		}catch(NumberFormatException e) {
+			return -1;
+		}catch(IOException e) {
+			return -2;
 		}
-		int avaliacoes = cinema.getAvaliacoesHorarios();
-		cinema.setAvaliacoesHorarios(avaliacoes+avaliacao);
-		cinema.setQuantAvHorarios(cinema.getQuantAvHorarios()+1);
-		return 0;
+    	
 	}
 
     @Override
@@ -75,5 +95,4 @@ public class ClienteService implements iClienteService{
     public int resgatarPremio() {
     	return 0;
     }
-
 }
