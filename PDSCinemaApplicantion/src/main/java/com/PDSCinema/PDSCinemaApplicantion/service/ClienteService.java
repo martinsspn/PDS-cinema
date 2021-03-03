@@ -9,7 +9,6 @@ import com.PDSCinema.PDSCinemaApplicantion.model.Ingresso;
 
 public class ClienteService implements iClienteService{
     
-	
 	@Override
     public int comprarIngresso(Ingresso ingresso, int pagamento) {
     	try {
