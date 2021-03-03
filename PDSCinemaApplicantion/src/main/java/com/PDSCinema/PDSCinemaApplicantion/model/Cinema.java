@@ -6,8 +6,8 @@ public class Cinema {
     private List<Integer> salas;
     private List<String> filmesEmCartaz;
     private List<String> horarios;
-    private float avaliacoesServico;
-    private List<Float> avaliacoesHorarios;
+    private int avaliacoesServico;
+    private List<Integer> avaliacoesHorarios;
     private int quantAvServico;
     private List<Integer> quantAvHorarios;
 
@@ -27,19 +27,40 @@ public class Cinema {
         this.filmesEmCartaz = filmesEmCartaz;
    }
 
-    public float getAvaliacoesServico() {
+    public int getAvaliacoesServico() {
         return avaliacoesServico;
     }
 
-    public void setAvaliacoesServico(float avaliacoesServico) {
+    public void setAvaliacoesServico(int avaliacoesServico) {
         this.avaliacoesServico = avaliacoesServico;
     }
+public int getQuantAVServico() {
+        return quantAvServico;
+    }
 
-    public List<Float> getAvaliacoesHorarios() {
+    public void setQuantAvServico(int quantAvServico) {
+        this.quantAvServico = quantAvServico;
+    }
+
+    public List<Integer> getAvaliacoesHorarios() {
         return avaliacoesHorarios;
     }
 
-    public void setAvaliacoesHorarios(List<Float> avaliacoesHorarios) {
+    public void setAvaliacoesHorarios(List<Integer> avaliacoesHorarios) {
         this.avaliacoesHorarios = avaliacoesHorarios;
+    }
+public List<String> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<String> horarios) {
+        this.horarios = horarios;
+    }
+public List<Integer> getQuantAvHorarios() {
+        return quantAvHorarios;
+    }
+
+    public void setQuantAvHorarios(List<Integer> quantAvHorarios) {
+        this.quantAvHorarios = quantAvHorarios;
     }
 }
