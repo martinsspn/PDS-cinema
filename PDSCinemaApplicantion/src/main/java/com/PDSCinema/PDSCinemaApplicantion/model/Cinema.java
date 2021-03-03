@@ -6,7 +6,7 @@ public class Cinema {
     private List<Integer> salas;
     private List<String> listaClientesCpf;
     private List<String> listaAdministradorCpf;
-    private List<Filmes> filmesEmCartaz;
+    private List<Filme> filmesEmCartaz;
     private List<String> horarios;
     private int avaliacoesServico;
     private List<Integer> avaliacoesHorarios;
@@ -20,6 +20,7 @@ public class Cinema {
     public void setSalas(List<Integer> salas) {
         this.salas = salas;
     }
+
     public List<String> getListaAdministradorCpf() {
         return listaAdministradorCpf;
     }
@@ -27,6 +28,7 @@ public class Cinema {
     public void setListaAdministradorCpf(List<String> ListaAdministradorCpf) {
         this.listaAdministradorCpf = listaAdministradorCpf;
     }
+
     public List<String> getListaClientesCpf() {
         return listaClientesCpf;
     }
@@ -35,11 +37,11 @@ public class Cinema {
         this.listaClientesCpf = listaClientesCpf;
     }
 
-    public List<Filmes> getFilmesEmCartaz() {
+    public List<Filme> getFilmesEmCartaz() {
         return filmesEmCartaz;
     }
 
-    public void setFilmesEmCartaz(List<Filmes> filmesEmCartaz) {
+    public void setFilmesEmCartaz(List<Filme> filmesEmCartaz) {
         this.filmesEmCartaz = filmesEmCartaz;
    }
 
@@ -50,7 +52,8 @@ public class Cinema {
     public void setAvaliacoesServico(int avaliacoesServico) {
         this.avaliacoesServico = avaliacoesServico;
     }
-public int getQuantAVServico() {
+
+    public int getQuantAvServico() {
         return quantAvServico;
     }
 
@@ -65,14 +68,16 @@ public int getQuantAVServico() {
     public void setAvaliacoesHorarios(List<Integer> avaliacoesHorarios) {
         this.avaliacoesHorarios = avaliacoesHorarios;
     }
-public List<String> getHorarios() {
+
+    public List<String> getHorarios() {
         return horarios;
     }
 
     public void setHorarios(List<String> horarios) {
         this.horarios = horarios;
     }
-public List<Integer> getQuantAvHorarios() {
+
+    public List<Integer> getQuantAvHorarios() {
         return quantAvHorarios;
     }
 
