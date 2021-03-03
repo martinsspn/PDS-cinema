@@ -1,43 +1,16 @@
 package com.PDSCinema.PDSCinemaApplicantion.model;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "Filme")
 public class Filme {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
-
-	@Column(name = "name")
 	private String name;
-
-	@Column(name = "duracao")
 	private int duracao;
-
-	@Column(name = "Avaliacao")
-	private int avaliacao;
-
-	@Column(name = "Sinopse")
+	private int avaliacoes;
+	private int quantAvaliacoes;
 	private String sinopse;
-
-	@Column(name = "Classificacao indicativa")
 	private String classificacaoIndicativa;
-
-	@Column(name = "genero")
 	private String genero;
-
-	@Column(name = "Dia de estreia")
 	private String diaDeEstreia;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 
 	public String getName() {
 		return name;
@@ -55,12 +28,21 @@ public class Filme {
 		this.duracao = duracao;
 	}
 
-	public int getAvaliacao() {
-		return avaliacao;
+	public int getAvaliacoes() {
+		return avaliacoes;
 	}
 
-	public void setAvaliacao(int avaliacao) {
-		this.avaliacao = avaliacao;
+	public void setAvaliacoes(int avaliacoes) {
+		this.avaliacoes = avaliacoes;
+	}
+
+	
+	public int getQuantAvaliacoes() {
+		return quantAvaliacoes;
+	}
+
+	public void setQuantAvaliacoes(int quantAvaliacoes) {
+		this.quantAvaliacoes = quantAvaliacoes;
 	}
 
 	public String getSinopse() {
