@@ -4,11 +4,14 @@ import java.util.List;
 
 public class Cinema {
     private List<Integer> salas;
-    private List<String> filmesEmCartaz;
-    private List<Float> avaliacoesServico;
-    private List<Float> avaliacoesHorarios;
-    private float mediaServico;
-    private float mediaHorarios;
+    private List<String> listaClientesCpf;
+    private List<String> listaAdministradorCpf;
+    private List<Filmes> filmesEmCartaz;
+    private List<String> horarios;
+    private int avaliacoesServico;
+    private List<Integer> avaliacoesHorarios;
+    private int quantAvServico;
+    private List<Integer> quantAvHorarios;
 
     public List<Integer> getSalas() {
         return salas;
@@ -17,43 +20,63 @@ public class Cinema {
     public void setSalas(List<Integer> salas) {
         this.salas = salas;
     }
+    public List<String> getListaAdministradorCpf() {
+        return listaAdministradorCpf;
+    }
 
-    public List<String> getFilmesEmCartaz() {
+    public void setListaAdministradorCpf(List<String> ListaAdministradorCpf) {
+        this.listaAdministradorCpf = listaAdministradorCpf;
+    }
+    public List<String> getListaClientesCpf() {
+        return listaClientesCpf;
+    }
+
+    public void setListaClientesCpf(List<String> listaClientesCpf) {
+        this.listaClientesCpf = listaClientesCpf;
+    }
+
+    public List<Filmes> getFilmesEmCartaz() {
         return filmesEmCartaz;
     }
 
-    public void setFilmesEmCartaz(List<String> filmesEmCartaz) {
+    public void setFilmesEmCartaz(List<Filmes> filmesEmCartaz) {
         this.filmesEmCartaz = filmesEmCartaz;
-    }
+   }
 
-    public float getMediaServico() {
-        return mediaServico;
-    }
-
-    public void setMediaServico(float mediaServico) {
-        this.mediaServico = mediaServico;
-    }
-
-    public float getMediaHorarios() {
-        return mediaHorarios;
-    }
-
-    public void setMediaHorarios(float mediaHorarios) {
-        this.mediaHorarios = mediaHorarios;
-    }
-    public List<Float> getAvaliacoesServico() {
+    public int getAvaliacoesServico() {
         return avaliacoesServico;
     }
 
-    public void setAvaliacoesServico(List<Float> avaliacoesServico) {
+    public void setAvaliacoesServico(int avaliacoesServico) {
         this.avaliacoesServico = avaliacoesServico;
     }
+public int getQuantAVServico() {
+        return quantAvServico;
+    }
 
-    public List<Float> getAvaliacoesHorarios() {
+    public void setQuantAvServico(int quantAvServico) {
+        this.quantAvServico = quantAvServico;
+    }
+
+    public List<Integer> getAvaliacoesHorarios() {
         return avaliacoesHorarios;
     }
 
-    public void setAvaliacoesHorarios(List<Float> avaliacoesHorarios) {
+    public void setAvaliacoesHorarios(List<Integer> avaliacoesHorarios) {
         this.avaliacoesHorarios = avaliacoesHorarios;
+    }
+public List<String> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<String> horarios) {
+        this.horarios = horarios;
+    }
+public List<Integer> getQuantAvHorarios() {
+        return quantAvHorarios;
+    }
+
+    public void setQuantAvHorarios(List<Integer> quantAvHorarios) {
+        this.quantAvHorarios = quantAvHorarios;
     }
 }
