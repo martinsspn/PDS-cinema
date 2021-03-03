@@ -53,7 +53,7 @@ public class ClienteService implements iClienteService{
     }
 
     @Override
-    public int avaliarHorario(Cinema cinema, string horario, int avaliacao) {
+    public int avaliarHorario(Cinema cinema, String horario, int avaliacao) {
 		try {
 			if(avaliacao > 5 || avaliacao < 0) {
 				throw new NumberFormatException();
@@ -61,7 +61,7 @@ public class ClienteService implements iClienteService{
 			int index = 0;
 			List <String> horarios = cinema.getHorarios();
 			for(int i=0;i<horarios.size();i++) {
-				if(horarios.get(i) == horario) {
+				if(horarios.get(i).equals(horario)) {
 					index = i;
 				}else {
 					if(i == horarios.size()-1) {

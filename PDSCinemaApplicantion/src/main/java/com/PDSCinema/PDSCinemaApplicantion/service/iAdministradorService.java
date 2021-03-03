@@ -1,8 +1,6 @@
 package com.PDSCinema.PDSCinemaApplicantion.service;
 
-import com.PDSCinema.PDSCinemaApplicantion.model.Cupom;
-import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
-import com.PDSCinema.PDSCinemaApplicantion.model.Premio;
+import com.PDSCinema.PDSCinemaApplicantion.model.*;
 
 public interface iAdministradorService {
     void cadastrarFilmes(String name, int duracao, int avaliacao, String sinopse, String classificacaoIndicativa, String genero,
@@ -15,7 +13,7 @@ public interface iAdministradorService {
     Cupom buscarCupons(String codigo);
     Premio buscarPremio(String codigo);
 
-    void removerFilmes(Filme filme);
-    void removerCupons(Cupom cupom);
-    void removerPremios(Premio premio);
+    int removerFilmes(Filme filme, Cinema cinema);
+    int removerCupons(Cupom cupom, Cliente cliente);
+    int removerPremios(Premio premio, Cliente cliente);
 }
