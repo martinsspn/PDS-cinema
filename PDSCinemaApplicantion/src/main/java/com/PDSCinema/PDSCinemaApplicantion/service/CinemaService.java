@@ -66,7 +66,7 @@ public class CinemaService implements iCinemaService{
      	}
     }
     @Override
-    public void removerADM(Administrador ADM){
+    public void removerADM(Administrador ADM, Cinema cinema){
     	try {
      		if(cinema.getListaAdministradorCpf().Contains(ADM.getCpf())) { 
      			//chamar função do DAO para remover
@@ -97,7 +97,7 @@ public class CinemaService implements iCinemaService{
     	//chamar função do DAO que retorna todos os adms
     }
      @Override
-    public float calcularMediaAvaliacaoServico(int avaliacoesServico, int quantAvServico){
+    public Double calcularMediaAvaliacaoServico(int avaliacoesServico, int quantAvServico){
     	 return (avaliacoesServico/quantAvServico);
 
     }
