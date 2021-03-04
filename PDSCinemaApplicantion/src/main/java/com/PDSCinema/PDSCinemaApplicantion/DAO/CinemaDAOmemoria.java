@@ -3,11 +3,12 @@ import com.PDSCinema.PDSCinemaApplicantion.model.Administrador;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cliente;
 import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
+import com.PDSCinema.PDSCinemaApplicantion.service.iCinemaService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CinemaService implements iCinemaService{
+public class CinemaService implements iCinemaService {
     private Cinema cinema;
 
     @Override

@@ -1,5 +1,6 @@
 package com.PDSCinema.PDSCinemaApplicantion.service;
 
+import com.PDSCinema.PDSCinemaApplicantion.DAO.CinemaDAO;
 import com.PDSCinema.PDSCinemaApplicantion.model.Administrador;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cliente;
@@ -16,7 +17,7 @@ public class CinemaService implements iCinemaService{
     public int inserirCliente(Cliente cliente){
     	try {
     		if(cliente.getNome() != null && !(cinema.getListaClientesCpf().contains(cliente.getCpf()))) {
-				cinemaDAO.inserirCliente(Cliente cliente);
+				cinemaDAO.inserirCliente(cliente);
     			return 0;
     		}else {
     			throw new NumberFormatException();
@@ -29,7 +30,7 @@ public class CinemaService implements iCinemaService{
     public int removerCliente(Cliente cliente, Cinema cinema){
     	try {
      		if(cinema.getListaClientesCpf().contains(cliente.getCpf())) {
-				cinemaDAO.removerCliente(Cliente cliente, Cinema cinema);
+				cinemaDAO.removerCliente(cliente, cinema);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -42,7 +43,7 @@ public class CinemaService implements iCinemaService{
     public Cliente buscarCliente(String cpf, Cinema cinema){
     	try {
       		if(cinema.getListaClientesCpf().contains(cpf)) {
-      			return (cinemaDAO.buscarCliente(String cpf, Cinema cinema));
+      			return (cinemaDAO.buscarCliente(cpf, cinema));
       		}else {
       			throw new NumberFormatException();
       		}
@@ -60,7 +61,7 @@ public class CinemaService implements iCinemaService{
     public int inserirADM(Administrador ADM){
     	 try {
      		if(ADM.getNome() != null && !(cinema.getListaAdministradorCpf().contains(ADM.getCpf()))) {
-				cinemaDAO.inserirADM(Administrador ADM);
+				cinemaDAO.inserirADM(ADM);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -73,7 +74,7 @@ public class CinemaService implements iCinemaService{
     public int removerADM(Administrador ADM, Cinema cinema){
     	try {
      		if(cinema.getListaAdministradorCpf().contains(ADM.getCpf())) {
-				cinemaDAO.removerADM(Administrador ADM, Cinema cinema);
+				cinemaDAO.removerADM(ADM, cinema);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -86,7 +87,7 @@ public class CinemaService implements iCinemaService{
     public Administrador buscarADM(String cpf, Cinema cinema){
     	try {
     		if(cinema.getListaAdministradorCpf().contains(cpf)){
-       			return (cinemaDAO.buscarADM(String cpf, Cinema cinema));
+       			return (cinemaDAO.buscarADM(cpf, cinema));
        		}else {
        			throw new NumberFormatException();
        		}
