@@ -3,38 +3,44 @@ package com.PDSCinema.PDSCinemaApplicantion.service;
 import java.io.IOException;
 import java.util.List;
 
+import com.PDSCinema.PDSCinemaApplicantion.DAO.ClienteDAO;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
 import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
 import com.PDSCinema.PDSCinemaApplicantion.model.Ingresso;
+import org.omg.CORBA.DynAnyPackage.Invalid;
 
 public class ClienteService implements iClienteService{
-    
+    private ClienteDAO clienteDAO;
+
 	@Override
     public int comprarIngresso(Ingresso ingresso, int pagamento) {
     	try {
     		if(ingresso.getPreco() == pagamento) {
+    			clienteDAO.comprarIngresso(ingresso);
     			return 0;
     		}else {
     			throw new NumberFormatException();
     		}
     	}catch(NumberFormatException e) {
     		return -1;
-    	}
+    	}catch (NullPointerException e){
+    		return -2;
+		}
     }
 
     @Override
     public int avaliarFilme(Filme filme, int avaliacao) {
     	try {
-    		if(avaliacao > 5) {
+    		if(avaliacao > 5 || avaliacao < 0) {
     			throw new NumberFormatException();
     		}
-    		int avaliacoes = filme.getAvaliacoes();
-    		filme.setAvaliacoes(avaliacoes+avaliacao);
-    		filme.setAvaliacoes(filme.getQuantAvaliacoes()+1);
+    		clienteDAO.avaliarFilme(filme, avaliacao);
     		return 0;
     	}catch(NumberFormatException e) {
     		return -1;
-    	}
+    	}catch(NullPointerException e){
+    		return -2;
+		}
     }
 
     @Override
@@ -43,13 +49,13 @@ public class ClienteService implements iClienteService{
     		if(avaliacao > 5 || avaliacao < 0) {
     			throw new NumberFormatException();
     		}
-    		int avaliacoes = cinema.getAvaliacoesServico();
-    		cinema.setAvaliacoesServico(avaliacoes+avaliacao);
-    		cinema.setQuantAvServico(cinema.getQuantAvServico()+1);
+    		clienteDAO.avaliarServico(cinema, avaliacao);
     		return 0;
     	}catch(NumberFormatException e) {
     		return -1;
-    	}
+    	}catch (NullPointerException e){
+    		return -2;
+		}
     }
 
     @Override
@@ -58,26 +64,20 @@ public class ClienteService implements iClienteService{
 			if(avaliacao > 5 || avaliacao < 0) {
 				throw new NumberFormatException();
 			}
-			int index = 0;
-			List <String> horarios = cinema.getHorarios();
-			for(int i=0;i<horarios.size();i++) {
-				if(horarios.get(i).equals(horario)) {
-					index = i;
-				}else {
-					if(i == horarios.size()-1) {
-						throw new IOException();
-					}
-				}
+			if(horario.isEmpty()){
+				throw new Invalid();
 			}
-			cinema.getAvaliacoesHorarios().set(index, cinema.getAvaliacoesHorarios().get(index)+avaliacao);
-			cinema.getQuantAvHorarios().set(index, cinema.getQuantAvHorarios().get(index)+1);
+			clienteDAO.avaliarHorario(cinema, horario, avaliacao);
 			return 0;
 		}catch(NumberFormatException e) {
 			return -1;
-		}catch(IOException e) {
+		}catch (NullPointerException e){
 			return -2;
+		}catch(IOException e) {
+			return -3;
+		} catch (Invalid e) {
+			return -4;
 		}
-    	
 	}
 
     @Override

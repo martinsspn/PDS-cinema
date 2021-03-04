@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="PDSCinemaApplicantion" />
         <module name="PDS-cinema" />
+        <module name="PDSCinemaApplicantion" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
