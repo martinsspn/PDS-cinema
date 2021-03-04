@@ -10,12 +10,13 @@ import java.util.List;
 
 public class CinemaService implements iCinemaService{
     private Cinema cinema;
+	private CinemaDAO cinemaDAO;
 
     @Override
     public int inserirCliente(Cliente cliente){
     	try {
     		if(cliente.getNome() != null && !(cinema.getListaClientesCpf().contains(cliente.getCpf()))) {
-    			//chamar função do DAO para inserir
+				cinemaDAO.inserirCliente(Cliente cliente);
     			return 0;
     		}else {
     			throw new NumberFormatException();
@@ -28,7 +29,7 @@ public class CinemaService implements iCinemaService{
     public int removerCliente(Cliente cliente, Cinema cinema){
     	try {
      		if(cinema.getListaClientesCpf().contains(cliente.getCpf())) {
-     			//chamar função do DAO para remover
+				cinemaDAO.removerCliente(Cliente cliente, Cinema cinema);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -41,9 +42,7 @@ public class CinemaService implements iCinemaService{
     public Cliente buscarCliente(String cpf, Cinema cinema){
     	try {
       		if(cinema.getListaClientesCpf().contains(cpf)) {
-      			//chamar função do DAO para buscar
-      			Cliente cliente = new Cliente(); //por enquanto q a função não está pronta
-      			return cliente;
+      			return (cinemaDAO.buscarCliente(String cpf, Cinema cinema));
       		}else {
       			throw new NumberFormatException();
       		}
@@ -54,15 +53,14 @@ public class CinemaService implements iCinemaService{
     } 
     @Override
     public List <Cliente> buscarTodosCliente(){
-    	//chamar função do DAO que retorna todos os clientes
-		return null;
+		return cinemaDAO.buscarTodosCliente();
     }
 
     @Override
     public int inserirADM(Administrador ADM){
     	 try {
      		if(ADM.getNome() != null && !(cinema.getListaAdministradorCpf().contains(ADM.getCpf()))) {
-     			//chamar função do DAO para inserir
+				cinemaDAO.inserirADM(Administrador ADM);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -75,7 +73,7 @@ public class CinemaService implements iCinemaService{
     public int removerADM(Administrador ADM, Cinema cinema){
     	try {
      		if(cinema.getListaAdministradorCpf().contains(ADM.getCpf())) {
-     			//chamar função do DAO para remover
+				cinemaDAO.removerADM(Administrador ADM, Cinema cinema);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -88,9 +86,7 @@ public class CinemaService implements iCinemaService{
     public Administrador buscarADM(String cpf, Cinema cinema){
     	try {
     		if(cinema.getListaAdministradorCpf().contains(cpf)){
-       			//chamar função do DAO para buscar
-       			Administrador Adm = new Administrador(); //por enquanto q a função não está pronta
-       			return Adm;
+       			return (cinemaDAO.buscarADM(String cpf, Cinema cinema));
        		}else {
        			throw new NumberFormatException();
        		}
@@ -100,8 +96,7 @@ public class CinemaService implements iCinemaService{
     } 
     @Override
     public List <Administrador> buscarTodosADM(){
-    	//chamar função do DAO que retorna todos os adms
-		return null;
+		return buscarTodosADM();
     }
 
     @Override
