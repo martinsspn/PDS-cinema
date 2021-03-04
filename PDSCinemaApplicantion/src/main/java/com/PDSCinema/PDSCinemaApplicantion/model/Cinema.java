@@ -5,7 +5,9 @@ import java.util.List;
 public class Cinema {
     private List<Integer> salas;
     private List<String> listaClientesCpf;
+    private List<Cliente> listaClientes;
     private List<String> listaAdministradorCpf;
+    private List<Administrador> listaAdministrador;
     private List<Filme> filmesEmCartaz;
     private List<String> horarios;
     private int avaliacoesServico;
@@ -68,7 +70,21 @@ public class Cinema {
     public void setAvaliacoesHorarios(List<Integer> avaliacoesHorarios) {
         this.avaliacoesHorarios = avaliacoesHorarios;
     }
+    public List<Cliente> getListaClientes() {
+        return listaClientes;
+    }
 
+    public void setListaClientes(List<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
+    }
+
+    public List<Administrador> getListaAdministrador() {
+        return listaAdministrador;
+    }
+
+    public void setListaAdministrador(List<Administrador> listaAdministrador) {
+        this.listaAdministrador = listaAdministrador;
+    }
     public List<String> getHorarios() {
         return horarios;
     }
@@ -85,3 +101,4 @@ public class Cinema {
         this.quantAvHorarios = quantAvHorarios;
     }
 }
+
