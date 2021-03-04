@@ -2,6 +2,8 @@ package com.PDSCinema.PDSCinemaApplicantion.DAO;
 import com.PDSCinema.PDSCinemaApplicantion.model.Administrador;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cliente;
+import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
+import com.PDSCinema.PDSCinemaApplicantion.service.iCinemaService;
 
 import java.util.List;
 

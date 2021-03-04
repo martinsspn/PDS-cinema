@@ -2,7 +2,6 @@ package com.PDSCinema.PDSCinemaApplicantion.DAO;
 
 import com.PDSCinema.PDSCinemaApplicantion.model.*;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface CinemaDAO {
