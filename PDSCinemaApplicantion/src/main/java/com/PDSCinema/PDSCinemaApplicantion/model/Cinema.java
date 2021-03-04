@@ -4,7 +4,9 @@ import java.util.List;
 
 public class Cinema {
     private List<Integer> salas;
-    private List<String> filmesEmCartaz;
+    private List<String> listaClientesCpf;
+    private List<String> listaAdministradorCpf;
+    private List<Filme> filmesEmCartaz;
     private List<String> horarios;
     private int avaliacoesServico;
     private List<Integer> avaliacoesHorarios;
@@ -19,11 +21,27 @@ public class Cinema {
         this.salas = salas;
     }
 
-    public List<String> getFilmesEmCartaz() {
+    public List<String> getListaAdministradorCpf() {
+        return listaAdministradorCpf;
+    }
+
+    public void setListaAdministradorCpf(List<String> ListaAdministradorCpf) {
+        this.listaAdministradorCpf = listaAdministradorCpf;
+    }
+
+    public List<String> getListaClientesCpf() {
+        return listaClientesCpf;
+    }
+
+    public void setListaClientesCpf(List<String> listaClientesCpf) {
+        this.listaClientesCpf = listaClientesCpf;
+    }
+
+    public List<Filme> getFilmesEmCartaz() {
         return filmesEmCartaz;
     }
 
-    public void setFilmesEmCartaz(List<String> filmesEmCartaz) {
+    public void setFilmesEmCartaz(List<Filme> filmesEmCartaz) {
         this.filmesEmCartaz = filmesEmCartaz;
    }
 
@@ -34,7 +52,8 @@ public class Cinema {
     public void setAvaliacoesServico(int avaliacoesServico) {
         this.avaliacoesServico = avaliacoesServico;
     }
-public int getQuantAVServico() {
+
+    public int getQuantAvServico() {
         return quantAvServico;
     }
 
@@ -49,14 +68,16 @@ public int getQuantAVServico() {
     public void setAvaliacoesHorarios(List<Integer> avaliacoesHorarios) {
         this.avaliacoesHorarios = avaliacoesHorarios;
     }
-public List<String> getHorarios() {
+
+    public List<String> getHorarios() {
         return horarios;
     }
 
     public void setHorarios(List<String> horarios) {
         this.horarios = horarios;
     }
-public List<Integer> getQuantAvHorarios() {
+
+    public List<Integer> getQuantAvHorarios() {
         return quantAvHorarios;
     }
 

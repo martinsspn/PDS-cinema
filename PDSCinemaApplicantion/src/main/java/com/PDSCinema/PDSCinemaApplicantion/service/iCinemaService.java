@@ -1,13 +1,22 @@
 package com.PDSCinema.PDSCinemaApplicantion.service;
 
+import com.PDSCinema.PDSCinemaApplicantion.model.Administrador;
+import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
+import com.PDSCinema.PDSCinemaApplicantion.model.Cliente;
+import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
+
+import java.util.List;
+
 public interface iCinemaService {
-    void inserirCliente(Cliente cliente);
-    void removerCliente(Cliente cliente);
-    void buscarCliente(Cliente cliente);
+    int inserirCliente(Cliente cliente);
+    int removerCliente(Cliente cliente, Cinema cinema);
+    Cliente buscarCliente(String cpf, Cinema cinema);
     List <Cliente> buscarTodosCliente();
-    void inserirADM(Administrador ADM);
-    void removerADM(Administrador ADM);
-    void buscarADM(Administrador ADM);
+    int inserirADM(Administrador ADM);
+    int removerADM(Administrador ADM, Cinema cinema);
+    Administrador buscarADM(String cpf, Cinema cinema);
     List <Administrador> buscarTodosADM();
-    void calcularMediaAvaliacao();
+    Double calcularMediaAvaliacaoServico(int avaliacoesServico, int quantAvServico);
+    List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz);
+    List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios);
 }

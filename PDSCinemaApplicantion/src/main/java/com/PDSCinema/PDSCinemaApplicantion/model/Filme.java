@@ -10,7 +10,6 @@ public class Filme {
 	private String classificacaoIndicativa;
 	private String genero;
 	private String diaDeEstreia;
-	
 
 	public String getName() {
 		return name;
@@ -36,7 +35,6 @@ public class Filme {
 		this.avaliacoes = avaliacoes;
 	}
 
-	
 	public int getQuantAvaliacoes() {
 		return quantAvaliacoes;
 	}
