@@ -14,18 +14,18 @@ public class CinemaService implements iCinemaService{
 	private CinemaDAO cinemaDAO;
 
     @Override
-    public int inserirCliente(Cliente cliente){
-    	try {
-    		if(cliente.getNome() != null && !(cinema.getListaClientesCpf().contains(cliente.getCpf()))) {
-				cinemaDAO.inserirCliente(cliente);
-    			return 0;
-    		}else {
-    			throw new NumberFormatException();
-    		}
-    	}catch(NumberFormatException e) {
-    		return -1;
-    	}
-    }
+	public int inserirCliente(String cpf, String nome){
+		try {
+			if(nome != null && (cinema.getListaClientesCpf().contains(cpf))) {
+				cinemaDAO.inserirCliente(cpf, nome);
+				return 0;
+			}else {
+				throw new NumberFormatException();
+			}
+		}catch(NumberFormatException e) {
+			return -1;
+		}
+	}
      @Override
     public int removerCliente(Cliente cliente, Cinema cinema){
     	try {
@@ -97,7 +97,7 @@ public class CinemaService implements iCinemaService{
     } 
     @Override
     public List <Administrador> buscarTodosADM(){
-		return buscarTodosADM();
+		return cinemaDAO.buscarTodosADM();
     }
 
     @Override

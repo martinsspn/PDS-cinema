@@ -1,9 +1,19 @@
 package com.PDSCinema.PDSCinemaApplicantion.service;
 
+import com.PDSCinema.PDSCinemaApplicantion.DAO.AdministradorDAO;
 import com.PDSCinema.PDSCinemaApplicantion.model.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class AdmistradorService implements iAdministradorService{
-    private Administrador adm;
+    private final Administrador adm;
+    private final AdministradorDAO admDAO;
+
+    public AdmistradorService(Administrador adm, AdministradorDAO admDAO) {
+        this.adm = adm;
+        this.admDAO = admDAO;
+    }
 
     @Override
     public void cadastrarFilmes(String name, int duracao, int avaliacao, String sinopse, String classificacaoIndicativa, String genero,
@@ -31,15 +41,21 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public Filme buscarFilme(String nome){
-        //Função DAO
-        return null;
+    public Filme buscarFilme(String nome) throws IOException{
+        try{
+            return admDAO.buscarFilme(nome);
+        }catch (IOException e) {
+            throw e;
+        }
     }
 
     @Override
-    public Filme buscarFilmeGenero(String genero){
-        //Função DAO
-        return null;
+    public ArrayList<Filme> buscarFilmeGenero(String genero) throws IOException{
+        try {
+            return admDAO.buscarFilmeGenero(genero);
+        }catch (IOException e){
+            throw e;
+        }
     }
 
     @Override
@@ -55,16 +71,12 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public int removerFilmes(Filme filme, Cinema cinema) {
+    public int removerFilmes(Filme filme) throws IOException {
         try{
-            if(cinema.getFilmesEmCartaz().contains(filme)){
-                //função DAO para remover
-                return 0;
-            }else{
-                throw new Exception();
-            }
-        }catch(Exception e){
-            return 1;
+            admDAO.removerFilmes(filme);
+            return 0;
+        }catch(IOException e){
+            throw e;
         }
     }
 
