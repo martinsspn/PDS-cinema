@@ -16,3 +16,4 @@ public interface CinemaDAO {
     Administrador buscarADM(String cpf, Cinema cinema);
     List <Administrador> buscarTodosADM(Cinema cinema);
 }
+
