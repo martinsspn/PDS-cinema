@@ -5,6 +5,7 @@ import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cliente;
 import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface iCinemaService {
@@ -19,4 +20,6 @@ public interface iCinemaService {
     Double calcularMediaAvaliacaoServico(int avaliacoesServico, int quantAvServico);
     List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz);
     List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios);
+    ArrayList<String> calcularRankingFilme(List<Filme> filmesEmCartaz);
+    ArrayList<String> calcularRankingHorarios(List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios);
 }
