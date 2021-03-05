@@ -2,59 +2,70 @@ package com.PDSCinema.PDSCinemaApplicantion.DAO;
 import com.PDSCinema.PDSCinemaApplicantion.model.Administrador;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cinema;
 import com.PDSCinema.PDSCinemaApplicantion.model.Cliente;
-import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
-import com.PDSCinema.PDSCinemaApplicantion.service.iCinemaService;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class CinemaService implements iCinemaService {
-    private Cinema cinema;
+public class CinemaDAOmemoria implements CinemaDAO {
+    private final Cinema cinema;
+
+    public CinemaDAOmemoria(Cinema _cinema) {
+        this.cinema = _cinema;
+    }
 
     @Override
-    public void inserirCliente(Cliente cliente){
-        cinema.listaClientesCpf.add(cliente.getCpf());
-        cinema.listaClientes.add(cliente);
+    public void inserirCliente(String cpf, String nome){
+        cinema.getListaClientesCpf().add(cpf);
+        Cliente cliente = new Cliente();
+        cliente.setNome(nome);
+        cliente.setCpf(cpf); cinema.getListaClientes().add(cliente);
 
     }
+
     @Override
-    public void removerCliente(Cliente cliente, Cinema cinema){
-        cinema.listaClientesCpf.remove(cliente.getCpf());
-        cinema.listaClientes.remove(cliente);
+    public void removerCliente(Cliente cliente, Cinema cinema) {
+        cinema.getListaClientesCpf().remove(cliente.getCpf());
+        cinema.getListaClientes().remove(cliente);
     }
+
     @Override
-    public Cliente buscarCliente(String cpf, Cinema cinema){
-        for(int i=0; i < cinema.listaClientesCpf.size(); i++){
-            if (cpf == listaClientesCpf.get(i)){
-                return cinema.listaClientes.get(i);
+    public Cliente buscarCliente(String cpf, Cinema cinema) {
+        for (int i = 0; i < cinema.getListaClientesCpf().size(); i++) {
+            if (cpf.equals(cinema.getListaClientesCpf().get(i))) {
+                return cinema.getListaClientes().get(i);
             }
         }
-
-    }
-    @Override
-    public List <Cliente> buscarTodosCliente(){
-        return cinema.listaClientes.get();
+        return null;
     }
 
     @Override
-    public void inserirADM(Administrador ADM){
-        cinema.listaAdministradorCpf.add(cliente.getCpf());
-        cinema.listaAdministrador.add(cliente);
+    public List<Cliente> buscarTodosCliente() {
+        return cinema.getListaClientes();
     }
+
     @Override
-    public void removerADM(Administrador ADM, Cinema cinema){
-        cinema.listaAdministradorCpf.remove(cliente.getCpf());
-        cinema.listaAdministrador.remove(cliente);
+    public void inserirADM(Administrador adm) {
+        cinema.getListaAdministradorCpf().add(adm.getCpf());
+        cinema.getListaAdministrador().add(adm);
     }
+
     @Override
-    public Administrador buscarADM(String cpf, Cinema cinema){
-        for(int i=0; i < cinema.listaAdministradorCpf.size(); i++){
-            if (cpf == listaAdministradorCpf.get(i)){
-                return cinema.listaAdministrador.get(i);
+    public void removerADM(Administrador adm, Cinema cinema) {
+        cinema.getListaAdministradorCpf().remove(adm.getCpf());
+        cinema.getListaAdministrador().remove(adm);
+    }
+
+    @Override
+    public Administrador buscarADM(String cpf, Cinema cinema) {
+        for (int i = 0; i < cinema.getListaAdministradorCpf().size(); i++) {
+            if (cpf.equals(cinema.getListaAdministradorCpf().get(i))) {
+                return cinema.getListaAdministrador().get(i);
             }
         }
+        return null;
     }
+
     @Override
-    public List <Administrador> buscarTodosADM(){
-        return cinema.listaAdministrador.get();
+    public List<Administrador> buscarTodosADM() {
+        return cinema.getListaAdministrador();
     }
+}

@@ -8,7 +8,7 @@ import com.PDSCinema.PDSCinemaApplicantion.model.Filme;
 import java.util.List;
 
 public interface iCinemaService {
-    int inserirCliente(Cliente cliente);
+    int inserirCliente(String cpf, String nome);
     int removerCliente(Cliente cliente, Cinema cinema);
     Cliente buscarCliente(String cpf, Cinema cinema);
     List <Cliente> buscarTodosCliente();

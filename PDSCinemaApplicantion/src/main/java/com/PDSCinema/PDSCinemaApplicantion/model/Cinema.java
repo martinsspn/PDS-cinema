@@ -45,7 +45,7 @@ public class Cinema {
 
     public void setFilmesEmCartaz(List<Filme> filmesEmCartaz) {
         this.filmesEmCartaz = filmesEmCartaz;
-   }
+    }
 
     public int getAvaliacoesServico() {
         return avaliacoesServico;

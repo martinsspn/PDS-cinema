@@ -1,11 +1,12 @@
-package com.PDSCinema.PDSCinemaApplicantion.service;
+package com.PDSCinema.PDSCinemaApplicantion.DAO;
 
 import com.PDSCinema.PDSCinemaApplicantion.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public interface iAdministradorService {
+public interface AdministradorDAO{
     void cadastrarFilmes(String name, int duracao, int avaliacao, String sinopse, String classificacaoIndicativa, String genero,
                          String diaDeEstreia);
     void cadastrarCupons(String _Cupom, String tipoDeCupom);
@@ -17,6 +18,6 @@ public interface iAdministradorService {
     Premio buscarPremio(String codigo);
 
     int removerFilmes(Filme filme) throws IOException;
-    int removerCupons(Cupom cupom, Cliente cliente);
-    int removerPremios(Premio premio, Cliente cliente);
+    int removerCupons(Cupom cupom);
+    int removerPremios(Premio premio);
 }
