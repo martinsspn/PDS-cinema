@@ -22,7 +22,7 @@ public class CinemaService implements iCinemaService{
 	@Override
 	public int inserirCliente(String cpf, String nome){
 		try {
-			if(nome != null && (cinema.getListaClientesCpf().contains(cpf))) {
+			if(nome != null && !(cinema.getListaClientesCpf().contains(cpf))) {
 				cinemaDAO.inserirCliente(cinema, cpf, nome);
 				return 0;
 			}else {
@@ -46,7 +46,7 @@ public class CinemaService implements iCinemaService{
      	}
     }
     @Override
-    public Cliente buscarCliente(String cpf, Cinema cinema){
+    public ClienteService buscarCliente(String cpf, Cinema cinema){
     	try {
       		if(cinema.getListaClientesCpf().contains(cpf)) {
       			return (cinemaDAO.buscarCliente(cpf, cinema));
@@ -59,15 +59,15 @@ public class CinemaService implements iCinemaService{
 
     } 
     @Override
-    public List <Cliente> buscarTodosCliente(){
+    public List <ClienteService> buscarTodosCliente(){
 		return cinemaDAO.buscarTodosCliente(cinema);
     }
 
     @Override
-    public int inserirADM(Administrador ADM){
+    public int inserirADM(Cinema cinema, String nome, String cpf){
     	 try {
-     		if(ADM.getNome() != null && !(cinema.getListaAdministradorCpf().contains(ADM.getCpf()))) {
-				cinemaDAO.inserirADM(cinema, ADM);
+     		if(nome != null && !(cinema.getListaAdministradorCpf().contains(cpf))) {
+				cinemaDAO.inserirADM(cinema, nome, cpf);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -114,7 +114,7 @@ public class CinemaService implements iCinemaService{
     public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz){
     	List<Double> valor = new ArrayList<>();
 		for (Filme filme : filmesEmCartaz) {
-			valor.add((double) ((filme.getAvaliacoes()) / (filme.getQuantAvaliacoes())));
+			valor.add(((double)(filme.getAvaliacoes()) / (double)(filme.getQuantAvaliacoes())));
 		}
     	return valor;
     }

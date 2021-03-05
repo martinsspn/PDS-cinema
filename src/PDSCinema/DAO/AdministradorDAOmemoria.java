@@ -11,12 +11,11 @@ import java.util.ArrayList;
 
 public class AdministradorDAOmemoria implements AdministradorDAO{
 
-    public void cadastrarFilmes(Cinema cinema, String name, int duracao, int avaliacao, String sinopse, String classificacaoIndicativa, String genero,
+    public void cadastrarFilmes(Cinema cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
                                 String diaDeEstreia){
         Filme filme = new Filme();
         filme.setName(name);
         filme.setDuracao(duracao);
-        filme.setAvaliacoes(avaliacao);
         filme.setSinopse(sinopse);
         filme.setClassificacaoIndicativa(classificacaoIndicativa);
         filme.setGenero(genero);

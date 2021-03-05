@@ -3,13 +3,21 @@ package PDSCinema.service;
 import java.io.IOException;
 
 import PDSCinema.DAO.ClienteDAO;
+import PDSCinema.DAO.ClienteDAOmemoria;
 import PDSCinema.model.Cinema;
+import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
 public class ClienteService implements iClienteService{
-    private ClienteDAO clienteDAO;
+    private Cliente cliente;
+	private ClienteDAO clienteDAO;
+
+	public ClienteService() {
+		this.cliente = new Cliente();
+		this.clienteDAO = new ClienteDAOmemoria();
+	}
 
 	@Override
     public int comprarIngresso(Ingresso ingresso, int pagamento) {
@@ -34,6 +42,7 @@ public class ClienteService implements iClienteService{
     			throw new NumberFormatException();
     		}
     		clienteDAO.avaliarFilme(filme, avaliacao);
+
     		return 0;
     	}catch(NumberFormatException e) {
     		return -1;
@@ -93,4 +102,8 @@ public class ClienteService implements iClienteService{
     public int resgatarPremio() {
     	return 0;
     }
+
+    public Cliente getCliente(){
+		return cliente;
+	}
 }
