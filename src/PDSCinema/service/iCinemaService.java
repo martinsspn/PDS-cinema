@@ -12,9 +12,9 @@ import java.util.List;
 public interface iCinemaService {
     int inserirCliente(String cpf, String nome);
     int removerCliente(Cliente cliente, Cinema cinema);
-    Cliente buscarCliente(String cpf, Cinema cinema);
-    List <Cliente> buscarTodosCliente();
-    int inserirADM(Administrador ADM);
+    ClienteService buscarCliente(String cpf, Cinema cinema);
+    List <ClienteService> buscarTodosCliente();
+    int inserirADM(Cinema cinema, String nome, String cpf);
     int removerADM(Administrador ADM, Cinema cinema);
     Administrador buscarADM(String cpf, Cinema cinema);
     List <Administrador> buscarTodosADM();

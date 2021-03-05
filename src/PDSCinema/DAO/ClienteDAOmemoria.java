@@ -57,7 +57,7 @@ public class ClienteDAOmemoria implements ClienteDAO{
     public int avaliarFilme(Filme filme, int avaliacao) {
         int avaliacoes = filme.getAvaliacoes();
         filme.setAvaliacoes(avaliacoes+avaliacao);
-        filme.setAvaliacoes(filme.getQuantAvaliacoes()+1);
+        filme.setQuantAvaliacoes(filme.getQuantAvaliacoes()+1);
         return 0;
     }
 

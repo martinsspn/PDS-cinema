@@ -16,9 +16,9 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public void cadastrarFilmes(Cinema cinema, String name, int duracao, int avaliacao, String sinopse, String classificacaoIndicativa, String genero,
+    public void cadastrarFilmes(Cinema cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
             String diaDeEstreia) {
-        admDAO.cadastrarFilmes(cinema, name, duracao, avaliacao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
+        admDAO.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
     }
 
     @Override

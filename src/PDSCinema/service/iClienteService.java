@@ -2,6 +2,7 @@ package PDSCinema.service;
 
 
 import PDSCinema.model.Cinema;
+import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
 
@@ -13,4 +14,5 @@ public interface iClienteService {
     int resgatarPremio();
 	int avaliarFilme(Filme filme, int avaliacao);
 	int comprarIngresso(Ingresso ingresso, int pagamento);
+    Cliente getCliente();
 }

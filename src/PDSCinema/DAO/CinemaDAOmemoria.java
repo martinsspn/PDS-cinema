@@ -3,6 +3,7 @@ package PDSCinema.DAO;
 import PDSCinema.model.Administrador;
 import PDSCinema.model.Cinema;
 import PDSCinema.model.Cliente;
+import PDSCinema.service.ClienteService;
 
 import java.util.List;
 
@@ -11,9 +12,9 @@ public class CinemaDAOmemoria implements CinemaDAO {
     @Override
     public void inserirCliente(Cinema cinema, String cpf, String nome){
         cinema.getListaClientesCpf().add(cpf);
-        Cliente cliente = new Cliente();
-        cliente.setNome(nome);
-        cliente.setCpf(cpf); cinema.getListaClientes().add(cliente);
+        ClienteService cliente = new ClienteService();
+        cliente.getCliente().setNome(nome);
+        cliente.getCliente().setCpf(cpf); cinema.getListaClientes().add(cliente);
 
     }
 
@@ -24,7 +25,7 @@ public class CinemaDAOmemoria implements CinemaDAO {
     }
 
     @Override
-    public Cliente buscarCliente(String cpf, Cinema cinema) {
+    public ClienteService buscarCliente(String cpf, Cinema cinema) {
         for (int i = 0; i < cinema.getListaClientesCpf().size(); i++) {
             if (cpf.equals(cinema.getListaClientesCpf().get(i))) {
                 return cinema.getListaClientes().get(i);
@@ -34,14 +35,16 @@ public class CinemaDAOmemoria implements CinemaDAO {
     }
 
     @Override
-    public List<Cliente> buscarTodosCliente(Cinema cinema) {
+    public List<ClienteService> buscarTodosCliente(Cinema cinema) {
         return cinema.getListaClientes();
     }
 
     @Override
-    public void inserirADM(Cinema cinema, Administrador adm) {
-        cinema.getListaAdministradorCpf().add(adm.getCpf());
-        cinema.getListaAdministrador().add(adm);
+    public void inserirADM(Cinema cinema, String cpf, String nome) {
+        cinema.getListaAdministradorCpf().add(cpf);
+        Administrador administrador = new Administrador();
+        administrador.setNome(nome);
+        administrador.setCpf(cpf); cinema.getListaAdministrador().add(administrador);
     }
 
     @Override
