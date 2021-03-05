@@ -6,15 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="dbb34ff4-2c88-4de8-a55f-b37a97d295d0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/DAO/CinemaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/DAO/CinemaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/DAO/CinemaDAO.java~HEAD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/DAO/CinemaDAO.java~main" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/DAO/CinemaDAOmemoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/DAO/CinemaDAOmemoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/DAO/administradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/DAO/AdministradorDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/AdmistradorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/CinemaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/CinemaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iAdministradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iAdministradorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iCinemaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iCinemaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/PDSCinemaApplicantion/src/main/java/com/PDSCinema/PDSCinemaApplicantion/service/iClienteService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
