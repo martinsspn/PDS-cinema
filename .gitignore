@@ -57,3 +57,10 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+/bin/
+.classpath
+*.xml
+*.prefs
+.project
+*.xml
+.idea/workspace.xml
