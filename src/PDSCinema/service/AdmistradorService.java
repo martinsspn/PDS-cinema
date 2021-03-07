@@ -18,7 +18,8 @@ public class AdmistradorService implements iAdministradorService{
     @Override
     public void cadastrarFilmes(Cinema cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
             String diaDeEstreia) {
-        admDAO.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
+        if(cinema != null && duracao > 0 && !sinopse.isEmpty() && !classificacaoIndicativa.isEmpty() && !genero.isEmpty() && !diaDeEstreia.isEmpty())
+            admDAO.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
     }
 
     @Override
@@ -35,21 +36,19 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public Filme buscarFilme(Cinema cinema, String nome) throws IOException{
-        try{
+    public Filme buscarFilme(Cinema cinema, String nome){
+        if(cinema != null && !nome.isEmpty())
             return admDAO.buscarFilme(cinema, nome);
-        }catch (IOException e) {
-            throw e;
-        }
+        else
+            return null;
     }
 
     @Override
-    public ArrayList<Filme> buscarFilmeGenero(Cinema cinema, String genero) throws IOException{
-        try {
+    public ArrayList<Filme> buscarFilmeGenero(Cinema cinema, String genero){
+        if(cinema != null && !genero.isEmpty())
             return admDAO.buscarFilmeGenero(cinema, genero);
-        }catch (IOException e){
-            throw e;
-        }
+        else
+            return null;
     }
 
     @Override
@@ -65,13 +64,12 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public int removerFilmes(Cinema cinema, Filme filme) throws IOException {
-        try{
+    public int removerFilmes(Cinema cinema, Filme filme) {
+        if (cinema != null && cinema.getFilmesEmCartaz().contains(filme)){
             admDAO.removerFilmes(cinema, filme);
             return 0;
-        }catch(IOException e){
-            throw e;
-        }
+        }else
+            return -1;
     }
 
     @Override

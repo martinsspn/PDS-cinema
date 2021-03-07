@@ -5,8 +5,6 @@ import PDSCinema.model.Cupom;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Premio;
 
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class AdministradorDAOmemoria implements AdministradorDAO{
@@ -30,30 +28,23 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
 
     }
 
-    public Filme buscarFilme(Cinema cinema, String nome) throws IOException{
-        if(!nome.isEmpty()){
-            for(Filme filme : cinema.getFilmesEmCartaz()){
-                if(filme.getName().equals(nome))
-                    return filme;
-            }
-        }else{
-            throw new IOException();
+    public Filme buscarFilme(Cinema cinema, String nome){
+        for(Filme filme : cinema.getFilmesEmCartaz()){
+            if(filme.getName().equals(nome))
+                return filme;
         }
         return null;
     }
 
-    public ArrayList<Filme> buscarFilmeGenero(Cinema cinema, String genero) throws IOException{
+    public ArrayList<Filme> buscarFilmeGenero(Cinema cinema, String genero){
         ArrayList<Filme> filmesPorGenero = new ArrayList<>();
-        if(!genero.isEmpty()){
-            for(Filme filme : cinema.getFilmesEmCartaz()){
-                if(filme.getGenero().equals(genero))
+            for(Filme filme : cinema.getFilmesEmCartaz()) {
+                if (filme.getGenero().equals(genero))
                     filmesPorGenero.add(filme);
             }
-        }else{
-            throw new IOException();
-        }
         return filmesPorGenero;
     }
+
     public Cupom buscarCupons(String codigo){
         return null;
     }
@@ -61,17 +52,15 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
         return null;
     }
 
-    public int removerFilmes(Cinema cinema, Filme filme) throws IOException{
-        if(filme != null && cinema.getFilmesEmCartaz().contains(filme)){
-            cinema.getFilmesEmCartaz().remove(filme);
-            return 0;
-        }else{
-            throw new IOException();
-        }
+    public int removerFilmes(Cinema cinema, Filme filme){
+        cinema.getFilmesEmCartaz().remove(filme);
+        return 0;
     }
+
     public int removerCupons(Cupom cupom){
         return 0;
     }
+
     public int removerPremios(Premio premio){
         return 0;
     }

@@ -4,7 +4,6 @@ import PDSCinema.model.Cinema;
 import PDSCinema.model.Cupom;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Premio;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public interface AdministradorDAO{
@@ -13,12 +12,12 @@ public interface AdministradorDAO{
     void cadastrarCupons(String _Cupom, String tipoDeCupom);
     void cadastrarPremios(String descricao);
 
-    Filme buscarFilme(Cinema cinema, String nome) throws IOException;
-    ArrayList<Filme> buscarFilmeGenero(Cinema cinema, String genero) throws IOException;
+    Filme buscarFilme(Cinema cinema, String nome);
+    ArrayList<Filme> buscarFilmeGenero(Cinema cinema, String genero);
     Cupom buscarCupons(String codigo);
     Premio buscarPremio(String codigo);
 
-    int removerFilmes(Cinema cinema, Filme filme) throws IOException;
+    int removerFilmes(Cinema cinema, Filme filme);
     int removerCupons(Cupom cupom);
     int removerPremios(Premio premio);
 }
