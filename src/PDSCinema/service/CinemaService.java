@@ -23,7 +23,7 @@ public class CinemaService implements iCinemaService{
 	public int inserirCliente(String cpf, String nome){
 		try {
 			if(nome != null && !(cinema.getListaClientesCpf().contains(cpf))) {
-				cinemaDAO.inserirCliente(cinema, cpf, nome);
+				cinemaDAO.inserirCliente(cpf, nome);
 				return 0;
 			}else {
 				throw new NumberFormatException();
@@ -33,10 +33,10 @@ public class CinemaService implements iCinemaService{
 		}
 	}
      @Override
-    public int removerCliente(Cliente cliente, Cinema cinema){
+    public int removerCliente(Cliente cliente){
     	try {
      		if(cinema.getListaClientesCpf().contains(cliente.getCpf())) {
-				cinemaDAO.removerCliente(cliente, cinema);
+				cinemaDAO.removerCliente(cliente);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -46,10 +46,10 @@ public class CinemaService implements iCinemaService{
      	}
     }
     @Override
-    public ClienteService buscarCliente(String cpf, Cinema cinema){
+    public Cliente buscarCliente(String cpf){
     	try {
       		if(cinema.getListaClientesCpf().contains(cpf)) {
-      			return (cinemaDAO.buscarCliente(cpf, cinema));
+      			return (cinemaDAO.buscarCliente(cpf));
       		}else {
       			throw new NumberFormatException();
       		}
@@ -59,15 +59,15 @@ public class CinemaService implements iCinemaService{
 
     } 
     @Override
-    public List <ClienteService> buscarTodosCliente(){
-		return cinemaDAO.buscarTodosCliente(cinema);
+    public List <Cliente> buscarTodosCliente(){
+		return cinemaDAO.buscarTodosCliente();
     }
 
     @Override
-    public int inserirADM(Cinema cinema, String nome, String cpf){
+    public int inserirADM(String nome, String cpf){
     	 try {
      		if(nome != null && !(cinema.getListaAdministradorCpf().contains(cpf))) {
-				cinemaDAO.inserirADM(cinema, nome, cpf);
+				cinemaDAO.inserirADM(nome, cpf);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -77,10 +77,10 @@ public class CinemaService implements iCinemaService{
      	}
     }
     @Override
-    public int removerADM(Administrador ADM, Cinema cinema){
+    public int removerADM(Administrador ADM){
     	try {
      		if(cinema.getListaAdministradorCpf().contains(ADM.getCpf())) {
-				cinemaDAO.removerADM(ADM, cinema);
+				cinemaDAO.removerADM(ADM);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -90,10 +90,10 @@ public class CinemaService implements iCinemaService{
      	}
     }
      @Override
-    public Administrador buscarADM(String cpf, Cinema cinema){
+    public Administrador buscarADM(String cpf){
     	try {
     		if(cinema.getListaAdministradorCpf().contains(cpf)){
-       			return (cinemaDAO.buscarADM(cpf, cinema));
+       			return (cinemaDAO.buscarADM(cpf));
        		}else {
        			throw new NumberFormatException();
        		}
@@ -103,7 +103,7 @@ public class CinemaService implements iCinemaService{
     } 
     @Override
     public List <Administrador> buscarTodosADM(){
-		return cinemaDAO.buscarTodosADM(cinema);
+		return cinemaDAO.buscarTodosADM();
     }
 
     @Override

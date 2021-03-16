@@ -8,7 +8,7 @@ public class main {
     public static void main(String[] args){
         iCinemaService ics = new CinemaService();
         iAdministradorService ids = new AdmistradorService();
-        ics.inserirADM(ics.getCinema(), "João", "019291");
+        //ics.inserirADM(ics.getCinema(), "João", "019291");
         ids.cadastrarFilmes(ics.getCinema(), "esqueceram de mim", 120, "uma sinopse qualquer", "15 anos", "comedia"
         , "10/01/2000");
         ids.cadastrarFilmes(ics.getCinema(), "Velozes e Furiosos", 110, "Um monte de carro voando", "18 Anos", "Ação"
@@ -35,17 +35,17 @@ public class main {
         }else{
             System.out.println("Cliente cadastrado");
         }
-        System.out.println(ics.buscarCliente("38721837", ics.getCinema()).getCliente().getNome());
-        ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(0), 5);
-        ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(0), 5);
-        ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(0), 4);
-        ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(0), 3);
-        ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(1), 4);
-        ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(2), 3);
-        ics.buscarCliente("38293823", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(1), 5);
-        ics.buscarCliente("38293823", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(1), 5);
-        ics.buscarCliente("38293823", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(1), 5);
-        ics.buscarCliente("38293823", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(2), 2);
+        //System.out.println(ics.buscarCliente("38721837", ics.getCinema()).getCliente().getNome());
+        //ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(0), 5);
+        //ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(0), 5);
+        //ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(0), 4);
+        //ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(0), 3);
+        //ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(1), 4);
+        //ics.buscarCliente("38721837", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(2), 3);
+        //ics.buscarCliente("38293823", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(1), 5);
+        //ics.buscarCliente("38293823", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(1), 5);
+        //ics.buscarCliente("38293823", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(1), 5);
+        //ics.buscarCliente("38293823", ics.getCinema()).avaliarFilme(ics.getCinema().getFilmesEmCartaz().get(2), 2);
 
         for(double i: ics.calcularMediaAvaliacaoFilmes(ics.getCinema().getFilmesEmCartaz())){
             System.out.println(i);

@@ -8,13 +8,13 @@ import PDSCinema.service.ClienteService;
 import java.util.List;
 
 public interface CinemaDAO {
-    void inserirCliente(Cinema cinema, String cpf, String nome);
-    void removerCliente(Cliente cliente, Cinema cinema);
-    ClienteService buscarCliente(String cpf, Cinema cinema);
-    List<ClienteService> buscarTodosCliente(Cinema cinema);
-    void inserirADM(Cinema cinema, String cpf, String nome);
-    void removerADM(Administrador ADM, Cinema cinema);
-    Administrador buscarADM(String cpf, Cinema cinema);
-    List <Administrador> buscarTodosADM(Cinema cinema);
+    void inserirCliente(String cpf, String nome);
+    void removerCliente(Cliente cliente);
+    Cliente buscarCliente(String cpf);
+    List<Cliente> buscarTodosCliente();
+    void inserirADM(String cpf, String nome);
+    void removerADM(Administrador ADM);
+    Administrador buscarADM(String cpf);
+    List <Administrador> buscarTodosADM();
 }
 
