@@ -1,10 +1,9 @@
 package PDSCinema.DAO;
 
-
-import PDSCinema.model.Cinema;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
+import PDSCinema.repository.CinemaRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,7 +12,7 @@ public class ClienteDAOmemoria implements ClienteDAO{
     Cliente cliente = new Cliente();
 
     @Override
-    public int avaliarServico(Cinema cinema, int avaliacao) {
+    public int avaliarServico(CinemaRepository cinema, int avaliacao) {
         int avaliacoes = cinema.getAvaliacoesServico();
         cinema.setAvaliacoesServico(avaliacoes+avaliacao);
         cinema.setQuantAvServico(cinema.getQuantAvServico()+1);
@@ -21,7 +20,7 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public int avaliarHorario(Cinema cinema, String horario, int avaliacao) throws IOException {
+    public int avaliarHorario(CinemaRepository cinema, String horario, int avaliacao) throws IOException {
         int index = 0;
         List<String> horarios = cinema.getHorarios();
         for(int i=0;i<horarios.size();i++) {

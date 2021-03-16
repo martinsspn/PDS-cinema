@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import PDSCinema.DAO.ClienteDAO;
 import PDSCinema.DAO.ClienteDAOmemoria;
-import PDSCinema.model.Cinema;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
+import PDSCinema.repository.CinemaRepository;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
 public class ClienteService implements iClienteService{
@@ -52,7 +52,7 @@ public class ClienteService implements iClienteService{
     }
 
     @Override
-    public int avaliarServico(Cinema cinema, int avaliacao) {
+    public int avaliarServico(CinemaRepository cinema, int avaliacao) {
     	try {
     		if(avaliacao > 5 || avaliacao < 0) {
     			throw new NumberFormatException();
@@ -67,7 +67,7 @@ public class ClienteService implements iClienteService{
     }
 
     @Override
-    public int avaliarHorario(Cinema cinema, String horario, int avaliacao) {
+    public int avaliarHorario(CinemaRepository cinema, String horario, int avaliacao) {
 		try {
 			if(avaliacao > 5 || avaliacao < 0) {
 				throw new NumberFormatException();

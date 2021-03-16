@@ -3,6 +3,8 @@ package PDSCinema.service;
 import PDSCinema.DAO.AdministradorDAO;
 import PDSCinema.DAO.AdministradorDAOmemoria;
 import PDSCinema.model.*;
+import PDSCinema.repository.CinemaRepository;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,8 +18,8 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public void cadastrarFilmes(Cinema cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
-            String diaDeEstreia) {
+    public void cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
+                                String diaDeEstreia) {
         admDAO.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
     }
 
@@ -35,7 +37,7 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public Filme buscarFilme(Cinema cinema, String nome) throws IOException{
+    public Filme buscarFilme(CinemaRepository cinema, String nome) throws IOException{
         try{
             return admDAO.buscarFilme(cinema, nome);
         }catch (IOException e) {
@@ -44,7 +46,7 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public ArrayList<Filme> buscarFilmeGenero(Cinema cinema, String genero) throws IOException{
+    public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero) throws IOException{
         try {
             return admDAO.buscarFilmeGenero(cinema, genero);
         }catch (IOException e){
@@ -65,7 +67,7 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public int removerFilmes(Cinema cinema, Filme filme) throws IOException {
+    public int removerFilmes(CinemaRepository cinema, Filme filme) throws IOException {
         try{
             admDAO.removerFilmes(cinema, filme);
             return 0;

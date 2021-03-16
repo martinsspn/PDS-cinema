@@ -1,15 +1,14 @@
 package PDSCinema.DAO;
 
-
-import PDSCinema.model.Cinema;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
+import PDSCinema.repository.CinemaRepository;
 
 import java.io.IOException;
 
 public interface ClienteDAO {
-    int avaliarServico(Cinema cinema, int avaliacao);
-    int avaliarHorario(Cinema cinema, String horario ,int avaliacao) throws IOException;
+    int avaliarServico(CinemaRepository cinema, int avaliacao);
+    int avaliarHorario(CinemaRepository cinema, String horario ,int avaliacao) throws IOException;
     int utilizarCupom();
     int compartilharCupom();
     int resgatarPremio();

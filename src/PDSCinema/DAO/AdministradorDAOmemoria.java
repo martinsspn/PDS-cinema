@@ -1,9 +1,9 @@
 package PDSCinema.DAO;
 
-import PDSCinema.model.Cinema;
 import PDSCinema.model.Cupom;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Premio;
+import PDSCinema.repository.CinemaRepository;
 
 
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AdministradorDAOmemoria implements AdministradorDAO{
 
-    public void cadastrarFilmes(Cinema cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
+    public void cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
                                 String diaDeEstreia){
         Filme filme = new Filme();
         filme.setName(name);
@@ -30,7 +30,7 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
 
     }
 
-    public Filme buscarFilme(Cinema cinema, String nome) throws IOException{
+    public Filme buscarFilme(CinemaRepository cinema, String nome) throws IOException{
         if(!nome.isEmpty()){
             for(Filme filme : cinema.getFilmesEmCartaz()){
                 if(filme.getName().equals(nome))
@@ -42,7 +42,7 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
         return null;
     }
 
-    public ArrayList<Filme> buscarFilmeGenero(Cinema cinema, String genero) throws IOException{
+    public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero) throws IOException{
         ArrayList<Filme> filmesPorGenero = new ArrayList<>();
         if(!genero.isEmpty()){
             for(Filme filme : cinema.getFilmesEmCartaz()){
@@ -61,7 +61,7 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
         return null;
     }
 
-    public int removerFilmes(Cinema cinema, Filme filme) throws IOException{
+    public int removerFilmes(CinemaRepository cinema, Filme filme) throws IOException{
         if(filme != null && cinema.getFilmesEmCartaz().contains(filme)){
             cinema.getFilmesEmCartaz().remove(filme);
             return 0;
