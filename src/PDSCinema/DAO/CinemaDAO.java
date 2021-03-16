@@ -1,20 +1,19 @@
 package PDSCinema.DAO;
 
 import PDSCinema.model.Administrador;
-import PDSCinema.model.Cinema;
+import PDSCinema.repository.CinemaRepository;
 import PDSCinema.model.Cliente;
-import PDSCinema.service.ClienteService;
 
 import java.util.List;
 
 public interface CinemaDAO {
-    void inserirCliente(String cpf, String nome);
-    void removerCliente(Cliente cliente);
-    Cliente buscarCliente(String cpf);
-    List<Cliente> buscarTodosCliente();
-    void inserirADM(String cpf, String nome);
-    void removerADM(Administrador ADM);
-    Administrador buscarADM(String cpf);
-    List <Administrador> buscarTodosADM();
+    void inserirCliente(CinemaRepository cinema, String cpf, String nome);
+    void removerCliente(CinemaRepository cinema, Cliente cliente);
+    Cliente buscarCliente(CinemaRepository cinema, String cpf);
+    List<Cliente> buscarTodosCliente(CinemaRepository cinema);
+    void inserirADM(CinemaRepository cinema, String cpf, String nome);
+    void removerADM(CinemaRepository cinema, Administrador ADM);
+    Administrador buscarADM(CinemaRepository cinema, String cpf);
+    List <Administrador> buscarTodosADM(CinemaRepository cinema);
 }
 

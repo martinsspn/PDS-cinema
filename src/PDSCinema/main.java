@@ -6,7 +6,7 @@ import java.util.List;
 
 public class main {
     public static void main(String[] args){
-        iCinemaService ics = new CinemaService();
+        /*CinemaService ics = new CinemaService();
         iAdministradorService ids = new AdmistradorService();
         //ics.inserirADM(ics.getCinema(), "João", "019291");
         ids.cadastrarFilmes(ics.getCinema(), "esqueceram de mim", 120, "uma sinopse qualquer", "15 anos", "comedia"
@@ -55,5 +55,8 @@ public class main {
         for(int i=filmes.size()-1;i>=0;i--){
             System.out.println((filmes.size()-i) + " " + filmes.get(i));
         }
+
+         */
+        
     }
 }

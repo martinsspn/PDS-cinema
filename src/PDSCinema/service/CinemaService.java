@@ -3,7 +3,7 @@ package PDSCinema.service;
 import PDSCinema.DAO.CinemaDAO;
 import PDSCinema.DAO.CinemaDAOmemoria;
 import PDSCinema.model.Administrador;
-import PDSCinema.model.Cinema;
+import PDSCinema.repository.CinemaRepository;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
 
@@ -11,99 +11,119 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CinemaService implements iCinemaService{
-    private Cinema cinema;
+    private CinemaRepository cinema;
 	private CinemaDAO cinemaDAO;
 
 	public CinemaService() {
-		this.cinema = new Cinema();
+		this.cinema = new CinemaRepository();
 		this.cinemaDAO = new CinemaDAOmemoria();
 	}
 
 	@Override
 	public int inserirCliente(String cpf, String nome){
 		try {
-			if(nome != null && !(cinema.getListaClientesCpf().contains(cpf))) {
-				cinemaDAO.inserirCliente(cpf, nome);
-				return 0;
+			if(nome != null && cpf != null) {
+				if(!(cinema.getListaClientesCpf().contains(cpf))){
+					cinemaDAO.inserirCliente(cinema, cpf, nome);
+					return 0;
+				}else{
+					throw new Exception();
+				}
 			}else {
 				throw new NumberFormatException();
 			}
 		}catch(NumberFormatException e) {
+			System.out.println("Nome e/ou CPF não podem ser nulos.");
 			return -1;
+		}catch(Exception e){
+			System.out.println("Cliente já está cadastrado!");
+			return -2;
 		}
 	}
      @Override
-    public int removerCliente(Cliente cliente){
+    public int removerCliente(Cliente cliente, CinemaRepository cinema){
     	try {
      		if(cinema.getListaClientesCpf().contains(cliente.getCpf())) {
-				cinemaDAO.removerCliente(cliente);
+				cinemaDAO.removerCliente(cinema, cliente);
      			return 0;
      		}else {
      			throw new NumberFormatException();
      		}
      	}catch(NumberFormatException e) {
+    		System.out.println("ERRO: Cliente não existe na lista");
      		return -1;
      	}
     }
     @Override
-    public Cliente buscarCliente(String cpf){
+    public Cliente buscarCliente(CinemaRepository cinema, String cpf){
     	try {
       		if(cinema.getListaClientesCpf().contains(cpf)) {
-      			return (cinemaDAO.buscarCliente(cpf));
+      			return (cinemaDAO.buscarCliente(cinema, cpf));
       		}else {
       			throw new NumberFormatException();
       		}
       	}catch(NumberFormatException e) {
+    		System.out.println("O Cliente não está cadastrado!");
       		return null;
       	}
 
     } 
     @Override
     public List <Cliente> buscarTodosCliente(){
-		return cinemaDAO.buscarTodosCliente();
+		return cinemaDAO.buscarTodosCliente(cinema);
     }
 
     @Override
-    public int inserirADM(String nome, String cpf){
+    public int inserirADM(CinemaRepository cinema, String nome, String cpf){
     	 try {
-     		if(nome != null && !(cinema.getListaAdministradorCpf().contains(cpf))) {
-				cinemaDAO.inserirADM(nome, cpf);
-     			return 0;
+     		if(nome != null && cpf != null) {
+     			if(!(cinema.getListaAdministradorCpf().contains(cpf))){
+					cinemaDAO.inserirADM(cinema, nome, cpf);
+					return 0;
+				}else{
+     				throw new Exception();
+				}
      		}else {
      			throw new NumberFormatException();
      		}
      	}catch(NumberFormatException e) {
-     		return -1;
-     	}
+    	 	System.out.println("Nome e/ou CPF não podem ser nulos.");
+    	 	return -1;
+     	}catch(Exception e){
+    	 	System.out.println("ERRO: Administrador já está cadastrado!");
+    	 	return -2;
+		 }
     }
     @Override
-    public int removerADM(Administrador ADM){
+    public int removerADM(Administrador ADM, CinemaRepository cinema){
     	try {
      		if(cinema.getListaAdministradorCpf().contains(ADM.getCpf())) {
-				cinemaDAO.removerADM(ADM);
+				cinemaDAO.removerADM(cinema, ADM);
      			return 0;
      		}else {
      			throw new NumberFormatException();
      		}
      	}catch(NumberFormatException e) {
+    		System.out.println("ERRO: Administrador não existe.");
      		return -1;
      	}
     }
      @Override
-    public Administrador buscarADM(String cpf){
+    public Administrador buscarADM(String cpf, CinemaRepository cinema){
     	try {
     		if(cinema.getListaAdministradorCpf().contains(cpf)){
-       			return (cinemaDAO.buscarADM(cpf));
+       			return (cinemaDAO.buscarADM(cinema, cpf));
        		}else {
        			throw new NumberFormatException();
        		}
        	}catch(NumberFormatException e){
-       		return null;
+			System.out.println("ERRO: Administrador não existe.");
+			return null;
        	}
     } 
     @Override
     public List <Administrador> buscarTodosADM(){
-		return cinemaDAO.buscarTodosADM();
+		return cinemaDAO.buscarTodosADM(cinema);
     }
 
     @Override
@@ -125,7 +145,7 @@ public class CinemaService implements iCinemaService{
     	}
     	return valor;
     }
-	public Cinema getCinema() {
+	public CinemaRepository getCinema() {
 		return cinema;
 	}
 
