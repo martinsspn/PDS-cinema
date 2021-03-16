@@ -1,31 +1,30 @@
 package PDSCinema.DAO;
 
 import PDSCinema.model.Administrador;
-import PDSCinema.model.Cinema;
+import PDSCinema.repository.CinemaRepository;
 import PDSCinema.model.Cliente;
-import PDSCinema.service.ClienteService;
 
 import java.util.List;
 
 public class CinemaDAOmemoria implements CinemaDAO {
 
     @Override
-    public void inserirCliente(Cinema cinema, String cpf, String nome){
+    public void inserirCliente(CinemaRepository cinema, String cpf, String nome){
         cinema.getListaClientesCpf().add(cpf);
-        ClienteService cliente = new ClienteService();
-        cliente.getCliente().setNome(nome);
-        cliente.getCliente().setCpf(cpf); cinema.getListaClientes().add(cliente);
-
+        Cliente cliente = new Cliente();
+        cliente.setNome(nome);
+        cliente.setCpf(cpf);
+        cinema.getListaClientes().add(cliente);
     }
 
     @Override
-    public void removerCliente(Cliente cliente, Cinema cinema) {
+    public void removerCliente(CinemaRepository cinema, Cliente cliente) {
         cinema.getListaClientesCpf().remove(cliente.getCpf());
         cinema.getListaClientes().remove(cliente);
     }
 
     @Override
-    public ClienteService buscarCliente(String cpf, Cinema cinema) {
+    public Cliente buscarCliente(CinemaRepository cinema, String cpf) {
         for (int i = 0; i < cinema.getListaClientesCpf().size(); i++) {
             if (cpf.equals(cinema.getListaClientesCpf().get(i))) {
                 return cinema.getListaClientes().get(i);
@@ -35,26 +34,27 @@ public class CinemaDAOmemoria implements CinemaDAO {
     }
 
     @Override
-    public List<ClienteService> buscarTodosCliente(Cinema cinema) {
+    public List<Cliente> buscarTodosCliente(CinemaRepository cinema) {
         return cinema.getListaClientes();
     }
 
     @Override
-    public void inserirADM(Cinema cinema, String cpf, String nome) {
+    public void inserirADM(CinemaRepository cinema, String cpf, String nome) {
         cinema.getListaAdministradorCpf().add(cpf);
         Administrador administrador = new Administrador();
         administrador.setNome(nome);
-        administrador.setCpf(cpf); cinema.getListaAdministrador().add(administrador);
+        administrador.setCpf(cpf);
+        cinema.getListaAdministrador().add(administrador);
     }
 
     @Override
-    public void removerADM(Administrador adm, Cinema cinema) {
+    public void removerADM(CinemaRepository cinema, Administrador adm) {
         cinema.getListaAdministradorCpf().remove(adm.getCpf());
         cinema.getListaAdministrador().remove(adm);
     }
 
     @Override
-    public Administrador buscarADM(String cpf, Cinema cinema) {
+    public Administrador buscarADM(CinemaRepository cinema, String cpf) {
         for (int i = 0; i < cinema.getListaAdministradorCpf().size(); i++) {
             if (cpf.equals(cinema.getListaAdministradorCpf().get(i))) {
                 return cinema.getListaAdministrador().get(i);
@@ -64,7 +64,7 @@ public class CinemaDAOmemoria implements CinemaDAO {
     }
 
     @Override
-    public List<Administrador> buscarTodosADM(Cinema cinema) {
+    public List<Administrador> buscarTodosADM(CinemaRepository cinema) {
         return cinema.getListaAdministrador();
     }
 }

@@ -68,3 +68,16 @@ crashlytics-build.properties
 .idea/modules.xml
 .idea/misc.xml
 *.class
+*.iml
+*.properties
+.idea/.name
+*.iml
+*.iml
+*.class
+Cinema.iml
+out/production/Cinema/PDSCinema/DAO/AdministradorDAO.class
+pds.xml
+*.xml
+README.md
+*.md
+*.iml

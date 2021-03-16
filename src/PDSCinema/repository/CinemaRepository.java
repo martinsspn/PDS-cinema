@@ -1,14 +1,17 @@
-package PDSCinema.model;
+package PDSCinema.repository;
 
+import PDSCinema.model.Administrador;
+import PDSCinema.model.Cliente;
+import PDSCinema.model.Filme;
 import PDSCinema.service.ClienteService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cinema {
+public class CinemaRepository {
     private List<Integer> salas;
     private List<String> listaClientesCpf;
-    private List<ClienteService> listaClientes;
+    private List<Cliente> listaClientes;
     private List<String> listaAdministradorCpf;
     private List<Administrador> listaAdministrador;
     private List<Filme> filmesEmCartaz;
@@ -18,7 +21,7 @@ public class Cinema {
     private int quantAvServico;
     private List<Integer> quantAvHorarios;
 
-    public Cinema() {
+    public CinemaRepository() {
         this.salas = new ArrayList<>();
         this.listaClientesCpf = new ArrayList<>();
         this.listaClientes = new ArrayList<>();
@@ -87,11 +90,11 @@ public class Cinema {
     public void setAvaliacoesHorarios(List<Integer> avaliacoesHorarios) {
         this.avaliacoesHorarios = avaliacoesHorarios;
     }
-    public List<ClienteService> getListaClientes() {
+    public List<Cliente> getListaClientes() {
         return listaClientes;
     }
 
-    public void setListaClientes(List<ClienteService> listaClientes) {
+    public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
 
