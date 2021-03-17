@@ -38,7 +38,8 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public int utilizarCupom() {
+    public int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo)  {
+        cliente.getCuponsAtivos().add(cinema.getListaDeCupons().get(codigo));
         return 0;
     }
 
@@ -48,7 +49,8 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public int resgatarPremio() {
+    public int resgatarPremio(CinemaRepository cinema, Cliente cliente, String codigo){
+
         return 0;
     }
 

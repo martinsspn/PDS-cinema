@@ -5,24 +5,23 @@ import java.io.IOException;
 import PDSCinema.DAO.ClienteDAO;
 import PDSCinema.DAO.ClienteDAOmemoria;
 import PDSCinema.model.Cliente;
+import PDSCinema.model.Cupom;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
 import PDSCinema.repository.CinemaRepository;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
 public class ClienteService implements iClienteService{
-    private Cliente cliente;
 	private ClienteDAO clienteDAO;
 
 	public ClienteService() {
-		this.cliente = new Cliente();
 		this.clienteDAO = new ClienteDAOmemoria();
 	}
 
 	@Override
-    public int comprarIngresso(Ingresso ingresso, int pagamento) {
+    public int comprarIngresso(Ingresso ingresso, int pagamento, Cupom cupom) {
     	try {
-    		if(ingresso.getPreco() == pagamento) {
+    		if(ingresso.getPreco() <= pagamento + cupom.getTipoDeCupom()) {
     			clienteDAO.comprarIngresso(ingresso);
     			return 0;
     		}else {
@@ -35,6 +34,21 @@ public class ClienteService implements iClienteService{
 		}
     }
 
+	@Override
+	public int comprarIngresso(Ingresso ingresso, int pagamento) {
+		try {
+			if(ingresso.getPreco() <= pagamento) {
+				clienteDAO.comprarIngresso(ingresso);
+				return 0;
+			}else {
+				throw new NumberFormatException();
+			}
+		}catch(NumberFormatException e) {
+			return -1;
+		}catch (NullPointerException e){
+			return -2;
+		}
+	}
     @Override
     public int avaliarFilme(Filme filme, int avaliacao) {
     	try {
@@ -89,21 +103,45 @@ public class ClienteService implements iClienteService{
 	}
 
     @Override
-    public int utilizarCupom() {
-    	return 0;
+    public int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo) {
+    	try {
+    		if(!codigo.equals("") && cinema.getListaDeCupons().containsKey(codigo)){
+    			if(!cliente.getCuponsAtivos().contains(cinema.getListaDeCupons().get(codigo)) && !cliente.getCuponsUsados().contains(cinema.getListaDeCupons().get(codigo))){
+    				cliente.getCuponsAtivos().add(cinema.getListaDeCupons().get(codigo));
+    				return 0;
+				}else{
+    				throw new IOException();
+				}
+			}else{
+    			throw new ArrayStoreException();
+			}
+		}catch (NullPointerException e){
+    		return -1;
+		}catch (IOException e){
+    		return -2;
+		}catch (ArrayStoreException e){
+			return -3;
+		}
     }
 
-    @Override
-    public int compartilharCupom() {
-    	return 0;
-    }
+	@Override
+	public int resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo) {
+		try{
 
-    @Override
-    public int resgatarPremio() {
-    	return 0;
-    }
+		}catch (){
 
-    public Cliente getCliente(){
-		return cliente;
+		}
 	}
+
+	@Override
+    public String compartilharCupom(Cliente cliente) {
+		try{
+			String compartilhar = "Cupom: " + cliente.getCuponsUsados().get(0).getCodigo()
+					+ "\n" + "Valor do Cupom: " + cliente.getCuponsUsados().get(0).getTipoDeCupom() + "\n";
+			return compartilhar;
+		}catch (NullPointerException e){
+			return "Cliente não existe";
+		}
+    }
+
 }

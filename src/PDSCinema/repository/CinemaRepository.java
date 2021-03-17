@@ -1,11 +1,10 @@
 package PDSCinema.repository;
 
-import PDSCinema.model.Administrador;
-import PDSCinema.model.Cliente;
-import PDSCinema.model.Filme;
+import PDSCinema.model.*;
 import PDSCinema.service.ClienteService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CinemaRepository {
@@ -20,6 +19,8 @@ public class CinemaRepository {
     private List<Integer> avaliacoesHorarios;
     private int quantAvServico;
     private List<Integer> quantAvHorarios;
+    private HashMap<String, Cupom> listaDeCupons;
+    private HashMap<Integer, Premio> listaDePremios;
 
     public CinemaRepository() {
         this.salas = new ArrayList<>();
@@ -33,6 +34,24 @@ public class CinemaRepository {
         this.avaliacoesHorarios = new ArrayList<>();
         this.quantAvServico = 0;
         this.quantAvHorarios = new ArrayList<>();
+        this.listaDeCupons = new HashMap<>();
+        this.listaDePremios = new HashMap<>();
+    }
+
+    public HashMap<String, Cupom> getListaDeCupons() {
+        return listaDeCupons;
+    }
+
+    public void setListaDeCupons(HashMap<String, Cupom> listaDeCupons) {
+        this.listaDeCupons = listaDeCupons;
+    }
+
+    public HashMap<Integer, Premio> getListaDePremios() {
+        return listaDePremios;
+    }
+
+    public void setListaDePremios(HashMap<Integer, Premio> listaDePremios) {
+        this.listaDePremios = listaDePremios;
     }
 
     public List<Integer> getSalas() {
