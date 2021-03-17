@@ -53,34 +53,44 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public int cadastrarPremios(CinemaRepository cinema, String descricao) {
+    public int cadastrarPremios(CinemaRepository cinema, String descricao, int id) {
         try{
             if(!descricao.equals("")){
-                admDAO.cadastrarPremios(cinema, descricao);
-                return 0;
+                if(!cinema.getListaDePremios().containsKey(id)) {
+                    admDAO.cadastrarPremios(cinema, descricao, id);
+                    return 0;
+                }else{
+                    throw new IllegalArgumentException();
+                }
             }else{
                 throw new IOException();
             }
         }catch (IOException e){
             return -1;
+        }catch (IllegalArgumentException e){
+            return -2;
         }
     }
 
     @Override
-    public Filme buscarFilme(CinemaRepository cinema, String nome) throws IOException{
-        try{
-            return admDAO.buscarFilme(cinema, nome);
-        }catch (IOException e) {
-            throw e;
-        }
-    }
-
-    @Override
-    public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero) throws IOException{
+    public Filme buscarFilme(CinemaRepository cinema, String nome){
         try {
+            if(!cinema.getFilmesEmCartaz().isEmpty()) {
+                return admDAO.buscarFilme(cinema, nome);
+            }
+            return null;
+        }catch(Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero){
+        if(!cinema.getFilmesEmCartaz().isEmpty() && !genero.isEmpty()){
             return admDAO.buscarFilmeGenero(cinema, genero);
-        }catch (IOException e){
-            throw e;
+        }
+        else{
+            return null;
         }
     }
 
@@ -112,12 +122,12 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public int removerFilmes(CinemaRepository cinema, Filme filme) throws IOException {
-        try{
+    public int removerFilmes(CinemaRepository cinema, Filme filme){
+        if(cinema.getFilmesEmCartaz().contains(filme)) {
             admDAO.removerFilmes(cinema, filme);
             return 0;
-        }catch(IOException e){
-            throw e;
+        }else{
+            return -1;
         }
     }
 

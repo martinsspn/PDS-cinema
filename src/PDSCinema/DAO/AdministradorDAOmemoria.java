@@ -6,8 +6,6 @@ import PDSCinema.model.Filme;
 import PDSCinema.model.Premio;
 import PDSCinema.repository.CinemaRepository;
 
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class AdministradorDAOmemoria implements AdministradorDAO{
@@ -34,36 +32,32 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     }
 
     @Override
-    public void cadastrarPremios(CinemaRepository cinema, String descricao){
+    public void cadastrarPremios(CinemaRepository cinema, String descricao, int id){
         Premio premio = new Premio();
         premio.setDescricao(descricao);
-        premio.setIdPremio(cinema.getListaDePremios().size());
+        premio.setIdPremio(id);
         cinema.getListaDePremios().put(premio.getIdPremio(), premio);
+        for(Cliente cliente : cinema.getListaClientes()){
+            cliente.getPremios().add(premio);
+            cliente.getCondicoesPremios().add(0);
+        }
     }
 
     @Override
-    public Filme buscarFilme(CinemaRepository cinema, String nome) throws IOException{
-        if(!nome.isEmpty()){
-            for(Filme filme : cinema.getFilmesEmCartaz()){
-                if(filme.getName().equals(nome))
-                    return filme;
-            }
-        }else{
-            throw new IOException();
+    public Filme buscarFilme(CinemaRepository cinema, String nome){
+        for(Filme filme : cinema.getFilmesEmCartaz()) {
+            if (filme.getName().equals(nome))
+                return filme;
         }
         return null;
     }
 
     @Override
-    public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero) throws IOException{
+    public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero){
         ArrayList<Filme> filmesPorGenero = new ArrayList<>();
-        if(!genero.isEmpty()){
-            for(Filme filme : cinema.getFilmesEmCartaz()){
-                if(filme.getGenero().equals(genero))
-                    filmesPorGenero.add(filme);
-            }
-        }else{
-            throw new IOException();
+        for(Filme filme : cinema.getFilmesEmCartaz()) {
+            if (filme.getGenero().equals(genero))
+                filmesPorGenero.add(filme);
         }
         return filmesPorGenero;
     }
@@ -79,13 +73,9 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     }
 
     @Override
-    public int removerFilmes(CinemaRepository cinema, Filme filme) throws IOException{
-        if(filme != null && cinema.getFilmesEmCartaz().contains(filme)){
-            cinema.getFilmesEmCartaz().remove(filme);
-            return 0;
-        }else{
-            throw new IOException();
-        }
+    public int removerFilmes(CinemaRepository cinema, Filme filme){
+        cinema.getFilmesEmCartaz().remove(filme);
+        return 0;
     }
 
     @Override
