@@ -2,7 +2,8 @@ package PDSCinema.model;
 
 public class Cupom {
 	String codigo;
-	String tipoDeCupom;
+	double tipoDeCupom;
+
 
 	public String getCodigo() {
 		return codigo;
@@ -12,11 +13,11 @@ public class Cupom {
 		this.codigo = codigo;
 	}
 
-	public String getTipoDeCupom() {
+	public double getTipoDeCupom() {
 		return tipoDeCupom;
 	}
 
-	public void setTipoDeCupom(String _Cupom, String tipoDeCupom) {
+	public void setTipoDeCupom(double tipoDeCupom) {
 		this.tipoDeCupom = tipoDeCupom;
 	}
 }

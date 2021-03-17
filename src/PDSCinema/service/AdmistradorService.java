@@ -3,6 +3,8 @@ package PDSCinema.service;
 import PDSCinema.DAO.AdministradorDAO;
 import PDSCinema.DAO.AdministradorDAOmemoria;
 import PDSCinema.model.*;
+import PDSCinema.repository.CinemaRepository;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,56 +18,100 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public void cadastrarFilmes(Cinema cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
-            String diaDeEstreia) {
-        if(cinema != null && duracao > 0 && !sinopse.isEmpty() && !classificacaoIndicativa.isEmpty() && !genero.isEmpty() && !diaDeEstreia.isEmpty())
-            admDAO.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
+    public int cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
+                                String diaDeEstreia) {
+        try{
+            if(cinema != null && name != null && sinopse != null && classificacaoIndicativa != null && genero != null && diaDeEstreia != null){
+                if(duracao <= 0){
+                    admDAO.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
+                    return 0;
+                }else{
+                    throw new NumberFormatException();
+                }
+            }else{
+                throw new IOException();
+            }
+        }catch (IOException e){
+            return -1;
+        }catch (NumberFormatException e){
+            return -2;
+        }
     }
 
     @Override
-    public void cadastrarCupons(String _cupom, String tipoDeCupom) {
-        Cupom cupom = new Cupom();
-        cupom.setTipoDeCupom(_cupom, tipoDeCupom);
+    public int cadastrarCupons(CinemaRepository cinema, String _cupom, double tipoDeCupom) {
+        try{
+            if(!_cupom.equals("") && tipoDeCupom <= 0){
+                admDAO.cadastrarCupons(cinema, _cupom, tipoDeCupom);
+                return 0;
+            }else{
+                throw new IOException();
+            }
+        }catch (IOException e){
+            return -1;
+        }
     }
 
     @Override
-    public void cadastrarPremios(String descricao) {
-        Premio premio = new Premio();
-        premio.setDescricao(descricao);
-
+    public int cadastrarPremios(CinemaRepository cinema, String descricao) {
+        try{
+            if(!descricao.equals("")){
+                admDAO.cadastrarPremios(cinema, descricao);
+                return 0;
+            }else{
+                throw new IOException();
+            }
+        }catch (IOException e){
+            return -1;
+        }
     }
 
     @Override
-    public Filme buscarFilme(Cinema cinema, String nome){
-        if(cinema != null && !nome.isEmpty())
+    public Filme buscarFilme(CinemaRepository cinema, String nome) throws IOException{
+        try{
             return admDAO.buscarFilme(cinema, nome);
         else
             return null;
     }
 
     @Override
-    public ArrayList<Filme> buscarFilmeGenero(Cinema cinema, String genero){
-        if(cinema != null && !genero.isEmpty())
+    public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero) throws IOException{
+        try {
             return admDAO.buscarFilmeGenero(cinema, genero);
         else
             return null;
     }
 
     @Override
-    public Cupom buscarCupons(String codigo){
+    public Cupom buscarCupons(CinemaRepository cinema, String codigo){
         //Função DAO
-        return null;
+        try{
+            if(!codigo.equals("") && cinema.getListaDeCupons().containsKey(codigo)){
+                return admDAO.buscarCupons(cinema, codigo);
+            }else{
+                throw new IOException();
+            }
+        }catch (IOException e){
+            return null;
+        }
     }
 
     @Override
-    public Premio buscarPremio(String codigo){
-        //Função DAO
-        return null;
+    public Premio buscarPremio(CinemaRepository cinema, int codigo){
+        try{
+            if(codigo > 0 && codigo <= cinema.getListaDePremios().size()){
+                return admDAO.buscarPremio(cinema, codigo);
+            }else{
+                throw new NumberFormatException();
+            }
+        }catch (NumberFormatException e){
+            return null;
+        }
     }
 
     @Override
-    public int removerFilmes(Cinema cinema, Filme filme) {
-        if (cinema != null && cinema.getFilmesEmCartaz().contains(filme)){
+    public int removerFilmes(CinemaRepository cinema, Filme filme) throws IOException {
+        try{
             admDAO.removerFilmes(cinema, filme);
             return 0;
         }else
@@ -73,23 +119,23 @@ public class AdmistradorService implements iAdministradorService{
     }
 
     @Override
-    public int removerCupons(Cupom cupom, Cliente cliente){
+    public int removerCupons(CinemaRepository cinema, Cupom cupom){
         try{
-            if(cliente.getCupons().contains(cupom)){
-                //função DAO para remover
+            if(cupom != null && cinema.getListaDeCupons().containsKey(cupom.getCodigo())){
+                admDAO.removerCupons(cinema, cupom);
                 return 0;
             }else{
                 throw new Exception();
             }
         }catch(Exception e){
-            return 1;
+            return -1;
         }
     }
     @Override
-    public int removerPremios(Premio premio, Cliente cliente){
+    public int removerPremios(CinemaRepository cinema, Premio premio){
         try{
-            if(cliente.getPremios().contains(premio)){
-                //função DAO para remover
+            if(premio != null && cinema.getListaDePremios().containsKey(premio.getIdPremio())){
+                admDAO.removerPremios(cinema, premio);
                 return 0;
             }else{
                 throw new Exception();

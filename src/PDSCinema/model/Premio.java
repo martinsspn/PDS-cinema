@@ -2,9 +2,23 @@ package PDSCinema.model;
 
 public class Premio {
 
-	int idPremio;
+	private int idPremio;
 
-	String descricao;
+	private String descricao;
+
+	private int condicao;
+
+	public int getCondicao() {
+		return condicao;
+	}
+
+	public Premio() {
+		this.condicao = 0;
+	}
+
+	public void setCondicao(int condicao) {
+		this.condicao = condicao;
+	}
 
 	public int getIdPremio() {
 		return idPremio;

@@ -1,14 +1,16 @@
-package PDSCinema.model;
+package PDSCinema.repository;
 
+import PDSCinema.model.*;
 import PDSCinema.service.ClienteService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class Cinema {
+public class CinemaRepository {
     private List<Integer> salas;
     private List<String> listaClientesCpf;
-    private List<ClienteService> listaClientes;
+    private List<Cliente> listaClientes;
     private List<String> listaAdministradorCpf;
     private List<Administrador> listaAdministrador;
     private List<Filme> filmesEmCartaz;
@@ -17,8 +19,10 @@ public class Cinema {
     private List<Integer> avaliacoesHorarios;
     private int quantAvServico;
     private List<Integer> quantAvHorarios;
+    private HashMap<String, Cupom> listaDeCupons;
+    private HashMap<Integer, Premio> listaDePremios;
 
-    public Cinema() {
+    public CinemaRepository() {
         this.salas = new ArrayList<>();
         this.listaClientesCpf = new ArrayList<>();
         this.listaClientes = new ArrayList<>();
@@ -30,6 +34,24 @@ public class Cinema {
         this.avaliacoesHorarios = new ArrayList<>();
         this.quantAvServico = 0;
         this.quantAvHorarios = new ArrayList<>();
+        this.listaDeCupons = new HashMap<>();
+        this.listaDePremios = new HashMap<>();
+    }
+
+    public HashMap<String, Cupom> getListaDeCupons() {
+        return listaDeCupons;
+    }
+
+    public void setListaDeCupons(HashMap<String, Cupom> listaDeCupons) {
+        this.listaDeCupons = listaDeCupons;
+    }
+
+    public HashMap<Integer, Premio> getListaDePremios() {
+        return listaDePremios;
+    }
+
+    public void setListaDePremios(HashMap<Integer, Premio> listaDePremios) {
+        this.listaDePremios = listaDePremios;
     }
 
     public List<Integer> getSalas() {
@@ -87,11 +109,11 @@ public class Cinema {
     public void setAvaliacoesHorarios(List<Integer> avaliacoesHorarios) {
         this.avaliacoesHorarios = avaliacoesHorarios;
     }
-    public List<ClienteService> getListaClientes() {
+    public List<Cliente> getListaClientes() {
         return listaClientes;
     }
 
-    public void setListaClientes(List<ClienteService> listaClientes) {
+    public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
 
