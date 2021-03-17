@@ -3,6 +3,7 @@ package PDSCinema.DAO;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
+import PDSCinema.model.Premio;
 import PDSCinema.repository.CinemaRepository;
 
 import java.io.IOException;
@@ -12,7 +13,8 @@ public interface ClienteDAO {
     int avaliarHorario(CinemaRepository cinema, String horario ,int avaliacao) throws IOException;
     int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo);
     int compartilharCupom();
-    int resgatarPremio(CinemaRepository cinema, Cliente cliente, String codigo);
+    void alterarCondicaoPremio(Cliente cliente, int codigo, int condicao);
+    Premio resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo);
     int avaliarFilme(Filme filme, int avaliacao);
     int comprarIngresso(Ingresso ingresso);
 }

@@ -1,6 +1,8 @@
 package PDSCinema.DAO;
 
 import PDSCinema.model.Administrador;
+import PDSCinema.model.Cupom;
+import PDSCinema.model.Premio;
 import PDSCinema.repository.CinemaRepository;
 import PDSCinema.model.Cliente;
 
@@ -10,8 +12,14 @@ public class CinemaDAOmemoria implements CinemaDAO {
 
     @Override
     public void inserirCliente(CinemaRepository cinema, String cpf, String nome){
+        Cupom cupom = new Cupom();
+        cupom.setCodigo(nome+cpf);
         cinema.getListaClientesCpf().add(cpf);
         Cliente cliente = new Cliente();
+        cliente.getCuponsUsados().add(cupom);
+        for(int id : cinema.getListaDePremios().keySet()){
+            cliente.getPremios().add(cinema.getListaDePremios().get(id));
+        }
         cliente.setNome(nome);
         cliente.setCpf(cpf);
         cinema.getListaClientes().add(cliente);

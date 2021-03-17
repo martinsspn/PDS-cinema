@@ -12,7 +12,7 @@ public interface iClienteService {
     int avaliarServico(CinemaRepository cinema, int avaliacao);
     int avaliarHorario(CinemaRepository cinema, String horario ,int avaliacao);
     int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo);
-    int resgatarPremio();
+    int resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo);
     int avaliarFilme(Filme filme, int avaliacao);
     int comprarIngresso(Ingresso ingresso, int pagamento);
     int comprarIngresso(Ingresso ingresso, int pagamento, Cupom cupom);

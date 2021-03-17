@@ -3,6 +3,7 @@ package PDSCinema.DAO;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
+import PDSCinema.model.Premio;
 import PDSCinema.repository.CinemaRepository;
 
 import java.io.IOException;
@@ -49,9 +50,13 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public int resgatarPremio(CinemaRepository cinema, Cliente cliente, String codigo){
+    public Premio resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo){
+        return cliente.getPremios().get(codigo);
+    }
 
-        return 0;
+    @Override
+    public void alterarCondicaoPremio(Cliente cliente, int codigo, int condicao){
+        cliente.getCondicoesPremios().set(codigo, condicao);
     }
 
     @Override

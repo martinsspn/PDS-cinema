@@ -4,10 +4,7 @@ import java.io.IOException;
 
 import PDSCinema.DAO.ClienteDAO;
 import PDSCinema.DAO.ClienteDAOmemoria;
-import PDSCinema.model.Cliente;
-import PDSCinema.model.Cupom;
-import PDSCinema.model.Filme;
-import PDSCinema.model.Ingresso;
+import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
@@ -103,7 +100,7 @@ public class ClienteService implements iClienteService{
 	}
 
     @Override
-    public int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo) {
+    public int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo){
     	try {
     		if(!codigo.equals("") && cinema.getListaDeCupons().containsKey(codigo)){
     			if(!cliente.getCuponsAtivos().contains(cinema.getListaDeCupons().get(codigo)) && !cliente.getCuponsUsados().contains(cinema.getListaDeCupons().get(codigo))){
@@ -127,9 +124,20 @@ public class ClienteService implements iClienteService{
 	@Override
 	public int resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo) {
 		try{
-
-		}catch (){
-
+			if(cinema.getListaClientes().contains(cliente)&&cinema.getListaDePremios().containsKey(codigo)){
+				Premio premio = clienteDAO.resgatarPremio(cinema, cliente, codigo);
+				if(premio.getCondicao() < cliente.getCondicoesPremios().get(codigo)){
+					System.out.println(premio.getDescricao());
+					clienteDAO.alterarCondicaoPremio(cliente, codigo, 0);
+					return 0;
+				}else {
+					return -2;
+				}
+			}else{
+				throw new IOException();
+			}
+		}catch (IOException e){
+			return -1;
 		}
 	}
 
