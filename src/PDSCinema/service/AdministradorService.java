@@ -8,11 +8,11 @@ import PDSCinema.repository.CinemaRepository;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AdmistradorService implements iAdministradorService{
+public class AdministradorService implements iAdministradorService{
     private final Administrador adm;
     private final AdministradorDAO admDAO;
 
-    public AdmistradorService() {
+    public AdministradorService() {
         this.adm = new Administrador();
         this.admDAO = new AdministradorDAOmemoria();
     }
