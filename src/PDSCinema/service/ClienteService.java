@@ -9,7 +9,7 @@ import PDSCinema.repository.CinemaRepository;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
 public class ClienteService implements iClienteService{
-	private ClienteDAO clienteDAO;
+	private final ClienteDAO clienteDAO;
 
 	public ClienteService() {
 		this.clienteDAO = new ClienteDAOmemoria();
@@ -151,5 +151,4 @@ public class ClienteService implements iClienteService{
 			return "Cliente não existe";
 		}
     }
-
 }

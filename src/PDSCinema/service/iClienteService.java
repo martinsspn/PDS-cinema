@@ -1,7 +1,5 @@
 package PDSCinema.service;
 
-
-
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Cupom;
 import PDSCinema.model.Filme;
