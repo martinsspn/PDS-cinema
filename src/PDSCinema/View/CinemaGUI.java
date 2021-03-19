@@ -2,12 +2,13 @@ package PDSCinema.View;
 
 import PDSCinema.Controller.CinemaController;
 import PDSCinema.model.Administrador;
+import PDSCinema.model.Cliente;
 import PDSCinema.repository.CinemaRepository;
 
 import java.util.Scanner;
 
 public class CinemaGUI {
-    CinemaGUI() {
+    public CinemaGUI() {
         CinemaController cinema = new CinemaController();
         CinemaRepository cinemaRepo = new CinemaRepository();
         boolean running = true;
@@ -18,8 +19,9 @@ public class CinemaGUI {
                 System.out.println("1 - Administrador");
                 System.out.println("2 - Cliente");
                 Scanner in = new Scanner(System.in);
-                int sel = in.nextInt();
-                switch (sel) {
+                String sel = in.nextLine();
+
+                switch (Integer.parseInt(sel)) {
                     case 1:
                         if(cinema.buscarTodosADM().isEmpty()){
                             System.out.println("Não há nenhum administrador cadastrado!");
@@ -57,7 +59,7 @@ public class CinemaGUI {
                                     System.out.println("2 - Cadastrar-se");
                                     int sel2 = in.nextInt();
                                     switch (sel2) {
-                                        case 1 -> {
+                                        case 1:
                                             boolean trying = true;
                                             while (adm == null && trying) {
                                                 System.out.println("Digite seu CPF: ");
@@ -72,8 +74,8 @@ public class CinemaGUI {
                                                 }
                                             }
                                             val3 = false;
-                                        }
-                                        case 2 -> {
+                                        break;
+                                        case 2:
                                             System.out.println("Nome: ");
                                             String nome = in.nextLine();
                                             String status = cinema.inserirADM(cinemaRepo, CPF, nome);
@@ -88,8 +90,8 @@ public class CinemaGUI {
                                                 System.out.println(status);
                                             }
                                             val3 = false;
-                                        }
-                                        default -> System.out.println("Seleção inválida");
+                                        break;
+                                        default: System.out.println("Seleção inválida");
                                     }
                                 }
                             }
@@ -98,6 +100,79 @@ public class CinemaGUI {
                         val = false;
                         break;
                     case 2:
+                        if(cinema.buscarTodosCliente().isEmpty()){
+                            System.out.println("Não há nenhum cliente cadastrado!");
+                            System.out.println("Por favor, cadastre-se");
+                            String nome;
+                            String CPF;
+                            System.out.print("Nome: ");
+                            nome = in.nextLine();
+                            System.out.print("CPF: ");
+                            CPF = in.nextLine();
+                            String status = cinema.inserirCliente(CPF, nome);
+                            System.out.println(status);
+                            if(status.equals("Erro ao cadastrar o cliente!")){
+                                while(status.equals("Erro ao cadastrar o cliente!")) {
+                                    System.out.println("Tente novamente");
+                                    System.out.print("Nome: ");
+                                    nome = in.nextLine();
+                                    System.out.print("CPF: ");
+                                    CPF = in.nextLine();
+                                    status = cinema.inserirCliente(CPF, nome);
+                                    System.out.println(status);
+                                }
+                            }
+                        }else{
+                            Cliente cliente;
+                            String CPF;
+                            System.out.println("Digite seu CPF");
+                            CPF = in.nextLine();
+                            cliente = cinema.buscarCliente(cinemaRepo, CPF);
+                            if(cliente == null){
+                                boolean val3 = true;
+                                while(val3){
+                                    System.out.println("CPF inválido ou não cadastrado.");
+                                    System.out.println("1 - Tentar novamente");
+                                    System.out.println("2 - Cadastrar-se");
+                                    int sel2 = in.nextInt();
+                                    switch (sel2) {
+                                        case 1:
+                                            boolean trying = true;
+                                            while (cliente == null && trying) {
+                                                System.out.println("Digite seu CPF: ");
+                                                CPF = in.nextLine();
+                                                cliente = cinema.buscarCliente(cinemaRepo, CPF);
+                                                if (cliente == null) {
+                                                    System.out.println("Deseja desistir?\n0 - não\n1 - sim");
+                                                    int input = in.nextInt();
+                                                    if (input == 1) {
+                                                        trying = false;
+                                                    }
+                                                }
+                                            }
+                                            val3 = false;
+                                            break;
+                                        case 2:
+                                            System.out.println("Nome: ");
+                                            String nome = in.nextLine();
+                                            String status = cinema.inserirCliente(CPF, nome);
+                                            System.out.println(status);
+                                            while (status.equals("Erro ao cadastrar o cliente!")) {
+                                                System.out.println("Tente novamente");
+                                                System.out.print("Nome: ");
+                                                nome = in.nextLine();
+                                                System.out.print("CPF: ");
+                                                CPF = in.nextLine();
+                                                status = cinema.inserirCliente(CPF, nome);
+                                                System.out.println(status);
+                                            }
+                                            val3 = false;
+                                            break;
+                                        default: System.out.println("Seleção inválida");
+                                    }
+                                }
+                            }
+                        }
                         //interface cliente
                         val = false;
                         break;

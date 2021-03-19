@@ -1,10 +1,9 @@
 package PDSCinema.DAO;
 
 import PDSCinema.model.Administrador;
-import PDSCinema.model.Cupom;
-import PDSCinema.model.Premio;
-import PDSCinema.repository.CinemaRepository;
 import PDSCinema.model.Cliente;
+import PDSCinema.model.Cupom;
+import PDSCinema.repository.CinemaRepository;
 
 import java.util.List;
 
