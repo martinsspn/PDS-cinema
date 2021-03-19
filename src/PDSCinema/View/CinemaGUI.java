@@ -181,6 +181,9 @@ public class CinemaGUI {
                         break;
                 }
             }
+            //perguntar se o usuário que realizar algumas da demais opções que o cinema poee fazer
+//como calcular o ranking
+ 
         }
     }
 }
