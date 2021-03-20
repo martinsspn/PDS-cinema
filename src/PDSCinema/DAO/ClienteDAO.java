@@ -13,5 +13,6 @@ public interface ClienteDAO {
     void alterarCondicaoPremio(Cliente cliente, int codigo, int condicao);
     Premio resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo);
     int avaliarFilme(Filme filme, int avaliacao);
-    int comprarIngresso(Ingresso ingresso);
+    int comprarIngresso(Ingresso ingresso, Cliente cliente);
+    int comprarIngresso(Ingresso ingresso, Cliente cliente, Cupom cupom);
 }

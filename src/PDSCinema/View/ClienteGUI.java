@@ -1,10 +1,7 @@
 package PDSCinema.View;
 
 import PDSCinema.Controller.ClienteController;
-import PDSCinema.model.Cliente;
-import PDSCinema.model.Cupom;
-import PDSCinema.model.Filme;
-import PDSCinema.model.Ingresso;
+import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
 import PDSCinema.service.ClienteService;
 
@@ -39,7 +36,7 @@ public class ClienteGUI {
             switch(op){
                 case 1: codigo = 1;
                         for(Filme f: cinemaRepository.getFilmesEmCartaz()){
-                            System.out.println("Filme: " + f.getName() + " Código" + codigo);
+                            System.out.println("Filme: " + f.getName() + " Código: " + codigo);
                             codigo++;
                         }
                         break;
@@ -51,48 +48,18 @@ public class ClienteGUI {
                         boolean running = true;
                         do {
                             System.out.println("Horários disponíveis:");
-                            System.out.println("1 - 12h30min");
-                            System.out.println("2 - 13h00min");
-                            System.out.println("3 - 13h30min");
-                            System.out.println("4 - 14h00min");
-                            System.out.println("5 - 14h30min");
-                            System.out.println("6 - 15h30min");
-                            System.out.println("7 - 17h00min");
-                            System.out.println("8 - 18h30min");
-                            System.out.println("9 - 20h00min");
+                            for(int i=0;i<cinemaRepository.getHorarios().size();i++){
+                                System.out.println((i+1) + " - " +cinemaRepository.getHorarios().get(i));
+                            }
                             System.out.println("Escolha o horário do filme:");
                             String SescolhaHorario = in.nextLine();
                             if(!SescolhaHorario.isEmpty())
                                 escolhaHorario = Integer.parseInt(SescolhaHorario);
-                            switch (escolhaHorario){
-                                case 1: horario = "12h30min";
-                                        running = false;
-                                        break;
-                                case 2: horario = "13h00min";
-                                        running = false;
-                                        break;
-                                case 3: horario = "13h30min";
-                                        running = false;
-                                        break;
-                                case 4: horario = "14h00min";
-                                        running = false;
-                                        break;
-                                case 5: horario = "14h30min";
-                                        running = false;
-                                        break;
-                                case 6: horario = "15h30min";
-                                        running = false;
-                                        break;
-                                case 7: horario = "17h00min";
-                                        running = false;
-                                        break;
-                                case 8: horario = "18h30min";
-                                        running = false;
-                                        break;
-                                case 9: horario = "20h00min";
-                                        running = false;
-                                        break;
-                                default: System.out.println("Opção inválida!");
+                            if(escolhaHorario < 0 || escolhaHorario >= cinemaRepository.getHorarios().size()){
+                                System.out.println("Opção inválida");
+                            }else{
+                                horario = cinemaRepository.getHorarios().get(escolhaHorario-1);
+                                running = false;
                             }
                         }while(running);
                         int dcup = 0;
@@ -137,7 +104,7 @@ public class ClienteGUI {
                                                 double pagamento = 0;
                                                 if(!Spagamento.isEmpty())
                                                     pagamento = Double.parseDouble(Spagamento);
-                                                status = clienteController.comprarIngresso(ingresso, pagamento, cliente.getCuponsAtivos().get(cliente.getCuponsAtivos().size()-1));
+                                                status = clienteController.comprarIngresso(ingresso, cliente, pagamento, cliente.getCuponsAtivos().get(cliente.getCuponsAtivos().size()-1));
                                                 System.out.println(status);
                                             }
                                             break;
@@ -163,7 +130,7 @@ public class ClienteGUI {
                                             double pagamento = 0;
                                             if(!Spagamento.isEmpty())
                                                 pagamento = Double.parseDouble(Spagamento);
-                                            status = clienteController.comprarIngresso(ingresso, pagamento, cliente.getCuponsAtivos().get(dcup));
+                                            status = clienteController.comprarIngresso(ingresso, cliente, pagamento, cliente.getCuponsAtivos().get(dcup));
                                             System.out.println(status);
                                     }
                                 }else{
@@ -178,7 +145,7 @@ public class ClienteGUI {
                                 double pagamento = 0;
                                 if(!Spagamento.isEmpty())
                                     pagamento = Double.parseDouble(Spagamento);
-                                String status = clienteController.comprarIngresso(ingresso, pagamento);
+                                String status = clienteController.comprarIngresso(ingresso, cliente,pagamento);
                                 System.out.println(status);
                             }
                         break;
@@ -187,6 +154,59 @@ public class ClienteGUI {
                     String codigoCup = in.nextLine();
                     String status = clienteController.resgatarCupom(cinemaRepository, cliente, codigoCup);
                     System.out.println(status);
+                    break;
+                case 4: System.out.println("Prêmios resgatados:");
+                        for(Premio p: cliente.getPremios())
+                            clienteController.resgatarPremio(cinemaRepository, cliente, p.getIdPremio());
+                        break;
+                case 5: System.out.println("Digite o código do filme:");
+                        int codigoFilme = -1;
+                        String ScodigoFilme = in.nextLine();
+                        if(!ScodigoFilme.isEmpty())
+                            codigoFilme = Integer.parseInt(ScodigoFilme);
+                        if(codigoFilme < 0 || codigoFilme-1 > cinemaRepository.getFilmesEmCartaz().size()){
+                            System.out.println("Código digitado não possui filme cadastrado");
+                        }else{
+                            System.out.println("Digite a sua avaliação de 0 a 5:");
+                            int avaliacao =-1;
+                            ScodigoFilme = in.nextLine();
+                            if(!ScodigoFilme.isEmpty())
+                                avaliacao = Integer.parseInt(ScodigoFilme);
+                            status = clienteController.avaliarFilme(cinemaRepository.getFilmesEmCartaz().get(codigoFilme-1), avaliacao);
+                            System.out.println(status);
+                        }
+                        break;
+                case 6: System.out.println("Digite a avaliação do serviço de 0 a 5:");
+                        String SavServico = in.nextLine();
+                        int avSercivo = -1;
+                        if(!SavServico.isEmpty())
+                            avSercivo = Integer.parseInt(SavServico);
+                        status = clienteController.avaliarServico(cinemaRepository, avSercivo);
+                        System.out.println(status);
+                        break;
+                case 7: System.out.println("Horários disponíveis para avaliar:");
+                    for(int i=0;i<cinemaRepository.getHorarios().size();i++){
+                        System.out.println((i+1) + " - " +cinemaRepository.getHorarios().get(i));
+                    }
+                    System.out.println("Escolha o horário que deseja avaliar:");
+                    String SescolhaHorario = in.nextLine();
+                    escolhaHorario = -1;
+                    if(!SescolhaHorario.isEmpty())
+                        escolhaHorario = Integer.parseInt(SescolhaHorario);
+                    if(escolhaHorario < 0 || escolhaHorario >= cinemaRepository.getHorarios().size()){
+                        System.out.println("Opção inválida");
+                    }else{
+                        horario = cinemaRepository.getHorarios().get(escolhaHorario-1);
+                        System.out.println("Digite sua avaliação de 0 a 5:");
+                        String Savaliacao = in.nextLine();
+                        int avaliacao = -1;
+                        if(!Savaliacao.isEmpty())
+                            avaliacao = Integer.parseInt(Savaliacao);
+                        status = clienteController.avaliarHorario(cinemaRepository, horario, avaliacao);
+                        System.out.println(status);
+                    }
+                    break;
+                case 8: clienteController.compartilharCupom(cliente);
                 case 9: break;
                 default: System.out.println("opção inválida");
             }

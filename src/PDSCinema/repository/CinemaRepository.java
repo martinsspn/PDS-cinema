@@ -36,6 +36,20 @@ public class CinemaRepository {
         this.quantAvHorarios = new ArrayList<>();
         this.listaDeCupons = new HashMap<>();
         this.listaDePremios = new HashMap<>();
+        horarios.add("12h30min");
+        horarios.add("13h00min");
+        horarios.add("13h30min");
+        horarios.add("14h00min");
+        horarios.add("14h30min");
+        horarios.add("15h30min");
+        horarios.add("17h00min");
+        horarios.add("18h30min");
+        horarios.add("20h00min");
+        for(int i=0;i<10;i++){
+            avaliacoesHorarios.add(0);
+            quantAvHorarios.add(0);
+        }
+
     }
 
     public HashMap<String, Cupom> getListaDeCupons() {

@@ -16,10 +16,10 @@ public class ClienteService implements iClienteService{
 	}
 
 	@Override
-    public double comprarIngresso(Ingresso ingresso, double pagamento, Cupom cupom) {
+    public double comprarIngresso(Ingresso ingresso, Cliente cliente, double pagamento, Cupom cupom) {
     	try {
     		if(ingresso.getPreco() <= pagamento + cupom.getTipoDeCupom()) {
-    			clienteDAO.comprarIngresso(ingresso);
+    			clienteDAO.comprarIngresso(ingresso, cliente, cupom);
     			return pagamento+cupom.getTipoDeCupom() - ingresso.getPreco();
     		}else {
     			throw new NumberFormatException();
@@ -32,10 +32,10 @@ public class ClienteService implements iClienteService{
     }
 
 	@Override
-	public double comprarIngresso(Ingresso ingresso, double pagamento) {
+	public double comprarIngresso(Ingresso ingresso, Cliente cliente,double pagamento) {
 		try {
 			if(ingresso.getPreco() <= pagamento) {
-				clienteDAO.comprarIngresso(ingresso);
+				clienteDAO.comprarIngresso(ingresso, cliente);
 				return pagamento - ingresso.getPreco();
 			}else {
 				throw new NumberFormatException();
@@ -122,22 +122,34 @@ public class ClienteService implements iClienteService{
     }
 
 	@Override
-	public int resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo) {
+	public String resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo) {
 		try{
 			if(cinema.getListaClientes().contains(cliente)&&cinema.getListaDePremios().containsKey(codigo)){
 				Premio premio = clienteDAO.resgatarPremio(cinema, cliente, codigo);
-				if(premio.getCondicao() < cliente.getCondicoesPremios().get(codigo)){
+				if(premio == null){
+					throw new NullPointerException();
+				}
+				int auxiliar = 0;
+				for(Premio p: cliente.getPremios()){
+					if(p.getIdPremio() == codigo){
+						break;
+					}
+					auxiliar++;
+				}
+				if(premio.getCondicao() <= cliente.getCondicoesPremios().get(auxiliar)){
 					System.out.println(premio.getDescricao());
-					clienteDAO.alterarCondicaoPremio(cliente, codigo, 0);
-					return 0;
+					clienteDAO.alterarCondicaoPremio(cliente, auxiliar, 0);
+					return premio.getDescricao();
 				}else {
-					return -2;
+					return "-2";
 				}
 			}else{
 				throw new IOException();
 			}
 		}catch (IOException e){
-			return -1;
+			return "-1";
+		}catch (NullPointerException e){
+			return "-2";
 		}
 	}
 

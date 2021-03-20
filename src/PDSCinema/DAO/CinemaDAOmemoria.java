@@ -13,11 +13,13 @@ public class CinemaDAOmemoria implements CinemaDAO {
     public void inserirCliente(CinemaRepository cinema, String cpf, String nome){
         Cupom cupom = new Cupom();
         cupom.setCodigo(nome+cpf);
+        cupom.setTipoDeCupom(10.00);
         cinema.getListaClientesCpf().add(cpf);
         Cliente cliente = new Cliente();
         cliente.getCuponsUsados().add(cupom);
         for(int id : cinema.getListaDePremios().keySet()){
             cliente.getPremios().add(cinema.getListaDePremios().get(id));
+            cliente.getCondicoesPremios().add(0);
         }
         cliente.setNome(nome);
         cliente.setCpf(cpf);
