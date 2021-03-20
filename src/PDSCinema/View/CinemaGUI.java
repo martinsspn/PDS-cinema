@@ -101,6 +101,7 @@ public class CinemaGUI {
                         val = true;
                         break;
                     case 2:
+                        Cliente cliente;
                         if(cinema.buscarTodosCliente(cinemaRepo).isEmpty()){
                             System.out.println("Não há nenhum cliente cadastrado!");
                             System.out.println("Por favor, cadastre-se");
@@ -123,8 +124,8 @@ public class CinemaGUI {
                                     System.out.println(status);
                                 }
                             }
+                            cliente = cinema.buscarCliente(cinemaRepo, CPF);
                         }else{
-                            Cliente cliente;
                             String CPF;
                             System.out.println("Digite seu CPF");
                             CPF = in.nextLine();
@@ -174,7 +175,7 @@ public class CinemaGUI {
                                 }
                             }
                         }
-                        ClienteGUI clienteGUI = new ClienteGUI(cinemaRepo);
+                        ClienteGUI clienteGUI = new ClienteGUI(cinemaRepo, cliente);
                         val = true;
                         break;
                     default:

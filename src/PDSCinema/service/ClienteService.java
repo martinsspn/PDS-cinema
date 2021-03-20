@@ -16,11 +16,11 @@ public class ClienteService implements iClienteService{
 	}
 
 	@Override
-    public int comprarIngresso(Ingresso ingresso, int pagamento, Cupom cupom) {
+    public double comprarIngresso(Ingresso ingresso, double pagamento, Cupom cupom) {
     	try {
     		if(ingresso.getPreco() <= pagamento + cupom.getTipoDeCupom()) {
     			clienteDAO.comprarIngresso(ingresso);
-    			return 0;
+    			return pagamento-(cupom.getTipoDeCupom()-ingresso.getPreco());
     		}else {
     			throw new NumberFormatException();
     		}
@@ -32,11 +32,11 @@ public class ClienteService implements iClienteService{
     }
 
 	@Override
-	public int comprarIngresso(Ingresso ingresso, int pagamento) {
+	public double comprarIngresso(Ingresso ingresso, double pagamento) {
 		try {
 			if(ingresso.getPreco() <= pagamento) {
 				clienteDAO.comprarIngresso(ingresso);
-				return 0;
+				return pagamento - ingresso.getPreco();
 			}else {
 				throw new NumberFormatException();
 			}

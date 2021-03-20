@@ -1,9 +1,6 @@
 package PDSCinema.DAO;
 
-import PDSCinema.model.Cliente;
-import PDSCinema.model.Filme;
-import PDSCinema.model.Ingresso;
-import PDSCinema.model.Premio;
+import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
 
 import java.io.IOException;

@@ -41,7 +41,7 @@ public class AdministradorService implements iAdministradorService{
     @Override
     public int cadastrarCupons(CinemaRepository cinema, String _cupom, double tipoDeCupom) {
         try{
-            if(!_cupom.equals("") && tipoDeCupom <= 0){
+            if(!_cupom.equals("") && tipoDeCupom >= 0){
                 admDAO.cadastrarCupons(cinema, _cupom, tipoDeCupom);
                 return 0;
             }else{

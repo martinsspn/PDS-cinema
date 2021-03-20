@@ -2,8 +2,8 @@ package PDSCinema.model;
 
 public class Ingresso {
 	Filme filme;
-	int preco;
-	int horario;
+	double preco;
+	String horario;
 	int sala;
 
 	public Filme getFilme() {
@@ -14,7 +14,7 @@ public class Ingresso {
 		this.filme = filme;
 	}
 
-	public int getPreco() {
+	public double getPreco() {
 		return preco;
 	}
 
@@ -22,11 +22,11 @@ public class Ingresso {
 		this.preco = preco;
 	}
 
-	public int getHorario() {
+	public String getHorario() {
 		return horario;
 	}
 
-	public void setHorario(int horario) {
+	public void setHorario(String horario) {
 		this.horario = horario;
 	}
 

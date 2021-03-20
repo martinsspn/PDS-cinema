@@ -52,18 +52,18 @@ public class ClienteController {
             return ("Avaliação inválida!");
         }
     }
-    public String comprarIngresso(Ingresso ingresso, int pagamento){
-        int status = cliente.comprarIngresso(ingresso, pagamento);
-        if(status == 0){
-            return ("Ingresso comprado com sucesso");
+    public String comprarIngresso(Ingresso ingresso, double pagamento){
+        double status = cliente.comprarIngresso(ingresso, pagamento);
+        if(status >= 0){
+            return ("Ingresso comprado com sucesso\nTroco: "+ status);
         }else{
             return ("Falha ao comprar ingresso!");
         }
     }
-    public String comprarIngresso(Ingresso ingresso, int pagamento, Cupom cupom){
-        int status = cliente.comprarIngresso(ingresso, pagamento, cupom);
-        if(status == 0){
-            return ("Ingresso comprado com sucesso");
+    public String comprarIngresso(Ingresso ingresso, double pagamento, Cupom cupom){
+        double status = cliente.comprarIngresso(ingresso, pagamento, cupom);
+        if(status >= 0){
+            return ("Ingresso comprado com sucesso\nTroco: " + status);
         }else{
             return ("Falha ao comprar ingresso!");
         }
