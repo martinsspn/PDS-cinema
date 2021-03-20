@@ -2,6 +2,7 @@ package PDSCinema.View;
 
 import PDSCinema.Controller.ClienteController;
 import PDSCinema.model.Cliente;
+import PDSCinema.model.Cupom;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
 import PDSCinema.repository.CinemaRepository;
@@ -94,33 +95,82 @@ public class ClienteGUI {
                                 default: System.out.println("Opção inválida!");
                             }
                         }while(running);
-                        System.out.println("Deseja adicionar cupom?");
-                        System.out.println("1 - Sim");
-                        System.out.println("2 - Não");
-                        String Sdcup = in.nextLine();
                         int dcup = 0;
-                        if(!Sdcup.isEmpty())
-                            dcup = Integer.parseInt(Sdcup);
+                        do{
+                            System.out.println("Deseja adicionar cupom?");
+                            System.out.println("1 - Sim");
+                            System.out.println("2 - Não");
+                            String Sdcup = in.nextLine();
+                            if(!Sdcup.isEmpty())
+                                dcup = Integer.parseInt(Sdcup);
+                            switch (dcup){
+                                case 1: break;
+                                case 2: break;
+                                default: System.out.println("Opção inválida");
+                            }
+                        }while(dcup != 1 && dcup != 2);
                         Ingresso ingresso = new Ingresso();
                         ingresso.setHorario(horario);
                         ingresso.setFilme(cinemaRepository.getFilmesEmCartaz().get(codigo-1));
                         ingresso.setSala(1);
                         ingresso.setPreco(25);
                         if(dcup == 1){
-                                System.out.println("Digite o código do cupom:");
+                            int opcao = 0;
+                            do{
+                                System.out.println("Deseja adicionar um cupom novo ou utilizar um cupom já resgatado?");
+                                System.out.println("1 - adicionar novo");
+                                System.out.println("2 - utilizar cupom já resgatado");
                                 String codigoCup = in.nextLine();
-                                String status = clienteController.resgatarCupom(cinemaRepository, cliente, codigoCup);
-                                System.out.println(status);
-                                if(status.equals("Cupom resgatado com sucesso")){
-                                    System.out.println("Preço do ingresso: R$" + (25-cliente.getCuponsAtivos().get(codigo).getTipoDeCupom()));
-                                    System.out.println("Digite o valor do pagamento:");
-                                    String Spagamento = in.nextLine();
-                                    double pagamento = 0;
-                                    if(!Spagamento.isEmpty())
-                                        pagamento = Double.parseDouble(Spagamento);
-                                    status = clienteController.comprarIngresso(ingresso, pagamento, cliente.getCuponsAtivos().get(cliente.getCuponsAtivos().size()-1));
-                                    System.out.println(status);
+                                if(!codigoCup.isEmpty())
+                                    opcao = Integer.parseInt(codigoCup);
+                                if(cliente.getCuponsAtivos().size() != 0 || opcao == 1){
+                                    switch (opcao){
+                                        case 1:
+                                            System.out.println("Digite o código do cupom:");
+                                            codigoCup = in.nextLine();
+                                            String status = clienteController.resgatarCupom(cinemaRepository, cliente, codigoCup);
+                                            System.out.println(status);
+                                            if(status.equals("Cupom resgatado com sucesso")){
+                                                System.out.println("Preço do ingresso: R$" + (25-cliente.getCuponsAtivos().get(cliente.getCuponsAtivos().size()-1).getTipoDeCupom()));
+                                                System.out.println("Digite o valor do pagamento:");
+                                                String Spagamento = in.nextLine();
+                                                double pagamento = 0;
+                                                if(!Spagamento.isEmpty())
+                                                    pagamento = Double.parseDouble(Spagamento);
+                                                status = clienteController.comprarIngresso(ingresso, pagamento, cliente.getCuponsAtivos().get(cliente.getCuponsAtivos().size()-1));
+                                                System.out.println(status);
+                                            }
+                                            break;
+                                        case 2:
+                                            int x = 0;
+                                            for(Cupom c: cliente.getCuponsAtivos()){
+                                                System.out.println(c.getCodigo() + " Código de ativação: " + x);
+                                                x++;
+                                            }
+                                            do{
+                                                dcup = -1;
+                                                System.out.println("Digite o código de ativação:");
+                                                codigoCup = in.nextLine();
+                                                if(!codigoCup.isEmpty())
+                                                    dcup = Integer.parseInt(codigoCup);
+                                                if(dcup >= 0 && dcup < cliente.getCuponsAtivos().size()){
+                                                    break;
+                                                }
+                                            }while(true);
+                                            System.out.println("Preço do ingresso: R$" + (25-cliente.getCuponsAtivos().get(dcup).getTipoDeCupom()));
+                                            System.out.println("Digite o valor do pagamento:");
+                                            String Spagamento = in.nextLine();
+                                            double pagamento = 0;
+                                            if(!Spagamento.isEmpty())
+                                                pagamento = Double.parseDouble(Spagamento);
+                                            status = clienteController.comprarIngresso(ingresso, pagamento, cliente.getCuponsAtivos().get(dcup));
+                                            System.out.println(status);
+                                    }
+                                }else{
+                                    System.out.println("Cliente não possui cupons cadastrados");
                                 }
+                            }while(opcao != 1 && opcao != 2);
+
                             }else{
                                 System.out.println("Preço do ingresso: R$" + 25);
                                 System.out.println("Digite o valor do pagamento:");
@@ -131,6 +181,12 @@ public class ClienteGUI {
                                 String status = clienteController.comprarIngresso(ingresso, pagamento);
                                 System.out.println(status);
                             }
+                        break;
+                case 3:
+                    System.out.println("Digite o código do cupom:");
+                    String codigoCup = in.nextLine();
+                    String status = clienteController.resgatarCupom(cinemaRepository, cliente, codigoCup);
+                    System.out.println(status);
                 case 9: break;
                 default: System.out.println("opção inválida");
             }

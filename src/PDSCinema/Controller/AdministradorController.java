@@ -33,8 +33,8 @@ public class AdministradorController {
             return ("Nome do cupom ou tipo do cupom inválido!");
         }
     }
-    public String cadastrarPremios(CinemaRepository cinema, String descricao, int codigoPremio, int id){
-        int status = adm.cadastrarPremios(cinema, descricao, id);
+    public String cadastrarPremios(CinemaRepository cinema, String descricao, int id, int condicao){
+        int status = adm.cadastrarPremios(cinema, descricao, id, condicao);
         if(status == 0){
             return ("Premio cadastrado com sucesso");
         }else if(status == -1){

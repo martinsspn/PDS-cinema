@@ -20,7 +20,7 @@ public class ClienteService implements iClienteService{
     	try {
     		if(ingresso.getPreco() <= pagamento + cupom.getTipoDeCupom()) {
     			clienteDAO.comprarIngresso(ingresso);
-    			return pagamento-(cupom.getTipoDeCupom()-ingresso.getPreco());
+    			return pagamento+cupom.getTipoDeCupom() - ingresso.getPreco();
     		}else {
     			throw new NumberFormatException();
     		}
@@ -103,7 +103,7 @@ public class ClienteService implements iClienteService{
     public int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo){
     	try {
     		if(!codigo.equals("") && cinema.getListaDeCupons().containsKey(codigo)){
-    			if(!cliente.getCuponsAtivos().contains(cinema.getListaDeCupons().get(codigo)) && !cliente.getCuponsUsados().contains(cinema.getListaDeCupons().get(codigo))){
+				if(!cliente.getCuponsAtivos().contains(cinema.getListaDeCupons().get(codigo)) && !cliente.getCuponsUsados().contains(cinema.getListaDeCupons().get(codigo))){
     				cliente.getCuponsAtivos().add(cinema.getListaDeCupons().get(codigo));
     				return 0;
 				}else{

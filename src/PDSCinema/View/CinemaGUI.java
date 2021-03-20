@@ -25,8 +25,10 @@ public class CinemaGUI {
                 "Aventura", "01/10/2000");
         admi.cadastrarFilmes(cinemaRepo, "Narnia", 120, "Crianças brincando no guardarroupas", "14",
                 "Fantasia", "01/10/2000");
+        admi.cadastrarCupons(cinemaRepo, "marco20", 20.00);
         boolean running = true;
         boolean val = true;
+        Cliente cliente = new Cliente();
         while (running) {
             while (val) {
                 System.out.println("Tipo de usuário: ");
@@ -34,7 +36,6 @@ public class CinemaGUI {
                 System.out.println("2 - Cliente");
                 Scanner in = new Scanner(System.in);
                 String sel = in.nextLine();
-
                 switch (Integer.parseInt(sel)) {
                     case 1:
                         if(cinema.buscarTodosADM(cinemaRepo).isEmpty()){
@@ -116,7 +117,6 @@ public class CinemaGUI {
                         val = true;
                         break;
                     case 2:
-                        Cliente cliente;
                         if(cinema.buscarTodosCliente(cinemaRepo).isEmpty()){
                             System.out.println("Não há nenhum cliente cadastrado!");
                             System.out.println("Por favor, cadastre-se");
@@ -183,6 +183,7 @@ public class CinemaGUI {
                                                 status = cinema.inserirCliente(cinemaRepo, CPF, nome);
                                                 System.out.println(status);
                                             }
+                                            cliente = cinema.buscarCliente(cinemaRepo, CPF);
                                             val3 = false;
                                             break;
                                         default: System.out.println("Seleção inválida");
