@@ -20,6 +20,7 @@ public class Cliente extends Usuario {
         this.cuponsUsados = new ArrayList<>();
         this.premios = new ArrayList<>();
         this.condicoesPremios = new ArrayList<>();
+        this.cuponsAtivos = new ArrayList<>();
         //this.clienteService = new ClienteService();
     }
 
