@@ -58,7 +58,6 @@ public class main {
         }
 
          */
-        System.out.println("Tewds");
         CinemaGUI cinemaGUI = new CinemaGUI();
     }
 }
