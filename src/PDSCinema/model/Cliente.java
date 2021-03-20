@@ -13,14 +13,14 @@ public class Cliente extends Usuario {
     private List<Premio> premios;
     private List<Integer> condicoesPremios;
 
-    public ClienteService clienteService;
+    //public ClienteService clienteService;
 
     public Cliente() {
         this.ingressos = new ArrayList<>();
         this.cuponsUsados = new ArrayList<>();
         this.premios = new ArrayList<>();
         this.condicoesPremios = new ArrayList<>();
-        this.clienteService = new ClienteService();
+        //this.clienteService = new ClienteService();
     }
 
     public void setCuponsUsados(List<Cupom> cuponsUsados) {
@@ -35,9 +35,9 @@ public class Cliente extends Usuario {
         this.cuponsAtivos = cuponsAtivos;
     }
 
-    public ClienteService getClienteService() {
+    /*public ClienteService getClienteService() {
         return clienteService;
-    }
+    }*/
 
     public List<Integer> getCondicoesPremios() {
         return condicoesPremios;
@@ -47,9 +47,9 @@ public class Cliente extends Usuario {
         this.condicoesPremios = condicoesPremios;
     }
 
-    public void setClienteService(ClienteService clienteService) {
+    /*public void setClienteService(ClienteService clienteService) {
         this.clienteService = clienteService;
-    }
+    }*/
 
     public List<Ingresso> getIngressos() {
         return ingressos;

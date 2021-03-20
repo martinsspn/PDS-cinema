@@ -10,14 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface iCinemaService {
-    int inserirCliente(String cpf, String nome);
+    int inserirCliente(CinemaRepository cinema, String cpf, String nome);
     int removerCliente(Cliente cliente, CinemaRepository cinema);
     Cliente buscarCliente(CinemaRepository cinema, String cpf);
-    List <Cliente> buscarTodosCliente();
+    List <Cliente> buscarTodosCliente(CinemaRepository cinema);
     int inserirADM(CinemaRepository cinema, String nome, String cpf);
     int removerADM(Administrador ADM, CinemaRepository cinema);
     Administrador buscarADM(String cpf, CinemaRepository cinema);
-    List <Administrador> buscarTodosADM();
+    List <Administrador> buscarTodosADM(CinemaRepository cinema);
     Double calcularMediaAvaliacaoServico(int avaliacoesServico, int quantAvServico);
     List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz);
     List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios);

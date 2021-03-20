@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class AdministradorService implements iAdministradorService{
-    private final Administrador adm;
+    //private final Administrador adm;
     private final AdministradorDAO admDAO;
 
     public AdministradorService() {
-        this.adm = new Administrador();
+        //this.adm = new Administrador();
         this.admDAO = new AdministradorDAOmemoria();
     }
 
@@ -22,7 +22,7 @@ public class AdministradorService implements iAdministradorService{
                                 String diaDeEstreia) {
         try{
             if(cinema != null && name != null && sinopse != null && classificacaoIndicativa != null && genero != null && diaDeEstreia != null){
-                if(duracao <= 0){
+                if(duracao >= 0){
                     admDAO.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
                     return 0;
                 }else{

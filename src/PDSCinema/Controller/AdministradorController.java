@@ -10,11 +10,16 @@ import java.util.ArrayList;
 
 public class AdministradorController {
     private final AdministradorService adm;
-    AdministradorController(AdministradorService adm){
-        this.adm = adm;
+    public AdministradorController(){
+        this.adm = new AdministradorService();
     }
     public String cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
                         String diaDeEstreia){
+        System.out.println(name);
+        System.out.println(duracao);
+        System.out.println(sinopse);
+        System.out.println(classificacaoIndicativa);
+        System.out.println(diaDeEstreia);
         int status = adm.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
         if(status == 0){
             return ("Filme cadastrado com sucesso");

@@ -1,5 +1,6 @@
 package PDSCinema.service;
 
+import PDSCinema.Controller.CinemaController;
 import PDSCinema.DAO.CinemaDAO;
 import PDSCinema.DAO.CinemaDAOmemoria;
 import PDSCinema.model.Administrador;
@@ -11,16 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CinemaService implements iCinemaService{
-    private CinemaRepository cinema;
-	private CinemaDAO cinemaDAO;
+    private CinemaDAO cinemaDAO;
 
 	public CinemaService() {
-		this.cinema = new CinemaRepository();
 		this.cinemaDAO = new CinemaDAOmemoria();
 	}
 
 	@Override
-	public int inserirCliente(String cpf, String nome){
+	public int inserirCliente(CinemaRepository cinema, String cpf, String nome){
 		try {
 			if(nome != null && cpf != null) {
 				if(!(cinema.getListaClientesCpf().contains(cpf))){
@@ -69,7 +68,7 @@ public class CinemaService implements iCinemaService{
 
     } 
     @Override
-    public List <Cliente> buscarTodosCliente(){
+    public List <Cliente> buscarTodosCliente(CinemaRepository cinema){
 		return cinemaDAO.buscarTodosCliente(cinema);
     }
 
@@ -122,7 +121,7 @@ public class CinemaService implements iCinemaService{
        	}
     } 
     @Override
-    public List <Administrador> buscarTodosADM(){
+    public List <Administrador> buscarTodosADM(CinemaRepository cinema){
 		return cinemaDAO.buscarTodosADM(cinema);
     }
 
@@ -145,9 +144,6 @@ public class CinemaService implements iCinemaService{
     	}
     	return valor;
     }
-	public CinemaRepository getCinema() {
-		return cinema;
-	}
 
 	public ArrayList<String> calcularRankingHorarios(List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
 		List<Double> medias = calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);

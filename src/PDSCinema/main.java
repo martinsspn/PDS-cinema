@@ -1,5 +1,6 @@
 package PDSCinema;
 
+import PDSCinema.View.CinemaGUI;
 import PDSCinema.service.*;
 
 import java.util.List;
@@ -57,6 +58,6 @@ public class main {
         }
 
          */
-        
+        CinemaGUI cinemaGUI = new CinemaGUI();
     }
 }
