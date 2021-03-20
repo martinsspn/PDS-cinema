@@ -7,6 +7,7 @@ import PDSCinema.repository.CinemaRepository;
 import java.util.Scanner;
 
 public class AdministradorGUI {
+
     private CinemaRepository cinemaRepository;
     private AdministradorController administradorController;
 
@@ -59,4 +60,8 @@ public class AdministradorGUI {
         }while (op != 99);
     }
 
+
+
+
+// precisa ter um meio de voltar pro cinema no final, por exemplo perguntar se ele quer sair
 }
