@@ -131,19 +131,36 @@ public class CinemaService implements iCinemaService{
 
     }
     public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz){
-    	List<Double> valor = new ArrayList<>();
-		for (Filme filme : filmesEmCartaz) {
-			valor.add(((double)(filme.getAvaliacoes()) / (double)(filme.getQuantAvaliacoes())));
+    	try{
+    		List<Double> valor = new ArrayList<>();
+			for (Filme filme : filmesEmCartaz) {
+				if(filme.getQuantAvaliacoes() == 0){
+					valor.add(((double)(filme.getAvaliacoes())));
+				}else{
+					valor.add(((double)(filme.getAvaliacoes()) / (double)(filme.getQuantAvaliacoes())));
+				}
+			}
+			return valor;
+		}catch (ArithmeticException e){
+    		return null;
 		}
-    	return valor;
-    }
+	}
+
     public List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
-    	List<Double> valor  = new ArrayList<>();
-    	for(int i=0; i < avaliacoesHorarios.size(); i++){
-    		valor.add((double)(avaliacoesHorarios.get(i)/quantAvHorarios.get(i)));
-    	}
-    	return valor;
-    }
+    	try{
+    		List<Double> valor  = new ArrayList<>();
+			for(int i=0; i < avaliacoesHorarios.size(); i++){
+				if(quantAvHorarios.get(i) == 0){
+					valor.add((double)(avaliacoesHorarios.get(i)));
+				}else{
+					valor.add((double)(avaliacoesHorarios.get(i)/quantAvHorarios.get(i)));
+				}
+			}
+			return valor;
+		}catch (ArithmeticException e){
+    		return null;
+		}
+	}
 
 	public ArrayList<String> calcularRankingHorarios(List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
 		List<Double> medias = calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);

@@ -37,11 +37,11 @@ public class ClienteController {
         }
     }
     public String resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo){
-        int status = this.cliente.resgatarPremio(cinema, cliente, codigo);
-        if(status == 0){
-            return ("Premio resgatado com sucesso");
-        }else{
+        String status = this.cliente.resgatarPremio(cinema, cliente, codigo);
+        if(status == "-1" || status == "-2"){
             return ("Premio inválido!");
+        }else{
+            return status;
         }
     }
     public String avaliarFilme(Filme filme, int avaliacao){
@@ -52,18 +52,18 @@ public class ClienteController {
             return ("Avaliação inválida!");
         }
     }
-    public String comprarIngresso(Ingresso ingresso, int pagamento){
-        int status = cliente.comprarIngresso(ingresso, pagamento);
-        if(status == 0){
-            return ("Ingresso comprado com sucesso");
+    public String comprarIngresso(Ingresso ingresso, Cliente cliente,double pagamento){
+        double status = this.cliente.comprarIngresso(ingresso, cliente, pagamento);
+        if(status >= 0){
+            return ("Ingresso comprado com sucesso\nTroco: "+ status);
         }else{
             return ("Falha ao comprar ingresso!");
         }
     }
-    public String comprarIngresso(Ingresso ingresso, int pagamento, Cupom cupom){
-        int status = cliente.comprarIngresso(ingresso, pagamento, cupom);
-        if(status == 0){
-            return ("Ingresso comprado com sucesso");
+    public String comprarIngresso(Ingresso ingresso, Cliente cliente,double pagamento, Cupom cupom){
+        double status = this.cliente.comprarIngresso(ingresso, cliente,pagamento, cupom);
+        if(status >= 0){
+            return ("Ingresso comprado com sucesso\nTroco: " + status);
         }else{
             return ("Falha ao comprar ingresso!");
         }

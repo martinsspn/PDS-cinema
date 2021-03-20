@@ -1,16 +1,14 @@
 package PDSCinema.DAO;
 
-import PDSCinema.model.Cliente;
-import PDSCinema.model.Filme;
-import PDSCinema.model.Ingresso;
-import PDSCinema.model.Premio;
+import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAOmemoria implements ClienteDAO{
-    Cliente cliente = new Cliente();
 
     @Override
     public int avaliarServico(CinemaRepository cinema, int avaliacao) {
@@ -27,6 +25,7 @@ public class ClienteDAOmemoria implements ClienteDAO{
         for(int i=0;i<horarios.size();i++) {
             if(horarios.get(i).equals(horario)) {
                 index = i;
+                break;
             }else {
                 if(i == horarios.size()-1) {
                     throw new IOException();
@@ -51,7 +50,12 @@ public class ClienteDAOmemoria implements ClienteDAO{
 
     @Override
     public Premio resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo){
-        return cliente.getPremios().get(codigo);
+        for(Premio p: cliente.getPremios()){
+            if(p.getIdPremio() == codigo){
+                return p;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -68,8 +72,26 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public int comprarIngresso(Ingresso ingresso) {
+    public int comprarIngresso(Ingresso ingresso, Cliente cliente) {
         cliente.getIngressos().add(ingresso);
+        List<Integer> auxiliar = new ArrayList<>();
+        for(int i=0; i<cliente.getCondicoesPremios().size(); i++){
+            auxiliar.add(cliente.getCondicoesPremios().get(i)+1);
+        }
+        cliente.setCondicoesPremios(auxiliar);
+        return 0;
+    }
+
+    @Override
+    public int comprarIngresso(Ingresso ingresso, Cliente cliente, Cupom cupom) {
+        cliente.getIngressos().add(ingresso);
+        List<Integer> auxiliar = new ArrayList<>();
+        for(int i=0; i<cliente.getCondicoesPremios().size(); i++){
+            auxiliar.add(cliente.getCondicoesPremios().get(i)+1);
+        }
+        cliente.setCondicoesPremios(auxiliar);
+        cliente.getCuponsUsados().add(cupom);
+        cliente.getCuponsAtivos().remove(cupom);
         return 0;
     }
 }

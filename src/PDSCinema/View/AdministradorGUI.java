@@ -7,17 +7,12 @@ import PDSCinema.model.Premio;
 import PDSCinema.repository.CinemaRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class AdministradorGUI {
 
-    private final CinemaRepository cinemaRepository;
-    private final AdministradorController administradorController;
-
     public AdministradorGUI(CinemaRepository cinemaRepository){
-        this.cinemaRepository = cinemaRepository;
-        administradorController = new AdministradorController();
+        AdministradorController administradorController = new AdministradorController();
         Scanner in = new Scanner(System.in);
         System.out.println("Seja bem vindo ADM");
         int op = 99;
@@ -34,7 +29,7 @@ public class AdministradorGUI {
             System.out.println("8 - Inserir Premio");
             System.out.println("9 - Buscar Premio");
             System.out.println("10 - Remover Premio");
-            System.out.println("0 - Sair");
+            System.out.println("11 - Sair");
             System.out.print("> ");
             String Sop = in.nextLine();
             if(!Sop.isEmpty())
@@ -69,7 +64,6 @@ public class AdministradorGUI {
                         if(!Ssel.isEmpty())
                             sel = Integer.parseInt(Ssel);
                         if(sel == 0) {
-                            System.out.println("aaaaaaaaa");
                             break;
                         }
                     }while(sel == 1);
@@ -115,7 +109,7 @@ public class AdministradorGUI {
                     System.out.print("Valor do desconto: ");
                     String StipoCupom = in.nextLine();
                     if(!StipoCupom.isEmpty())
-                        tipoCupom = Double.parseDouble(in.nextLine());
+                        tipoCupom = Double.parseDouble(StipoCupom);
                     status = administradorController.cadastrarCupons(cinemaRepository, nomeCupom, tipoCupom);
                     System.out.println(status);
                     break;
@@ -180,12 +174,12 @@ public class AdministradorGUI {
                         System.out.println("Premio não cadastrado.");
                     }
                     break;
-                case 0:
+                case 11:
                     break;
                 default:
                     System.out.println("Seleção inválida!");
             }
-        }while (op != 0);
+        }while (op != 11);
     }
 
 
