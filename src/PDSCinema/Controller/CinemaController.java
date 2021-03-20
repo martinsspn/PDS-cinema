@@ -13,8 +13,8 @@ public class CinemaController {
     public CinemaController(){
         this.cinema = new CinemaService();
     }
-    public String inserirCliente(String cpf, String nome){
-        int status = cinema.inserirCliente(cpf, nome);
+    public String inserirCliente(CinemaRepository cinema, String cpf, String nome){
+        int status = this.cinema.inserirCliente(cinema ,cpf, nome);
         if(status == 0){
             return ("Cliente cadastrado com sucesso");
         }else{
@@ -32,15 +32,15 @@ public class CinemaController {
     public Cliente buscarCliente(CinemaRepository cinema, String cpf){
         Cliente cliente = this.cinema.buscarCliente(cinema, cpf);
         if(cliente != null){
-            System.out.println("Cliente encontrado com sucesso");
+            //System.out.println("Cliente encontrado com sucesso");
             return cliente;
         }else{
-            System.out.println("Cliente não encontrado!");
+            //System.out.println("Cliente não encontrado!");
             return null;
         }
     }
-    public List<Cliente> buscarTodosCliente(){
-        List<Cliente> clientes = cinema.buscarTodosCliente();
+    public List<Cliente> buscarTodosCliente(CinemaRepository cinema){
+        List<Cliente> clientes = this.cinema.buscarTodosCliente(cinema);
         /*if(clientes != null){
             System.out.println ("Clientes encontrados com sucesso");
             return clientes;
@@ -78,8 +78,8 @@ public class CinemaController {
             return null;
         }
     }
-    public List <Administrador> buscarTodosADM(){
-        List<Administrador> adms = cinema.buscarTodosADM();
+    public List <Administrador> buscarTodosADM(CinemaRepository cinema){
+        List<Administrador> adms = this.cinema.buscarTodosADM(cinema);
         /*if(adms.size() > 0){
             //System.out.println ("Adminsitradores encontrados com sucesso");
             return adms;

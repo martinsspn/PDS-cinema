@@ -9,7 +9,7 @@ import PDSCinema.service.ClienteService;
 
 public class ClienteController {
     private final ClienteService cliente;
-    ClienteController(ClienteService cliente){
+    public ClienteController(ClienteService cliente){
         this.cliente = cliente;
     }
     public String avaliarServico(CinemaRepository cinema, int avaliacao){

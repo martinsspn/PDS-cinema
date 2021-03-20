@@ -23,7 +23,7 @@ public class CinemaGUI {
 
                 switch (Integer.parseInt(sel)) {
                     case 1:
-                        if(cinema.buscarTodosADM().isEmpty()){
+                        if(cinema.buscarTodosADM(cinemaRepo).isEmpty()){
                             System.out.println("Não há nenhum administrador cadastrado!");
                             System.out.println("Por favor, cadastre-se");
                             String nome;
@@ -97,10 +97,11 @@ public class CinemaGUI {
                             }
                         }
                         //interace adm
-                        val = false;
+                        AdministradorGUI administradorGUI = new AdministradorGUI(cinemaRepo);
+                        val = true;
                         break;
                     case 2:
-                        if(cinema.buscarTodosCliente().isEmpty()){
+                        if(cinema.buscarTodosCliente(cinemaRepo).isEmpty()){
                             System.out.println("Não há nenhum cliente cadastrado!");
                             System.out.println("Por favor, cadastre-se");
                             String nome;
@@ -109,7 +110,7 @@ public class CinemaGUI {
                             nome = in.nextLine();
                             System.out.print("CPF: ");
                             CPF = in.nextLine();
-                            String status = cinema.inserirCliente(CPF, nome);
+                            String status = cinema.inserirCliente(cinemaRepo, CPF, nome);
                             System.out.println(status);
                             if(status.equals("Erro ao cadastrar o cliente!")){
                                 while(status.equals("Erro ao cadastrar o cliente!")) {
@@ -118,7 +119,7 @@ public class CinemaGUI {
                                     nome = in.nextLine();
                                     System.out.print("CPF: ");
                                     CPF = in.nextLine();
-                                    status = cinema.inserirCliente(CPF, nome);
+                                    status = cinema.inserirCliente(cinemaRepo, CPF, nome);
                                     System.out.println(status);
                                 }
                             }
@@ -134,7 +135,7 @@ public class CinemaGUI {
                                     System.out.println("CPF inválido ou não cadastrado.");
                                     System.out.println("1 - Tentar novamente");
                                     System.out.println("2 - Cadastrar-se");
-                                    int sel2 = in.nextInt();
+                                    int sel2 = Integer.parseInt(in.nextLine());
                                     switch (sel2) {
                                         case 1:
                                             boolean trying = true;
@@ -155,7 +156,7 @@ public class CinemaGUI {
                                         case 2:
                                             System.out.println("Nome: ");
                                             String nome = in.nextLine();
-                                            String status = cinema.inserirCliente(CPF, nome);
+                                            String status = cinema.inserirCliente(cinemaRepo, CPF, nome);
                                             System.out.println(status);
                                             while (status.equals("Erro ao cadastrar o cliente!")) {
                                                 System.out.println("Tente novamente");
@@ -163,7 +164,7 @@ public class CinemaGUI {
                                                 nome = in.nextLine();
                                                 System.out.print("CPF: ");
                                                 CPF = in.nextLine();
-                                                status = cinema.inserirCliente(CPF, nome);
+                                                status = cinema.inserirCliente(cinemaRepo, CPF, nome);
                                                 System.out.println(status);
                                             }
                                             val3 = false;
@@ -173,8 +174,8 @@ public class CinemaGUI {
                                 }
                             }
                         }
-                        //interface cliente
-                        val = false;
+                        ClienteGUI clienteGUI = new ClienteGUI(cinemaRepo);
+                        val = true;
                         break;
                     default:
                         System.out.println("Seleção inválida!");
