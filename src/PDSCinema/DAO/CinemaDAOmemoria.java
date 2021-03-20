@@ -46,7 +46,7 @@ public class CinemaDAOmemoria implements CinemaDAO {
     }
 
     @Override
-    public void inserirADM(CinemaRepository cinema, String cpf, String nome) {
+    public void inserirADM(CinemaRepository cinema, String nome, String cpf) {
         cinema.getListaAdministradorCpf().add(cpf);
         Administrador administrador = new Administrador();
         administrador.setNome(nome);

@@ -15,11 +15,6 @@ public class AdministradorController {
     }
     public String cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
                         String diaDeEstreia){
-        System.out.println(name);
-        System.out.println(duracao);
-        System.out.println(sinopse);
-        System.out.println(classificacaoIndicativa);
-        System.out.println(diaDeEstreia);
         int status = adm.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
         if(status == 0){
             return ("Filme cadastrado com sucesso");
@@ -38,8 +33,8 @@ public class AdministradorController {
             return ("Nome do cupom ou tipo do cupom inválido!");
         }
     }
-    public String cadastrarPremios(CinemaRepository cinema, String descricao, int id){
-        int status = adm.cadastrarPremios(cinema, descricao, id);
+    public String cadastrarPremios(CinemaRepository cinema, String descricao, int id, int condicao){
+        int status = adm.cadastrarPremios(cinema, descricao, id, condicao);
         if(status == 0){
             return ("Premio cadastrado com sucesso");
         }else if(status == -1){
@@ -52,37 +47,29 @@ public class AdministradorController {
     public Filme buscarFilme(CinemaRepository cinema, String nome){
         Filme filme = adm.buscarFilme(cinema, nome);
         if(filme != null){
-            System.out.println("Filme encontrado com sucesso");
             return filme;
         }
-        System.out.println("Filme não encontrado");
         return null;
     }
     public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero){
         ArrayList<Filme> filmes = adm.buscarFilmeGenero(cinema, genero);
         if(filmes != null){
-            System.out.println("Filmes do gênero " + genero + " encontrados com sucesso");
             return filmes;
         }
-        System.out.println("Nenhum filme com esse gênero encontrado!");
         return null;
     }
     public Cupom buscarCupons(CinemaRepository cinema, String codigo){
         Cupom cupom = adm.buscarCupons(cinema, codigo);
         if(cupom != null){
-            System.out.println("Cupom encontrados com sucesso");
             return cupom;
         }
-        System.out.println("Nenhum cupom encontrado!");
         return null;
     }
     public Premio buscarPremio(CinemaRepository cinema, int codigo){
         Premio premio = adm.buscarPremio(cinema, codigo);
         if(premio != null){
-            System.out.println("Premio encontrados com sucesso");
             return premio;
         }
-        System.out.println("Nenhum premio encontrado!");
         return null;
     }
 

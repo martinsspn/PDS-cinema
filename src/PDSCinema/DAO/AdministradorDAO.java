@@ -12,7 +12,7 @@ public interface AdministradorDAO{
     void cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
                          String diaDeEstreia);
     void cadastrarCupons(CinemaRepository cinema, String _Cupom, double tipoDeCupom);
-    void cadastrarPremios(CinemaRepository cinema, String descricao, int id);
+    void cadastrarPremios(CinemaRepository cinema, String descricao, int id, int condicao);
 
     Filme buscarFilme(CinemaRepository cinema, String nome);
     ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero);
