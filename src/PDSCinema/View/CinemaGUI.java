@@ -1,5 +1,6 @@
 package PDSCinema.View;
 
+import PDSCinema.Controller.AdministradorController;
 import PDSCinema.Controller.CinemaController;
 import PDSCinema.model.Administrador;
 import PDSCinema.model.Cliente;
@@ -11,6 +12,19 @@ public class CinemaGUI {
     public CinemaGUI() {
         CinemaController cinema = new CinemaController();
         CinemaRepository cinemaRepo = new CinemaRepository();
+        AdministradorController admi = new AdministradorController();
+        cinema.inserirADM(cinemaRepo, "Gabriel Lucas", "123456");
+        cinema.inserirADM(cinemaRepo, "Acsa Laiane", "789456");
+        cinema.inserirADM(cinemaRepo, "Gabriel Martins", "456789");
+        cinema.inserirCliente(cinemaRepo, "Gabriel Lucas", "123456");
+        cinema.inserirCliente(cinemaRepo, "Acsa Laiane", "789456");
+        cinema.inserirCliente(cinemaRepo, "Gabriel Martins", "456789");
+        admi.cadastrarFilmes(cinemaRepo, "Harry Potter", 120, "Um menino mágico", "14",
+                "Aventura", "01/10/2000");
+        admi.cadastrarFilmes(cinemaRepo, "Bob Esponja", 100, "Uma esponja que vive no fundo do mar", "Livre",
+                "Aventura", "01/10/2000");
+        admi.cadastrarFilmes(cinemaRepo, "Narnia", 120, "Crianças brincando no guardarroupas", "14",
+                "Fantasia", "01/10/2000");
         boolean running = true;
         boolean val = true;
         while (running) {
@@ -67,11 +81,12 @@ public class CinemaGUI {
                                                 adm = cinema.buscarADM(CPF, cinemaRepo);
                                                 if (adm == null) {
                                                     System.out.println("Deseja desistir? 0 - não 1 - sim");
-                                                    int input = in.nextInt();
+                                                    int input = Integer.parseInt(in.nextLine());
                                                     if (input == 1) {
                                                         trying = false;
                                                     }
-                                                }
+                                                }else
+                                                    break;
                                             }
                                             val3 = false;
                                         break;

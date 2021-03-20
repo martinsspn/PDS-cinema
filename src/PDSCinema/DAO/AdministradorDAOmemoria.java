@@ -32,10 +32,11 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     }
 
     @Override
-    public void cadastrarPremios(CinemaRepository cinema, String descricao, int id){
+    public void cadastrarPremios(CinemaRepository cinema, String descricao, int id, int condicao){
         Premio premio = new Premio();
         premio.setDescricao(descricao);
         premio.setIdPremio(id);
+        premio.setCondicao(condicao);
         cinema.getListaDePremios().put(premio.getIdPremio(), premio);
         for(Cliente cliente : cinema.getListaClientes()){
             cliente.getPremios().add(premio);

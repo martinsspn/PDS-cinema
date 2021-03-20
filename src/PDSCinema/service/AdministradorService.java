@@ -53,11 +53,11 @@ public class AdministradorService implements iAdministradorService{
     }
 
     @Override
-    public int cadastrarPremios(CinemaRepository cinema, String descricao, int id) {
+    public int cadastrarPremios(CinemaRepository cinema, String descricao, int id, int condicao) {
         try{
-            if(!descricao.equals("")){
+            if(!descricao.equals("") && condicao > 0){
                 if(!cinema.getListaDePremios().containsKey(id)) {
-                    admDAO.cadastrarPremios(cinema, descricao, id);
+                    admDAO.cadastrarPremios(cinema, descricao, id, condicao);
                     return 0;
                 }else{
                     throw new IllegalArgumentException();
@@ -111,7 +111,7 @@ public class AdministradorService implements iAdministradorService{
     @Override
     public Premio buscarPremio(CinemaRepository cinema, int codigo){
         try{
-            if(codigo > 0 && codigo <= cinema.getListaDePremios().size()){
+            if(codigo >= 0){
                 return admDAO.buscarPremio(cinema, codigo);
             }else{
                 throw new NumberFormatException();
@@ -134,14 +134,17 @@ public class AdministradorService implements iAdministradorService{
     @Override
     public int removerCupons(CinemaRepository cinema, Cupom cupom){
         try{
-            if(cupom != null && cinema.getListaDeCupons().containsKey(cupom.getCodigo())){
+            System.out.println(cinema.getListaDeCupons().get(cupom.getCodigo()).getCodigo());
+            if(cinema.getListaDeCupons().containsKey(cupom.getCodigo())){
                 admDAO.removerCupons(cinema, cupom);
                 return 0;
             }else{
-                throw new Exception();
+                throw new IOException();
             }
-        }catch(Exception e){
+        }catch(IOException e){
             return -1;
+        }catch(NullPointerException e){
+            return -2;
         }
     }
     @Override

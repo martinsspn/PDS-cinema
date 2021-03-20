@@ -11,7 +11,7 @@ public interface iAdministradorService {
     int cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
                          String diaDeEstreia);
     int cadastrarCupons(CinemaRepository cinema, String _Cupom, double tipoDeCupom);
-    int cadastrarPremios(CinemaRepository cinema, String descricao, int id);
+    int cadastrarPremios(CinemaRepository cinema, String descricao, int id, int condicao);
 
     Filme buscarFilme(CinemaRepository cinema, String nome);
     ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero);
