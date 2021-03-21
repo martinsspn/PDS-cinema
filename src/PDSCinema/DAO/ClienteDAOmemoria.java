@@ -44,8 +44,10 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public int compartilharCupom() {
-        return 0;
+    public String compartilharCupom(Cliente cliente) {
+        String compartilhar = "Cupom: " + cliente.getCuponsUsados().get(0).getCodigo()
+                + "\n" + "Valor do Cupom: R$" + cliente.getCuponsUsados().get(0).getTipoDeCupom() + "\n";
+        return compartilhar;
     }
 
     @Override

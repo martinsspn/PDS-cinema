@@ -48,6 +48,10 @@ public class ClienteGUI {
                 case 2: System.out.println("Digite o código do filme que você deseja comprar: ");
                         String Scodigo = in.nextLine();
                         codigo = Integer.parseInt(Scodigo);
+                        if(codigo < 0 || codigo > cinemaRepository.getFilmesEmCartaz().size()){
+                            System.out.println("Filme não encontrado!");
+                            break;
+                        }
                         int escolhaHorario = 10;
                         String horario = null;
                         boolean running = true;
