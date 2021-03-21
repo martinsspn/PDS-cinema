@@ -38,9 +38,9 @@ public class AdministradorController {
         if(status == 0){
             return ("Premio cadastrado com sucesso");
         }else if(status == -1){
-            return ("Este cupom já existe!");
+            return ("Este premio já existe!");
         }else{
-            return ("Valor para o nome do cupom inválido!");
+            return ("Valor para o premio inválido");
         }
     }
 

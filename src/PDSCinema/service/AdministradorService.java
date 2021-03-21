@@ -21,7 +21,7 @@ public class AdministradorService implements iAdministradorService{
     public int cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
                                 String diaDeEstreia) {
         try{
-            if(cinema != null && name != null && sinopse != null && classificacaoIndicativa != null && genero != null && diaDeEstreia != null){
+            if(cinema != null && !name.isEmpty() && !sinopse.isEmpty()&& !classificacaoIndicativa.isEmpty() && !genero.isEmpty() && !diaDeEstreia.isEmpty()){
                 if(duracao >= 0){
                     admDAO.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
                     return 0;
@@ -66,9 +66,9 @@ public class AdministradorService implements iAdministradorService{
                 throw new IOException();
             }
         }catch (IOException e){
-            return -1;
-        }catch (IllegalArgumentException e){
             return -2;
+        }catch (IllegalArgumentException e){
+            return -1;
         }
     }
 

@@ -65,7 +65,10 @@ public class CinemaGUI {
                                 System.out.println("CPF inválido ou não cadastrado.");
                                 System.out.println("1 - Tentar novamente");
                                 System.out.println("2 - Cadastrar-se");
-                                int sel2 = in.nextInt();
+                                String Ssel2 = in.nextLine();
+                                int sel2 = 3;
+                                if(!Ssel2.isEmpty())
+                                    sel2 = Integer.parseInt(Ssel2);
                                 switch (sel2) {
                                     case 1:
                                         boolean trying = true;

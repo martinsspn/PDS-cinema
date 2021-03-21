@@ -104,7 +104,7 @@ public class ClienteService implements iClienteService{
     	try {
     		if(!codigo.equals("") && cinema.getListaDeCupons().containsKey(codigo)){
 				if(!cliente.getCuponsAtivos().contains(cinema.getListaDeCupons().get(codigo)) && !cliente.getCuponsUsados().contains(cinema.getListaDeCupons().get(codigo))){
-    				cliente.getCuponsAtivos().add(cinema.getListaDeCupons().get(codigo));
+    				clienteDAO.resgatarCupom(cinema, cliente, codigo);
     				return 0;
 				}else{
     				throw new IOException();
@@ -156,8 +156,7 @@ public class ClienteService implements iClienteService{
 	@Override
     public String compartilharCupom(Cliente cliente) {
 		try{
-			String compartilhar = "Cupom: " + cliente.getCuponsUsados().get(0).getCodigo()
-					+ "\n" + "Valor do Cupom: R$" + cliente.getCuponsUsados().get(0).getTipoDeCupom() + "\n";
+			String compartilhar = clienteDAO.compartilharCupom(cliente);
 			return compartilhar;
 		}catch (NullPointerException e){
 			return "Cliente não existe";
