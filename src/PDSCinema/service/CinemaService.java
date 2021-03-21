@@ -49,7 +49,7 @@ public class CinemaService implements iCinemaService{
      			throw new NumberFormatException();
      		}
      	}catch(NumberFormatException e) {
-    		System.out.println("ERRO: Cliente não existe na lista");
+    		System.out.println("ERRO: Cliente não existe na lista.");
      		return -1;
      	}
     }
