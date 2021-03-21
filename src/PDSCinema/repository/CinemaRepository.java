@@ -19,6 +19,7 @@ public class CinemaRepository {
     private List<Integer> avaliacoesHorarios;
     private int quantAvServico;
     private List<Integer> quantAvHorarios;
+    private List<Double> medias;
     private HashMap<String, Cupom> listaDeCupons;
     private HashMap<Integer, Premio> listaDePremios;
 
@@ -34,6 +35,7 @@ public class CinemaRepository {
         this.avaliacoesHorarios = new ArrayList<>();
         this.quantAvServico = 0;
         this.quantAvHorarios = new ArrayList<>();
+        this.medias = new ArrayList<>();
         this.listaDeCupons = new HashMap<>();
         this.listaDePremios = new HashMap<>();
         horarios.add("12h30min");
@@ -82,6 +84,14 @@ public class CinemaRepository {
 
     public void setListaAdministradorCpf(List<String> ListaAdministradorCpf) {
         this.listaAdministradorCpf = listaAdministradorCpf;
+    }
+
+    public List<Double> getMedias() {
+        return medias;
+    }
+
+    public void setMedias(List<Double> medias) {
+        this.medias = medias;
     }
 
     public List<String> getListaClientesCpf() {

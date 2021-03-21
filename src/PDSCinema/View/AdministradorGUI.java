@@ -30,7 +30,6 @@ public class AdministradorGUI {
             System.out.println("9 - Buscar Premio");
             System.out.println("10 - Remover Premio");
             System.out.println("11 - Sair");
-            System.out.print("> ");
             String Sop = in.nextLine();
             if(!Sop.isEmpty())
                 op = Integer.parseInt(Sop);
@@ -59,7 +58,7 @@ public class AdministradorGUI {
                         status = administradorController.cadastrarFilmes(cinemaRepository, nome,
                                 duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
                         System.out.println(status);
-                        System.out.println("Deseja continuar? 0 - não 1 - sim");
+                        System.out.println("Deseja continuar cadastrando outros filmes?\n0 - não\n1 - sim");
                         String Ssel = in.nextLine();
                         if(!Ssel.isEmpty())
                             sel = Integer.parseInt(Ssel);
@@ -73,12 +72,13 @@ public class AdministradorGUI {
                     nome = in.nextLine();
                     Filme filme = administradorController.buscarFilme(cinemaRepository, nome);
                     if(filme != null){
-                        System.out.println(filme.getName());
-                        System.out.println(filme.getDuracao());
-                        System.out.println(filme.getSinopse());
-                        System.out.println(filme.getClassificacaoIndicativa());
-                        System.out.println(filme.getGenero());
-                        System.out.println(filme.getDiaDeEstreia());
+                        System.out.println("Informações encontradas:");
+                        System.out.println("Nome: " + filme.getName());
+                        System.out.println("Duração do filme: " + filme.getDuracao()+"min");
+                        System.out.println("Sinopsse: " + filme.getSinopse());
+                        System.out.println("Classificação indicativa: " + filme.getClassificacaoIndicativa());
+                        System.out.println("Gênero:" + filme.getGenero());
+                        System.out.println("Dia de estreia: " + filme.getDiaDeEstreia());
                     }else{
                         System.out.println("Filme não encontrado.");
                     }
@@ -88,8 +88,9 @@ public class AdministradorGUI {
                     genero = in.nextLine();
                     ArrayList<Filme> filmeGenero = administradorController.buscarFilmeGenero(cinemaRepository, genero);
                     if(!filmeGenero.isEmpty()){
+                        System.out.println("Filmes encontrados do genero " + genero + ":");
                         for(Filme f : filmeGenero){
-                            System.out.println(f.getName());
+                            System.out.println("- " + f.getName());
                         }
                     }else{
                         System.out.println("Nenhum filme do gênero " + genero + " foi encontrado.");
@@ -118,8 +119,8 @@ public class AdministradorGUI {
                     nomeCupom = in.nextLine();
                     Cupom cupom = administradorController.buscarCupons(cinemaRepository, nomeCupom);
                     if(cupom != null) {
-                        System.out.println(cupom.getCodigo());
-                        System.out.println(cupom.getTipoDeCupom());
+                        System.out.println("Código do cupom: " + cupom.getCodigo());
+                        System.out.println("Valor de desconto: R$" + cupom.getTipoDeCupom());
                     }else{
                         System.out.println("Cupom não encontrado.");
                     }
@@ -156,8 +157,9 @@ public class AdministradorGUI {
                         codigoPremio = Integer.parseInt(ScodigoPremio);
                     Premio premio = administradorController.buscarPremio(cinemaRepository, codigoPremio);
                     if(premio != null) {
-                        System.out.println(premio.getIdPremio());
-                        System.out.println(premio.getDescricao());
+                        System.out.println("Id: " + premio.getIdPremio());
+                        System.out.println("Descrição: " + premio.getDescricao());
+                        System.out.println("Condição: " + premio.getCondicao());
                     }else{
                         System.out.println("Premio não encontrado.");
                     }

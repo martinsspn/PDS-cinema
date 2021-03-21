@@ -41,7 +41,7 @@ public class ClienteController {
         if(status == "-1" || status == "-2"){
             return ("Premio inválido!");
         }else{
-            return status;
+            return "- " + status;
         }
     }
     public String avaliarFilme(Filme filme, int avaliacao){

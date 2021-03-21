@@ -130,9 +130,11 @@ public class CinemaService implements iCinemaService{
     	 return ((double)avaliacoesServico/(double)quantAvServico);
 
     }
-    public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz){
-    	try{
-    		List<Double> valor = new ArrayList<>();
+
+	@Override
+	public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz) {
+		try{
+			List<Double> valor = new ArrayList<>();
 			for (Filme filme : filmesEmCartaz) {
 				if(filme.getQuantAvaliacoes() == 0){
 					valor.add(((double)(filme.getAvaliacoes())));
@@ -142,10 +144,12 @@ public class CinemaService implements iCinemaService{
 			}
 			return valor;
 		}catch (ArithmeticException e){
-    		return null;
+			return null;
 		}
 	}
 
+
+	@Override
     public List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
     	try{
     		List<Double> valor  = new ArrayList<>();
@@ -162,37 +166,11 @@ public class CinemaService implements iCinemaService{
 		}
 	}
 
-	public ArrayList<String> calcularRankingHorarios(List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
-		List<Double> medias = calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);
-		ArrayList<String> rankingHorarios = new ArrayList<>();
-
-		for(String horario : horarios)
-			rankingHorarios.add(horario);
-
-		int i, j, min;
-		Double aux;
-		String aux2;
-		for (i = 0; i < (horarios.size())-1; i++){
-			min = i;
-			for (j = (i + 1); j < horarios.size(); j++) {
-				if (medias.get(j) < medias.get(min))
-					min = j;
-			}
-			if (i != min) {
-				aux = medias.get(i);
-				aux2 = rankingHorarios.get(i);
-				medias.set(i, medias.get(min));
-				medias.set(min, aux);
-				rankingHorarios.set(i, rankingHorarios.get(min));
-				rankingHorarios.set(min, aux2);
-			}
-		}
-		return rankingHorarios;
-	}
-
-	public ArrayList<String> calcularRankingFilme(List<Filme> filmesEmCartaz){
+	@Override
+	public ArrayList<String> calcularRankingFilme(CinemaRepository cinemaRepository, List<Filme> filmesEmCartaz){
 		List<Double> medias = calcularMediaAvaliacaoFilmes(filmesEmCartaz);
 		ArrayList<String> rankingFilmes = new ArrayList<>();
+		cinemaRepository.setMedias(medias);
 
 		for(Filme filme : filmesEmCartaz)
 			rankingFilmes.add(filme.getName());
@@ -216,5 +194,35 @@ public class CinemaService implements iCinemaService{
 			}
 		}
 		return rankingFilmes;
+	}
+
+	@Override
+	public ArrayList<String> calcularRankingHorarios(CinemaRepository cinemaRepository, List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios) {
+		List<Double> medias = calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);
+		ArrayList<String> rankingHorarios = new ArrayList<>();
+		cinemaRepository.setMedias(medias);
+
+		for(String horario : horarios)
+			rankingHorarios.add(horario);
+
+		int i, j, min;
+		Double aux;
+		String aux2;
+		for (i = 0; i < (horarios.size())-1; i++){
+			min = i;
+			for (j = (i + 1); j < horarios.size(); j++) {
+				if (medias.get(j) < medias.get(min))
+					min = j;
+			}
+			if (i != min) {
+				aux = medias.get(i);
+				aux2 = rankingHorarios.get(i);
+				medias.set(i, medias.get(min));
+				medias.set(min, aux);
+				rankingHorarios.set(i, rankingHorarios.get(min));
+				rankingHorarios.set(min, aux2);
+			}
+		}
+		return rankingHorarios;
 	}
 }

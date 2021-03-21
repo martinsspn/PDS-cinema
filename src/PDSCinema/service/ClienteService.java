@@ -157,7 +157,7 @@ public class ClienteService implements iClienteService{
     public String compartilharCupom(Cliente cliente) {
 		try{
 			String compartilhar = "Cupom: " + cliente.getCuponsUsados().get(0).getCodigo()
-					+ "\n" + "Valor do Cupom: " + cliente.getCuponsUsados().get(0).getTipoDeCupom() + "\n";
+					+ "\n" + "Valor do Cupom: R$" + cliente.getCuponsUsados().get(0).getTipoDeCupom() + "\n";
 			return compartilhar;
 		}catch (NullPointerException e){
 			return "Cliente não existe";
