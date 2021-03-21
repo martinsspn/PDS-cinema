@@ -16,7 +16,7 @@ public class CinemaController {
     public String inserirCliente(CinemaRepository cinema, String cpf, String nome){
         int status = this.cinema.inserirCliente(cinema ,cpf, nome);
         if(status == 0){
-            return ("Cliente cadastrado com sucesso");
+            return ("Cliente cadastrado com sucesso!");
         }else{
             return ("Cliente não cadastrado!");
         }
@@ -24,7 +24,7 @@ public class CinemaController {
     public String removerCliente(Cliente cliente, CinemaRepository _cinema){
         int status = cinema.removerCliente(cliente, _cinema);
         if(status == 0){
-            return ("Cliente removido com sucesso");
+            return ("Cliente removido com sucesso!");
         }else{
             return ("Cliente não cadastrado!");
         }
@@ -55,7 +55,7 @@ public class CinemaController {
     public String inserirADM(CinemaRepository cinema, String nome, String cpf){
         int status = this.cinema.inserirADM(cinema, nome, cpf);
         if(status == 0) {
-            return ("Administrador inserido com sucesso");
+            return ("Administrador inserido com sucesso!");
         }else{
             return ("Erro ao cadastrar o administrador!");
         }
@@ -63,7 +63,7 @@ public class CinemaController {
     public String removerADM(Administrador ADM, CinemaRepository cinema){
         int status = this.cinema.removerADM(ADM, cinema);
         if(status == 0){
-            return ("Administrador removido com sucesso");
+            return ("Administrador removido com sucesso!");
         }else{
             return ("Administrador não encontrado!");
         }
@@ -71,10 +71,10 @@ public class CinemaController {
     public Administrador buscarADM(String cpf, CinemaRepository _cinema){
         Administrador adm = cinema.buscarADM(cpf, _cinema);
         if(adm != null){
-            System.out.println ("Administrador encontrado com sucesso");
+            System.out.println ("Administrador encontrado com sucesso!");
             return adm;
         }else{
-            System.out.println ("Administrador não encontrado");
+            System.out.println ("Administrador não encontrado!");
             return null;
         }
     }
@@ -100,7 +100,7 @@ public class CinemaController {
     public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz){
         List<Double> medias = cinema.calcularMediaAvaliacaoFilmes(filmesEmCartaz);
         if(medias != null){
-            System.out.println ("Medias calculadas com sucesso");
+            System.out.println ("Medias calculadas com sucesso!");
             return medias;
         }else{
             System.out.println ("Erro ao cacular médias!");
@@ -110,7 +110,7 @@ public class CinemaController {
     public List<Double> calcularMediaAvaliacaoHorario(CinemaRepository cinemaRepository, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
         List<Double> medias = cinema.calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);
         if(medias != null){
-            System.out.println ("Medias calculadas com sucesso");
+            System.out.println ("Medias calculadas com sucesso!");
             return medias;
         }else{
             System.out.println ("Erro ao cacular médias!");
