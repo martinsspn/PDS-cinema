@@ -35,9 +35,14 @@ public class ClienteGUI {
                 op = Integer.parseInt(Sop);
             switch(op){
                 case 1: codigo = 1;
-                        for(Filme f: cinemaRepository.getFilmesEmCartaz()){
-                            System.out.println("Filme: " + f.getName() + " Código: " + codigo);
-                            codigo++;
+                        if(cinemaRepository.getFilmesEmCartaz().size()>0){
+                            System.out.println("Filmes em cartaz:");
+                            for(Filme f: cinemaRepository.getFilmesEmCartaz()){
+                                System.out.println("- " + f.getName() + ". Código: " + codigo);
+                                codigo++;
+                            }
+                        }else{
+                            System.out.println("Não há nenhum filme em cartaz no momento.");
                         }
                         break;
                 case 2: System.out.println("Digite o código do filme que você deseja comprar: ");
@@ -164,7 +169,7 @@ public class ClienteGUI {
                         String ScodigoFilme = in.nextLine();
                         if(!ScodigoFilme.isEmpty())
                             codigoFilme = Integer.parseInt(ScodigoFilme);
-                        if(codigoFilme < 0 || codigoFilme-1 > cinemaRepository.getFilmesEmCartaz().size()){
+                        if(codigoFilme < 0 || codigoFilme-1 >= cinemaRepository.getFilmesEmCartaz().size()){
                             System.out.println("Código digitado não possui filme cadastrado");
                         }else{
                             System.out.println("Digite a sua avaliação de 0 a 5:");

@@ -92,11 +92,9 @@ public class CinemaController {
     public Double calcularMediaAvaliacaoServico(int avaliacoesServico, int quantAvServico){
         Double media = cinema.calcularMediaAvaliacaoServico(avaliacoesServico, quantAvServico);
         if(media > 0){
-            System.out.println ("Média calculada com sucesso");
             return media;
         }else{
-            System.out.println ("Nenhuma avaliação cadastrada!");
-            return 0.;
+            return -1.0;
         }
     }
     public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz){
@@ -109,7 +107,7 @@ public class CinemaController {
             return null;
         }
     }
-    public List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
+    public List<Double> calcularMediaAvaliacaoHorario(CinemaRepository cinemaRepository, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
         List<Double> medias = cinema.calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);
         if(medias != null){
             System.out.println ("Medias calculadas com sucesso");
@@ -119,23 +117,19 @@ public class CinemaController {
             return null;
         }
     }
-    public ArrayList<String> calcularRankingFilme(List<Filme> filmesEmCartaz){
-        ArrayList<String> ranking = cinema.calcularRankingFilme(filmesEmCartaz);
+    public ArrayList<String> calcularRankingFilme(CinemaRepository cinemaRepository, List<Filme> filmesEmCartaz){
+        ArrayList<String> ranking = cinema.calcularRankingFilme(cinemaRepository, filmesEmCartaz);
         if(ranking != null){
-            System.out.println ("Ranking calculado com sucesso");
             return ranking;
         }else{
-            System.out.println ("Erro ao calcular ranking");
             return null;
         }
     }
-    public ArrayList<String> calcularRankingHorarios(List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
-        ArrayList<String> ranking = cinema.calcularRankingHorarios(horarios, avaliacoesHorarios, quantAvHorarios);
+    public ArrayList<String> calcularRankingHorarios(CinemaRepository cinemaRepository, List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
+        ArrayList<String> ranking = cinema.calcularRankingHorarios(cinemaRepository, horarios, avaliacoesHorarios, quantAvHorarios);
         if(ranking != null){
-            System.out.println ("Ranking calculado com sucesso");
             return ranking;
         }else{
-            System.out.println("Erro ao calcular ranking");
             return null;
         }
     }
