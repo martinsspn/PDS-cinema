@@ -6,8 +6,7 @@ import PDSCinema.repository.CinemaRepository;
 import java.io.IOException;
 
 public interface ClienteDAO {
-    int avaliarServico(CinemaRepository cinema, int avaliacao);
-    int avaliarHorario(CinemaRepository cinema, String horario ,int avaliacao) throws IOException;
+    int avaliarServico(int avaliacao);
     int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo);
     void alterarCondicaoPremio(Cliente cliente, int codigo, int condicao);
     String compartilharCupom(Cliente cliente);

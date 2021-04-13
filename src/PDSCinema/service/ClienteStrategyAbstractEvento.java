@@ -1,6 +1,6 @@
-package PDSCinema.DAO;
+package PDSCinema.service;
 
-public abstract class ClienteStrategyEventoDAO {
+public abstract class ClienteStrategyAbstractEvento {
     public abstract void avaliarEvento();
     public abstract void comprarIngressoEvento();
 }

@@ -1,9 +1,9 @@
 package PDSCinema;
 
-import PDSCinema.View.EventoGUI;
+import PDSCinema.View.CinemaGUI;
 
 public class main {
     public static void main(String[] args){
-        EventoGUI eventoGUI = new EventoGUI();
+        CinemaGUI cinemaGUI = new CinemaGUI();
     }
 }

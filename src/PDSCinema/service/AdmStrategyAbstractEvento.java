@@ -1,9 +1,7 @@
-package PDSCinema.DAO;
-
-import PDSCinema.model.Evento;
+package PDSCinema.service;
 
 public abstract class AdmStrategyAbstractEvento {
     public abstract void cadastrarEvento();
     public abstract void buscarEvento();
-    public abstract void removerEvento(Evento evento);
+    public abstract void removerEvento();
 }

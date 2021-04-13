@@ -1,4 +1,4 @@
-package PDSCinema.DAO;
+package PDSCinema.DAO.ClienteStrategy;
 
 public class ClienteCirco extends ClienteStrategyEventoDAO{
     @Override

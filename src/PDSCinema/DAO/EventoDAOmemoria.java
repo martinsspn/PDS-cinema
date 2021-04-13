@@ -3,77 +3,79 @@ package PDSCinema.DAO;
 import PDSCinema.model.Administrador;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Cupom;
-import PDSCinema.repository.CinemaRepository;
+import PDSCinema.repository.AdministradorRepository;
+import PDSCinema.repository.ClienteRepository;
+import PDSCinema.repository.EventoRepository;
 
 import java.util.List;
 
 public class EventoDAOmemoria implements EventoDAO {
 
     @Override
-    public void inserirCliente(CinemaRepository cinema, String cpf, String nome){
+    public void inserirCliente(ClienteRepository clienteRepository, String cpf, String nome){
         Cupom cupom = new Cupom();
         cupom.setCodigo(nome+cpf);
         cupom.setTipoDeCupom(10.00);
-        cinema.getListaClientesCpf().add(cpf);
+        clienteRepository.getListaClientesCpf().add(cpf);
         Cliente cliente = new Cliente();
         cliente.getCuponsUsados().add(cupom);
-        for(int id : cinema.getListaDePremios().keySet()){
-            cliente.getPremios().add(cinema.getListaDePremios().get(id));
+        for(int id : EventoRepository.getListaDePremios().keySet()){
+            cliente.getPremios().add(EventoRepository.getListaDePremios().get(id));
             cliente.getCondicoesPremios().add(0);
         }
         cliente.setNome(nome);
         cliente.setCpf(cpf);
-        cinema.getListaClientes().add(cliente);
+        clienteRepository.getListaClientes().add(cliente);
     }
 
     @Override
-    public void removerCliente(CinemaRepository cinema, Cliente cliente) {
-        cinema.getListaClientesCpf().remove(cliente.getCpf());
-        cinema.getListaClientes().remove(cliente);
+    public void removerCliente(ClienteRepository clienteRepository, Cliente cliente) {
+        clienteRepository.getListaClientesCpf().remove(cliente.getCpf());
+        clienteRepository.getListaClientes().remove(cliente);
     }
 
     @Override
-    public Cliente buscarCliente(CinemaRepository cinema, String cpf) {
-        for (int i = 0; i < cinema.getListaClientesCpf().size(); i++) {
-            if (cpf.equals(cinema.getListaClientesCpf().get(i))) {
-                return cinema.getListaClientes().get(i);
+    public Cliente buscarCliente(ClienteRepository clienteRepository, String cpf) {
+        for (int i = 0; i < clienteRepository.getListaClientesCpf().size(); i++) {
+            if (cpf.equals(clienteRepository.getListaClientesCpf().get(i))) {
+                return clienteRepository.getListaClientes().get(i);
             }
         }
         return null;
     }
 
     @Override
-    public List<Cliente> buscarTodosCliente(CinemaRepository cinema) {
-        return cinema.getListaClientes();
+    public List<Cliente> buscarTodosCliente(ClienteRepository clienteRepository) {
+        return clienteRepository.getListaClientes();
     }
 
     @Override
-    public void inserirADM(CinemaRepository cinema, String nome, String cpf) {
-        cinema.getListaAdministradorCpf().add(cpf);
+    public void inserirADM(AdministradorRepository administradorRepository, String nome, String cpf) {
+        administradorRepository.getListaAdministradorCpf().add(cpf);
         Administrador administrador = new Administrador();
         administrador.setNome(nome);
         administrador.setCpf(cpf);
-        cinema.getListaAdministrador().add(administrador);
+        administradorRepository.getListaAdministrador().add(administrador);
     }
 
     @Override
-    public void removerADM(CinemaRepository cinema, Administrador adm) {
-        cinema.getListaAdministradorCpf().remove(adm.getCpf());
-        cinema.getListaAdministrador().remove(adm);
+    public void removerADM(AdministradorRepository administradorRepository, Administrador adm) {
+        administradorRepository.getListaAdministradorCpf().remove(adm.getCpf());
+        administradorRepository.getListaAdministrador().remove(adm);
     }
 
     @Override
-    public Administrador buscarADM(CinemaRepository cinema, String cpf) {
-        for (int i = 0; i < cinema.getListaAdministradorCpf().size(); i++) {
-            if (cpf.equals(cinema.getListaAdministradorCpf().get(i))) {
-                return cinema.getListaAdministrador().get(i);
+    public Administrador buscarADM(AdministradorRepository administradorRepository, String cpf) {
+        for (int i = 0; i < administradorRepository.getListaAdministradorCpf().size(); i++) {
+            if (cpf.equals(administradorRepository.getListaAdministradorCpf().get(i))) {
+                return administradorRepository.getListaAdministrador().get(i);
             }
         }
         return null;
     }
 
     @Override
-    public List<Administrador> buscarTodosADM(CinemaRepository cinema) {
-        return cinema.getListaAdministrador();
+    public List<Administrador> buscarTodosADM(AdministradorRepository administradorRepository) {
+        return administradorRepository.getListaAdministrador();
     }
 }
