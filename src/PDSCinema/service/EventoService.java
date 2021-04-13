@@ -1,6 +1,5 @@
 package PDSCinema.service;
 
-import PDSCinema.Controller.CinemaController;
 import PDSCinema.DAO.CinemaDAO;
 import PDSCinema.DAO.CinemaDAOmemoria;
 import PDSCinema.model.Administrador;
