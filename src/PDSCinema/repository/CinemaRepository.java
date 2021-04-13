@@ -7,24 +7,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CinemaRepository extends EventoRepository{
-    private List<Integer> salas;
-    private List<Filme> filmesEmCartaz;
-    private List<String> horarios;
-    private List<Integer> avaliacoesHorarios;
-    private List<Integer> quantAvHorarios;
+public abstract class CinemaRepository extends EventoRepository{
+    private static List<Integer> salas;
+    private static List<Filme> filmesEmCartaz;
+    private static List<String> horarios;
+    private static List<Integer> avaliacoesHorarios;
+    private static List<Integer> quantAvHorarios;
 
     public CinemaRepository() {
-        this.salas = new ArrayList<>();
-        this.filmesEmCartaz = new ArrayList<>();
-        this.horarios = new ArrayList<>();
-        this.avaliacoesServico = 0;
-        this.avaliacoesHorarios = new ArrayList<>();
-        this.quantAvServico = 0;
-        this.quantAvHorarios = new ArrayList<>();
-        this.medias = new ArrayList<>();
-        this.listaDeCupons = new HashMap<>();
-        this.listaDePremios = new HashMap<>();
+        CinemaRepository.salas = new ArrayList<>();
+        CinemaRepository.filmesEmCartaz = new ArrayList<>();
+        CinemaRepository.horarios = new ArrayList<>();
+        CinemaRepository.avaliacoesServico = 0;
+        CinemaRepository.avaliacoesHorarios = new ArrayList<>();
+        CinemaRepository.quantAvServico = 0;
+        CinemaRepository.quantAvHorarios = new ArrayList<>();
+        CinemaRepository.medias = new ArrayList<>();
+        CinemaRepository.listaDeCupons = new HashMap<>();
+        CinemaRepository.listaDePremios = new HashMap<>();
         horarios.add("12h30min");
         horarios.add("13h00min");
         horarios.add("13h30min");
@@ -41,44 +41,44 @@ public class CinemaRepository extends EventoRepository{
 
     }
 
-    public List<Integer> getSalas() {
+    public static List<Integer> getSalas() {
         return salas;
     }
 
-    public void setSalas(List<Integer> salas) {
-        this.salas = salas;
+    public static void setSalas(List<Integer> salas) {
+        CinemaRepository.salas = salas;
     }
 
-    public List<Filme> getFilmesEmCartaz() {
+    public static List<Filme> getFilmesEmCartaz() {
         return filmesEmCartaz;
     }
 
-    public void setFilmesEmCartaz(List<Filme> filmesEmCartaz) {
-        this.filmesEmCartaz = filmesEmCartaz;
+    public static void setFilmesEmCartaz(List<Filme> filmesEmCartaz) {
+        CinemaRepository.filmesEmCartaz = filmesEmCartaz;
     }
 
-    public List<Integer> getAvaliacoesHorarios() {
+    public static List<Integer> getAvaliacoesHorarios() {
         return avaliacoesHorarios;
     }
 
-    public void setAvaliacoesHorarios(List<Integer> avaliacoesHorarios) {
-        this.avaliacoesHorarios = avaliacoesHorarios;
+    public static void setAvaliacoesHorarios(List<Integer> avaliacoesHorarios) {
+        CinemaRepository.avaliacoesHorarios = avaliacoesHorarios;
     }
 
-    public List<String> getHorarios() {
+    public static List<String> getHorarios() {
         return horarios;
     }
 
-    public void setHorarios(List<String> horarios) {
-        this.horarios = horarios;
+    public static void setHorarios(List<String> horarios) {
+        CinemaRepository.horarios = horarios;
     }
 
-    public List<Integer> getQuantAvHorarios() {
+    public static List<Integer> getQuantAvHorarios() {
         return quantAvHorarios;
     }
 
-    public void setQuantAvHorarios(List<Integer> quantAvHorarios) {
-        this.quantAvHorarios = quantAvHorarios;
+    public static void setQuantAvHorarios(List<Integer> quantAvHorarios) {
+        CinemaRepository.quantAvHorarios = quantAvHorarios;
     }
 }
 

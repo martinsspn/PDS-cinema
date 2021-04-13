@@ -10,40 +10,40 @@ import java.util.List;
 
 public abstract class EventoRepository {
 
-    protected int avaliacoesServico;
-    protected int quantAvServico;
-    protected List<Double> medias;
-    protected HashMap<String, Cupom> listaDeCupons;
-    protected HashMap<Integer, Premio> listaDePremios;
+    protected static int avaliacoesServico;
+    protected static int quantAvServico;
+    protected static List<Double> medias;
+    protected static HashMap<String, Cupom> listaDeCupons;
+    protected static HashMap<Integer, Premio> listaDePremios;
 
-    public List<Double> getMedias() {
+    public static List<Double> getMedias() {
         return medias;
     }
-    public void setMedias(List<Double> medias) {
-        this.medias = medias;
+    public static void setMedias(List<Double> medias) {
+        EventoRepository.medias = medias;
     }
-    public HashMap<String, Cupom> getListaDeCupons() {
+    public static HashMap<String, Cupom> getListaDeCupons() {
         return listaDeCupons;
     }
-    public void setListaDeCupons(HashMap<String, Cupom> listaDeCupons) {
-        this.listaDeCupons = listaDeCupons;
+    public static void setListaDeCupons(HashMap<String, Cupom> listaDeCupons) {
+        EventoRepository.listaDeCupons = listaDeCupons;
     }
-    public HashMap<Integer, Premio> getListaDePremios() {
-        return listaDePremios;
+    public static HashMap<Integer, Premio> getListaDePremios() {
+        return EventoRepository.listaDePremios;
     }
-    public void setListaDePremios(HashMap<Integer, Premio> listaDePremios) {
-        this.listaDePremios = listaDePremios;
+    public static void setListaDePremios(HashMap<Integer, Premio> listaDePremios) {
+        EventoRepository.listaDePremios = listaDePremios;
     }
-    public int getAvaliacoesServico() {
+    public static int getAvaliacoesServico() {
         return avaliacoesServico;
     }
-    public void setAvaliacoesServico(int avaliacoesServico) {
-        this.avaliacoesServico = avaliacoesServico;
+    public static void setAvaliacoesServico(int avaliacoesServico) {
+        EventoRepository.avaliacoesServico = avaliacoesServico;
     }
-    public int getQuantAvServico() {
-        return quantAvServico;
+    public static int getQuantAvServico() {
+        return EventoRepository.quantAvServico;
     }
-    public void setQuantAvServico(int quantAvServico) {
-        this.quantAvServico = quantAvServico;
+    public static void setQuantAvServico(int quantAvServico) {
+        EventoRepository.quantAvServico = quantAvServico;
     }
 }

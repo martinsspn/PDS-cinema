@@ -1,19 +1,21 @@
 package PDSCinema.DAO;
 
 import PDSCinema.model.Administrador;
-import PDSCinema.repository.CinemaRepository;
+import PDSCinema.repository.AdministradorRepository;
 import PDSCinema.model.Cliente;
+import PDSCinema.repository.ClienteRepository;
+import PDSCinema.repository.EventoRepository;
 
 import java.util.List;
 
 public interface EventoDAO {
-    void inserirCliente(CinemaRepository cinema, String cpf, String nome);
-    void removerCliente(CinemaRepository cinema, Cliente cliente);
-    Cliente buscarCliente(CinemaRepository cinema, String cpf);
-    List<Cliente> buscarTodosCliente(CinemaRepository cinema);
-    void inserirADM(CinemaRepository cinema, String nome, String cpf);
-    void removerADM(CinemaRepository cinema, Administrador ADM);
-    Administrador buscarADM(CinemaRepository cinema, String cpf);
-    List <Administrador> buscarTodosADM(CinemaRepository cinema);
+    void inserirCliente(ClienteRepository clienteRepository, String cpf, String nome);
+    void removerCliente(ClienteRepository clienteRepository, Cliente cliente);
+    Cliente buscarCliente(ClienteRepository clienteRepository, String cpf);
+    List<Cliente> buscarTodosCliente(ClienteRepository clienteRepository);
+    void inserirADM(AdministradorRepository administradorRepository, String nome, String cpf);
+    void removerADM(AdministradorRepository administradorRepository, Administrador adm);
+    Administrador buscarADM(AdministradorRepository administradorRepository, String cpf);
+    List <Administrador> buscarTodosADM(AdministradorRepository administradorRepository);
 }
 
