@@ -49,7 +49,7 @@ public class CinemaService implements iCinemaService{
      			throw new NumberFormatException();
      		}
      	}catch(NumberFormatException e) {
-    		System.out.println("ERRO: Cliente não existe na lista");
+    		System.out.println("ERRO: Cliente não existe na lista.");
      		return -1;
      	}
     }
@@ -130,52 +130,47 @@ public class CinemaService implements iCinemaService{
     	 return ((double)avaliacoesServico/(double)quantAvServico);
 
     }
-    public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz){
-    	List<Double> valor = new ArrayList<>();
-		for (Filme filme : filmesEmCartaz) {
-			valor.add(((double)(filme.getAvaliacoes()) / (double)(filme.getQuantAvaliacoes())));
-		}
-    	return valor;
-    }
-    public List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
-    	List<Double> valor  = new ArrayList<>();
-    	for(int i=0; i < avaliacoesHorarios.size(); i++){
-    		valor.add((double)(avaliacoesHorarios.get(i)/quantAvHorarios.get(i)));
-    	}
-    	return valor;
-    }
 
-	public ArrayList<String> calcularRankingHorarios(List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
-		List<Double> medias = calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);
-		ArrayList<String> rankingHorarios = new ArrayList<>();
-
-		for(String horario : horarios)
-			rankingHorarios.add(horario);
-
-		int i, j, min;
-		Double aux;
-		String aux2;
-		for (i = 0; i < (horarios.size())-1; i++){
-			min = i;
-			for (j = (i + 1); j < horarios.size(); j++) {
-				if (medias.get(j) < medias.get(min))
-					min = j;
+	@Override
+	public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz) {
+		try{
+			List<Double> valor = new ArrayList<>();
+			for (Filme filme : filmesEmCartaz) {
+				if(filme.getQuantAvaliacoes() == 0){
+					valor.add(((double)(filme.getAvaliacoes())));
+				}else{
+					valor.add(((double)(filme.getAvaliacoes()) / (double)(filme.getQuantAvaliacoes())));
+				}
 			}
-			if (i != min) {
-				aux = medias.get(i);
-				aux2 = rankingHorarios.get(i);
-				medias.set(i, medias.get(min));
-				medias.set(min, aux);
-				rankingHorarios.set(i, rankingHorarios.get(min));
-				rankingHorarios.set(min, aux2);
-			}
+			return valor;
+		}catch (ArithmeticException e){
+			return null;
 		}
-		return rankingHorarios;
 	}
 
-	public ArrayList<String> calcularRankingFilme(List<Filme> filmesEmCartaz){
+
+	@Override
+    public List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
+    	try{
+    		List<Double> valor  = new ArrayList<>();
+			for(int i=0; i < avaliacoesHorarios.size(); i++){
+				if(quantAvHorarios.get(i) == 0){
+					valor.add((double)(avaliacoesHorarios.get(i)));
+				}else{
+					valor.add((double)(avaliacoesHorarios.get(i)/quantAvHorarios.get(i)));
+				}
+			}
+			return valor;
+		}catch (ArithmeticException e){
+    		return null;
+		}
+	}
+
+	@Override
+	public ArrayList<String> calcularRankingFilme(CinemaRepository cinemaRepository, List<Filme> filmesEmCartaz){
 		List<Double> medias = calcularMediaAvaliacaoFilmes(filmesEmCartaz);
 		ArrayList<String> rankingFilmes = new ArrayList<>();
+		cinemaRepository.setMedias(medias);
 
 		for(Filme filme : filmesEmCartaz)
 			rankingFilmes.add(filme.getName());
@@ -199,5 +194,35 @@ public class CinemaService implements iCinemaService{
 			}
 		}
 		return rankingFilmes;
+	}
+
+	@Override
+	public ArrayList<String> calcularRankingHorarios(CinemaRepository cinemaRepository, List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios) {
+		List<Double> medias = calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);
+		ArrayList<String> rankingHorarios = new ArrayList<>();
+		cinemaRepository.setMedias(medias);
+
+		for(String horario : horarios)
+			rankingHorarios.add(horario);
+
+		int i, j, min;
+		Double aux;
+		String aux2;
+		for (i = 0; i < (horarios.size())-1; i++){
+			min = i;
+			for (j = (i + 1); j < horarios.size(); j++) {
+				if (medias.get(j) < medias.get(min))
+					min = j;
+			}
+			if (i != min) {
+				aux = medias.get(i);
+				aux2 = rankingHorarios.get(i);
+				medias.set(i, medias.get(min));
+				medias.set(min, aux);
+				rankingHorarios.set(i, rankingHorarios.get(min));
+				rankingHorarios.set(min, aux2);
+			}
+		}
+		return rankingHorarios;
 	}
 }

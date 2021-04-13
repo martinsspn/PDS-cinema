@@ -47,7 +47,7 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     @Override
     public Filme buscarFilme(CinemaRepository cinema, String nome){
         for(Filme filme : cinema.getFilmesEmCartaz()) {
-            if (filme.getName().equals(nome))
+            if (filme.getName().equalsIgnoreCase(nome))
                 return filme;
         }
         return null;
@@ -57,7 +57,7 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero){
         ArrayList<Filme> filmesPorGenero = new ArrayList<>();
         for(Filme filme : cinema.getFilmesEmCartaz()) {
-            if (filme.getGenero().equals(genero))
+            if (filme.getGenero().equalsIgnoreCase(genero))
                 filmesPorGenero.add(filme);
         }
         return filmesPorGenero;

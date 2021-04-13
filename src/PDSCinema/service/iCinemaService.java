@@ -21,6 +21,6 @@ public interface iCinemaService {
     Double calcularMediaAvaliacaoServico(int avaliacoesServico, int quantAvServico);
     List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz);
     List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios);
-    ArrayList<String> calcularRankingFilme(List<Filme> filmesEmCartaz);
-    ArrayList<String> calcularRankingHorarios(List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios);
+    ArrayList<String> calcularRankingFilme(CinemaRepository cinemaRepository, List<Filme> filmesEmCartaz);
+    ArrayList<String> calcularRankingHorarios(CinemaRepository cinemaRepository, List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios);
 }
