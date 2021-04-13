@@ -4,14 +4,14 @@ import PDSCinema.model.Administrador;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
 import PDSCinema.repository.CinemaRepository;
-import PDSCinema.service.CinemaService;
+import PDSCinema.service.EventoService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CinemaController {
-    private final CinemaService cinema;
-    public CinemaController(){
-        this.cinema = new CinemaService();
+public class EventoController {
+    private final EventoService cinema;
+    public EventoController(){
+        this.cinema = new EventoService();
     }
     public String inserirCliente(CinemaRepository cinema, String cpf, String nome){
         int status = this.cinema.inserirCliente(cinema ,cpf, nome);

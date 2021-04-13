@@ -1,4 +1,4 @@
 package PDSCinema.DAO;
 
-public class CinemaDAO {
+public class CircoDAO {
 }

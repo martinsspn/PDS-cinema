@@ -1,7 +1,7 @@
 package PDSCinema.View;
 
 import PDSCinema.Controller.AdministradorController;
-import PDSCinema.Controller.CinemaController;
+import PDSCinema.Controller.EventoController;
 import PDSCinema.model.Administrador;
 import PDSCinema.model.Cliente;
 import PDSCinema.repository.CinemaRepository;
@@ -9,12 +9,12 @@ import PDSCinema.repository.CinemaRepository;
 import java.util.List;
 import java.util.Scanner;
 
-public class CinemaGUI {
-    public CinemaGUI() {
-        CinemaController cinemaController = new CinemaController();
+public class EventoGUI {
+    public EventoGUI() {
+        EventoController eventoController = new EventoController();
         CinemaRepository cinemaRepo = new CinemaRepository();
         AdministradorController admi = new AdministradorController();
-        preencherCinema(cinemaController, cinemaRepo, admi);
+        preencherCinema(eventoController, cinemaRepo, admi);
         boolean val = true;
         Cliente cliente = new Cliente();
         while (val) {
@@ -31,7 +31,7 @@ public class CinemaGUI {
                 op = Integer.parseInt(sel);
             switch (op) {
                 case 1:
-                    if (cinemaController.buscarTodosADM(cinemaRepo).isEmpty()) {
+                    if (eventoController.buscarTodosADM(cinemaRepo).isEmpty()) {
                         System.out.println("Não há nenhum administrador cadastrado!");
                         System.out.println("Por favor, cadastre-se");
                         String nome;
@@ -40,7 +40,7 @@ public class CinemaGUI {
                         nome = in.nextLine();
                         System.out.print("CPF: ");
                         CPF = in.nextLine();
-                        String status = cinemaController.inserirADM(cinemaRepo, nome, CPF);
+                        String status = eventoController.inserirADM(cinemaRepo, nome, CPF);
                         System.out.println(status);
                         if (status.equals("Erro ao cadastrar o administrador!")) {
                             while (status.equals("Erro ao cadastrar o administrador!")) {
@@ -49,7 +49,7 @@ public class CinemaGUI {
                                 nome = in.nextLine();
                                 System.out.print("CPF: ");
                                 CPF = in.nextLine();
-                                status = cinemaController.inserirADM(cinemaRepo, nome, CPF);
+                                status = eventoController.inserirADM(cinemaRepo, nome, CPF);
                                 System.out.println(status);
                             }
                         }
@@ -58,7 +58,7 @@ public class CinemaGUI {
                         String CPF;
                         System.out.println("Digite seu CPF");
                         CPF = in.nextLine();
-                        adm = cinemaController.buscarADM(CPF, cinemaRepo);
+                        adm = eventoController.buscarADM(CPF, cinemaRepo);
                         if (adm == null) {
                             boolean val3 = true;
                             while (val3) {
@@ -75,7 +75,7 @@ public class CinemaGUI {
                                         while (adm == null && trying) {
                                             System.out.println("Digite seu CPF: ");
                                             CPF = in.nextLine();
-                                            adm = cinemaController.buscarADM(CPF, cinemaRepo);
+                                            adm = eventoController.buscarADM(CPF, cinemaRepo);
                                             if (adm == null) {
                                                 System.out.println("Deseja desistir? 0 - não 1 - sim");
                                                 int input = Integer.parseInt(in.nextLine());
@@ -90,7 +90,7 @@ public class CinemaGUI {
                                     case 2:
                                         System.out.println("Nome: ");
                                         String nome = in.nextLine();
-                                        String status = cinemaController.inserirADM(cinemaRepo, CPF, nome);
+                                        String status = eventoController.inserirADM(cinemaRepo, CPF, nome);
                                         System.out.println(status);
                                         while (status.equals("Erro ao cadastrar o administrador!")) {
                                             System.out.println("Tente novamente");
@@ -98,7 +98,7 @@ public class CinemaGUI {
                                             nome = in.nextLine();
                                             System.out.print("CPF: ");
                                             CPF = in.nextLine();
-                                            status = cinemaController.inserirADM(cinemaRepo, nome, CPF);
+                                            status = eventoController.inserirADM(cinemaRepo, nome, CPF);
                                             System.out.println(status);
                                         }
                                         val3 = false;
@@ -114,7 +114,7 @@ public class CinemaGUI {
                     val = true;
                     break;
                 case 2:
-                    if (cinemaController.buscarTodosCliente(cinemaRepo).isEmpty()) {
+                    if (eventoController.buscarTodosCliente(cinemaRepo).isEmpty()) {
                         System.out.println("Não há nenhum cliente cadastrado!");
                         System.out.println("Por favor, cadastre-se");
                         String nome;
@@ -123,7 +123,7 @@ public class CinemaGUI {
                         nome = in.nextLine();
                         System.out.print("CPF: ");
                         CPF = in.nextLine();
-                        String status = cinemaController.inserirCliente(cinemaRepo, CPF, nome);
+                        String status = eventoController.inserirCliente(cinemaRepo, CPF, nome);
                         System.out.println(status);
                         if (status.equals("Erro ao cadastrar o cliente!")) {
                             while (status.equals("Erro ao cadastrar o cliente!")) {
@@ -132,16 +132,16 @@ public class CinemaGUI {
                                 nome = in.nextLine();
                                 System.out.print("CPF: ");
                                 CPF = in.nextLine();
-                                status = cinemaController.inserirCliente(cinemaRepo, CPF, nome);
+                                status = eventoController.inserirCliente(cinemaRepo, CPF, nome);
                                 System.out.println(status);
                             }
                         }
-                        cliente = cinemaController.buscarCliente(cinemaRepo, CPF);
+                        cliente = eventoController.buscarCliente(cinemaRepo, CPF);
                     } else {
                         String CPF;
                         System.out.println("Digite seu CPF");
                         CPF = in.nextLine();
-                        cliente = cinemaController.buscarCliente(cinemaRepo, CPF);
+                        cliente = eventoController.buscarCliente(cinemaRepo, CPF);
                         if (cliente == null) {
                             boolean val3 = true;
                             while (val3) {
@@ -155,7 +155,7 @@ public class CinemaGUI {
                                         while (cliente == null && trying) {
                                             System.out.println("Digite seu CPF: ");
                                             CPF = in.nextLine();
-                                            cliente = cinemaController.buscarCliente(cinemaRepo, CPF);
+                                            cliente = eventoController.buscarCliente(cinemaRepo, CPF);
                                             if (cliente == null) {
                                                 System.out.println("Deseja desistir?\n0 - não\n1 - sim");
                                                 int input = in.nextInt();
@@ -169,7 +169,7 @@ public class CinemaGUI {
                                     case 2:
                                         System.out.println("Nome: ");
                                         String nome = in.nextLine();
-                                        String status = cinemaController.inserirCliente(cinemaRepo, CPF, nome);
+                                        String status = eventoController.inserirCliente(cinemaRepo, CPF, nome);
                                         System.out.println(status);
                                         while (status.equals("Erro ao cadastrar o cliente!")) {
                                             System.out.println("Tente novamente");
@@ -177,10 +177,10 @@ public class CinemaGUI {
                                             nome = in.nextLine();
                                             System.out.print("CPF: ");
                                             CPF = in.nextLine();
-                                            status = cinemaController.inserirCliente(cinemaRepo, CPF, nome);
+                                            status = eventoController.inserirCliente(cinemaRepo, CPF, nome);
                                             System.out.println(status);
                                         }
-                                        cliente = cinemaController.buscarCliente(cinemaRepo, CPF);
+                                        cliente = eventoController.buscarCliente(cinemaRepo, CPF);
                                         val3 = false;
                                         break;
                                     default:
@@ -205,7 +205,7 @@ public class CinemaGUI {
                             escolha = Integer.parseInt(Sescolha);
                         switch (escolha) {
                             case 1:
-                                double media = cinemaController.calcularMediaAvaliacaoServico(cinemaRepo.getAvaliacoesServico(), cinemaRepo.getQuantAvServico());
+                                double media = eventoController.calcularMediaAvaliacaoServico(cinemaRepo.getAvaliacoesServico(), cinemaRepo.getQuantAvServico());
                                 if(media > 0){
                                     System.out.println("Média: " + media);
                                 }else{
@@ -214,13 +214,13 @@ public class CinemaGUI {
                                 }
                                 break;
                             case 2:
-                                ranking = cinemaController.calcularRankingHorarios(cinemaRepo, cinemaRepo.getHorarios(), cinemaRepo.getAvaliacoesHorarios(), cinemaRepo.getQuantAvHorarios());
+                                ranking = eventoController.calcularRankingHorarios(cinemaRepo, cinemaRepo.getHorarios(), cinemaRepo.getAvaliacoesHorarios(), cinemaRepo.getQuantAvHorarios());
                                 for(int i=ranking.size()-1;i>=0;i--){
                                     System.out.println(i + " - " + ranking.get(i) + " Media: " + cinemaRepo.getMedias().get(i));
                                 }
                                 break;
                             case 3:
-                                ranking = cinemaController.calcularRankingFilme(cinemaRepo, cinemaRepo.getFilmesEmCartaz());
+                                ranking = eventoController.calcularRankingFilme(cinemaRepo, cinemaRepo.getFilmesEmCartaz());
                                 for(int i=ranking.size()-1; i>=0;i--){
                                     System.out.println(ranking.size()-i + " - " + ranking.get(i) + ". Media " + cinemaRepo.getMedias().get(i));
                                 }
@@ -239,7 +239,7 @@ public class CinemaGUI {
         }
     }
 
-    private static void preencherCinema(CinemaController cinema, CinemaRepository cinemaRepo, AdministradorController admi){
+    private static void preencherCinema(EventoController cinema, CinemaRepository cinemaRepo, AdministradorController admi){
         cinema.inserirADM(cinemaRepo, "Gabriel Lucas", "123456");
         cinema.inserirADM(cinemaRepo, "Acsa Laiane", "789456");
         cinema.inserirADM(cinemaRepo, "Gabriel Martins", "456789");
