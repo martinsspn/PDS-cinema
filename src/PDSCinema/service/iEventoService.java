@@ -9,7 +9,7 @@ import PDSCinema.model.Filme;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface iCinemaService {
+public interface iEventoService {
     int inserirCliente(CinemaRepository cinema, String cpf, String nome);
     int removerCliente(Cliente cliente, CinemaRepository cinema);
     Cliente buscarCliente(CinemaRepository cinema, String cpf);

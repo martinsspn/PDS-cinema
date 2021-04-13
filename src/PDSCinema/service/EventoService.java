@@ -1,7 +1,7 @@
 package PDSCinema.service;
 
-import PDSCinema.DAO.CinemaDAO;
-import PDSCinema.DAO.CinemaDAOmemoria;
+import PDSCinema.DAO.EventoDAO;
+import PDSCinema.DAO.EventoDAOmemoria;
 import PDSCinema.model.Administrador;
 import PDSCinema.repository.CinemaRepository;
 import PDSCinema.model.Cliente;
@@ -10,11 +10,11 @@ import PDSCinema.model.Filme;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CinemaService implements iCinemaService{
-    private CinemaDAO cinemaDAO;
+public class EventoService implements iEventoService {
+    private EventoDAO eventoDAO;
 
-	public CinemaService() {
-		this.cinemaDAO = new CinemaDAOmemoria();
+	public EventoService() {
+		this.eventoDAO = new EventoDAOmemoria();
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class CinemaService implements iCinemaService{
 		try {
 			if(nome != null && cpf != null) {
 				if(!(cinema.getListaClientesCpf().contains(cpf))){
-					cinemaDAO.inserirCliente(cinema, cpf, nome);
+					eventoDAO.inserirCliente(cinema, cpf, nome);
 					return 0;
 				}else{
 					throw new Exception();
@@ -42,7 +42,7 @@ public class CinemaService implements iCinemaService{
     public int removerCliente(Cliente cliente, CinemaRepository cinema){
     	try {
      		if(cinema.getListaClientesCpf().contains(cliente.getCpf())) {
-				cinemaDAO.removerCliente(cinema, cliente);
+				eventoDAO.removerCliente(cinema, cliente);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -56,7 +56,7 @@ public class CinemaService implements iCinemaService{
     public Cliente buscarCliente(CinemaRepository cinema, String cpf){
     	try {
       		if(cinema.getListaClientesCpf().contains(cpf)) {
-      			return (cinemaDAO.buscarCliente(cinema, cpf));
+      			return (eventoDAO.buscarCliente(cinema, cpf));
       		}else {
       			throw new NumberFormatException();
       		}
@@ -68,7 +68,7 @@ public class CinemaService implements iCinemaService{
     } 
     @Override
     public List <Cliente> buscarTodosCliente(CinemaRepository cinema){
-		return cinemaDAO.buscarTodosCliente(cinema);
+		return eventoDAO.buscarTodosCliente(cinema);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class CinemaService implements iCinemaService{
     	 try {
      		if(nome != null && cpf != null) {
      			if(!(cinema.getListaAdministradorCpf().contains(cpf))){
-					cinemaDAO.inserirADM(cinema, nome, cpf);
+					eventoDAO.inserirADM(cinema, nome, cpf);
 					return 0;
 				}else{
      				throw new Exception();
@@ -96,7 +96,7 @@ public class CinemaService implements iCinemaService{
     public int removerADM(Administrador ADM, CinemaRepository cinema){
     	try {
      		if(cinema.getListaAdministradorCpf().contains(ADM.getCpf())) {
-				cinemaDAO.removerADM(cinema, ADM);
+				eventoDAO.removerADM(cinema, ADM);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -110,7 +110,7 @@ public class CinemaService implements iCinemaService{
     public Administrador buscarADM(String cpf, CinemaRepository cinema){
     	try {
     		if(cinema.getListaAdministradorCpf().contains(cpf)){
-       			return (cinemaDAO.buscarADM(cinema, cpf));
+       			return (eventoDAO.buscarADM(cinema, cpf));
        		}else {
        			throw new NumberFormatException();
        		}
@@ -121,7 +121,7 @@ public class CinemaService implements iCinemaService{
     } 
     @Override
     public List <Administrador> buscarTodosADM(CinemaRepository cinema){
-		return cinemaDAO.buscarTodosADM(cinema);
+		return eventoDAO.buscarTodosADM(cinema);
     }
 
     @Override

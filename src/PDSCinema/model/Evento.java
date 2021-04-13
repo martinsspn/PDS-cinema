@@ -1,2 +1,4 @@
-package PDSCinema.model;public class Evento {
+package PDSCinema.model;
+
+public class Evento {
 }

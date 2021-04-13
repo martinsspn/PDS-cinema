@@ -6,7 +6,7 @@ import PDSCinema.model.Cliente;
 
 import java.util.List;
 
-public interface CinemaDAO {
+public interface EventoDAO {
     void inserirCliente(CinemaRepository cinema, String cpf, String nome);
     void removerCliente(CinemaRepository cinema, Cliente cliente);
     Cliente buscarCliente(CinemaRepository cinema, String cpf);

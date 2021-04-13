@@ -1,2 +1,4 @@
-package PDSCinema.model;public class Banda {
+package PDSCinema.model;
+
+public class Banda {
 }

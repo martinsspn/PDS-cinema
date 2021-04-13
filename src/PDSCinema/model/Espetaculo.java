@@ -1,2 +1,4 @@
-package PDSCinema.model;public class Espetáculo {
+package PDSCinema.model;
+
+public class Espetaculo {
 }

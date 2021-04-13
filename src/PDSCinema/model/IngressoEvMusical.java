@@ -1,2 +1,4 @@
-package PDSCinema.model;public class IngressorEvMusical {
+package PDSCinema.model;
+
+public class IngressoEvMusical extends Ingresso{
 }

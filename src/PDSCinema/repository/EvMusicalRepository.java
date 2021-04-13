@@ -1,2 +1,5 @@
-package PDSCinema.repository;public class EvMusicalRepository {
+package PDSCinema.repository;
+
+public class EvMusicalRepository extends EventoRepository{
+
 }

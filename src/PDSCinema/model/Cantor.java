@@ -1,2 +1,4 @@
-package PDSCinema.model;public class Cantor {
+package PDSCinema.model;
+
+public class Cantor {
 }

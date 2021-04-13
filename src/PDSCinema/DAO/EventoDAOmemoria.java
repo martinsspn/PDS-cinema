@@ -7,7 +7,7 @@ import PDSCinema.repository.CinemaRepository;
 
 import java.util.List;
 
-public class CinemaDAOmemoria implements CinemaDAO {
+public class EventoDAOmemoria implements EventoDAO {
 
     @Override
     public void inserirCliente(CinemaRepository cinema, String cpf, String nome){
