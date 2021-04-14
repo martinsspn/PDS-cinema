@@ -15,18 +15,6 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     AdministradorDAOmemoria(AdmStrategyAbstractEvento admStrategyAbstractEvento){
         this.admStrategyAbstractEvento = admStrategyAbstractEvento;
     }
-    @Override
-    public void cadastrarEvento(String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
-                                String diaDeEstreia){
-        Filme filme = new Filme();
-        filme.setName(name);
-        filme.setDuracao(duracao);
-        filme.setSinopse(sinopse);
-        filme.setClassificacaoIndicativa(classificacaoIndicativa);
-        filme.setGenero(genero);
-        filme.setDiaDeEstreia(diaDeEstreia);
-        CinemaRepository.getFilmesEmCartaz().add(filme);
-    }
 
     public void cadastrarEvento(CircoRepository c){}
     public void cadastrarEvento(EventoRepository e){}
@@ -54,8 +42,8 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     }
 
     @Override
-    public Evento buscarEvento(AdmStrategyAbstractEvento evento, String nome){
-        return evento.buscarEvento(nome);
+    public Evento buscarEvento(String nome){
+        return admStrategyAbstractEvento.buscarEvento(nome);
     }
 
     @Override
@@ -69,8 +57,8 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     }
 
     @Override
-    public int removerEvento(AdmStrategyAbstractEvento strategyAbstractEvento, Evento evento){
-        strategyAbstractEvento.removerEvento(evento);
+    public int removerEvento(Evento evento){
+        admStrategyAbstractEvento.removerEvento(evento);
         return 0;
     }
 

@@ -1,21 +1,25 @@
 package PDSCinema.Controller;
 
+import PDSCinema.model.Evento;
+import PDSCinema.service.AdmPolimorfismo.CadastrarEvento;
 import PDSCinema.model.Cupom;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Premio;
 import PDSCinema.repository.CinemaRepository;
+import PDSCinema.service.AdmStrategy.AdmCinema;
 import PDSCinema.service.AdministradorService;
 
 import java.util.ArrayList;
 
 public class AdministradorController {
+    private AdmCinema admCinema = new AdmCinema();
     private final AdministradorService adm;
     public AdministradorController(){
         this.adm = new AdministradorService();
     }
-    public String cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
+    public String cadastrarEvento(String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
                         String diaDeEstreia){
-        int status = adm.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
+        int status = CadastrarEvento.cadastrarEvento(name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
         if(status == 0){
             return ("Filme cadastrado com sucesso");
         }else if(status == -1){
@@ -25,16 +29,16 @@ public class AdministradorController {
         }
         return "Filme não cadastrado!";
     }
-    public String cadastrarCupons(CinemaRepository cinema, String _Cupom, double tipoDeCupom){
-        int status = adm.cadastrarCupons(cinema, _Cupom, tipoDeCupom);
+    public String cadastrarCupons(String _Cupom, double tipoDeCupom){
+        int status = adm.cadastrarCupons(_Cupom, tipoDeCupom);
         if(status == 0){
             return ("Cupom cadastrado com sucesso");
         }else{
             return ("Nome do cupom ou tipo do cupom inválido!");
         }
     }
-    public String cadastrarPremios(CinemaRepository cinema, String descricao, int id, int condicao){
-        int status = adm.cadastrarPremios(cinema, descricao, id, condicao);
+    public String cadastrarPremios(String descricao, int id, int condicao){
+        int status = adm.cadastrarPremios(descricao, id, condicao);
         if(status == 0){
             return ("Premio cadastrado com sucesso");
         }else if(status == -1){
@@ -44,53 +48,53 @@ public class AdministradorController {
         }
     }
 
-    public Filme buscarFilme(CinemaRepository cinema, String nome){
-        Filme filme = adm.buscarFilme(cinema, nome);
-        if(filme != null){
-            return filme;
+    public Evento buscarEvento(String nome){
+        Evento evento = admCinema.buscarEvento(nome);
+        if(evento != null){
+            return evento;
         }
         return null;
     }
-    public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero){
-        ArrayList<Filme> filmes = adm.buscarFilmeGenero(cinema, genero);
+    public ArrayList<Filme> buscarFilmeGenero(String genero){
+        ArrayList<Filme> filmes = admCinema.buscarFilmeGenero(genero);
         if(filmes != null){
             return filmes;
         }
         return null;
     }
-    public Cupom buscarCupons(CinemaRepository cinema, String codigo){
-        Cupom cupom = adm.buscarCupons(cinema, codigo);
+    public Cupom buscarCupons(String codigo){
+        Cupom cupom = adm.buscarCupons(codigo);
         if(cupom != null){
             return cupom;
         }
         return null;
     }
-    public Premio buscarPremio(CinemaRepository cinema, int codigo){
-        Premio premio = adm.buscarPremio(cinema, codigo);
+    public Premio buscarPremio(int codigo){
+        Premio premio = adm.buscarPremio(codigo);
         if(premio != null){
             return premio;
         }
         return null;
     }
 
-    public String removerFilmes(CinemaRepository cinema, Filme filme){
-        int status = adm.removerFilmes(cinema, filme);
+    public String removerEvento(Evento evento){
+        int status = admCinema.removerEvento(evento);
         if(status == 0){
             return ("Filme removido com sucesso");
         }else{
             return ("Filme não cadastrado!");
         }
     }
-    public String removerCupons(CinemaRepository cinema, Cupom cupom){
-        int status = adm.removerCupons(cinema, cupom);
+    public String removerCupons(Cupom cupom){
+        int status = adm.removerCupons(cupom);
         if(status == 0){
             return ("Cupom removido com sucesso");
         }else{
             return ("Cupom não cadastrado!");
         }
     }
-    public String removerPremios(CinemaRepository cinema, Premio premio){
-        int status = adm.removerPremios(cinema, premio);
+    public String removerPremios(Premio premio){
+        int status = adm.removerPremios(premio);
         if(status == 0){
             return ("Premio removido com sucesso");
         }else{

@@ -30,33 +30,18 @@ public class ClienteService implements iClienteService{
 	@Override
 	public double comprarIngresso(Ingresso ingresso, Cliente cliente,double pagamento) {
 		try {
-			if(ingresso.getPreco() <= pagamento) {
+			if (ingresso.getPreco() <= pagamento) {
 				SingletonEventoDAO.getCliente().comprarIngresso(ingresso, cliente);
 				return pagamento - ingresso.getPreco();
-			}else {
+			} else {
 				throw new NumberFormatException();
 			}
-		}catch(NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			return -1;
-		}catch (NullPointerException e){
+		} catch (NullPointerException e) {
 			return -2;
 		}
 	}
-    @Override
-    public int avaliarEvento(Evento evento, int avaliacao) {
-    	try {
-    		if(avaliacao > 5 || avaliacao < 0) {
-    			throw new NumberFormatException();
-    		}
-			SingletonEventoDAO.getCliente().avaliarEvento(evento, avaliacao);
-
-    		return 0;
-    	}catch(NumberFormatException e) {
-    		return -1;
-    	}catch(NullPointerException e){
-    		return -2;
-		}
-    }
 
     @Override
     public int avaliarServico(int avaliacao) {

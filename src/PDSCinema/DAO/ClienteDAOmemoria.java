@@ -62,12 +62,6 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public int avaliarEvento(Evento evento, int avaliacao) {
-        clienteStrategyEventoDAO.avaliarEvento(evento, avaliacao);
-        return 0;
-    }
-
-    @Override
     public int comprarIngresso(Ingresso ingresso, Cliente cliente) {
         cliente.getIngressos().add(ingresso);
         List<Integer> auxiliar = new ArrayList<>();

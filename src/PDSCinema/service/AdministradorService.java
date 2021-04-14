@@ -2,44 +2,19 @@ package PDSCinema.service;
 
 import PDSCinema.DAO.AdministradorDAO;
 import PDSCinema.DAO.AdministradorDAOmemoria;
+import PDSCinema.DAO.SingletonEventoDAO;
 import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
+import PDSCinema.repository.EventoRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class AdministradorService implements iAdministradorService{
-    //private final Administrador adm;
-    private final AdministradorDAO admDAO;
-
-    public AdministradorService() {
-        //this.adm = new Administrador();
-        this.admDAO = new AdministradorDAOmemoria();
-    }
+    private final AdministradorDAO admDAO = SingletonEventoDAO.getAdm();
 
     @Override
-    public int cadastrarFilmes(CinemaRepository cinema, String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
-                                String diaDeEstreia) {
-        try{
-            if(cinema != null && !name.isEmpty() && !sinopse.isEmpty()&& !classificacaoIndicativa.isEmpty() && !genero.isEmpty() && !diaDeEstreia.isEmpty()){
-                if(duracao >= 0){
-                    admDAO.cadastrarEvento(name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
-                    return 0;
-                }else{
-                    throw new NumberFormatException();
-                }
-            }else{
-                throw new IOException();
-            }
-        }catch (IOException e){
-            return -1;
-        }catch (NumberFormatException e){
-            return -2;
-        }
-    }
-
-    @Override
-    public int cadastrarCupons(CinemaRepository cinema, String _cupom, double tipoDeCupom) {
+    public int cadastrarCupons(String _cupom, double tipoDeCupom) {
         try{
             if(!_cupom.equals("") && tipoDeCupom >= 0){
                 admDAO.cadastrarCupons(_cupom, tipoDeCupom);
@@ -53,10 +28,10 @@ public class AdministradorService implements iAdministradorService{
     }
 
     @Override
-    public int cadastrarPremios(CinemaRepository cinema, String descricao, int id, int condicao) {
+    public int cadastrarPremios(String descricao, int id, int condicao) {
         try{
             if(!descricao.equals("") && condicao > 0){
-                if(!cinema.getListaDePremios().containsKey(id)) {
+                if(!EventoRepository.getListaDePremios().containsKey(id)) {
                     admDAO.cadastrarPremios(descricao, id, condicao);
                     return 0;
                 }else{
@@ -72,33 +47,13 @@ public class AdministradorService implements iAdministradorService{
         }
     }
 
-    @Override
-    public Filme buscarFilme(CinemaRepository cinema, String nome){
-        try {
-            if(!cinema.getFilmesEmCartaz().isEmpty()) {
-                return admDAO.buscarFilme(nome);
-            }
-            return null;
-        }catch(Exception e){
-            return null;
-        }
-    }
+
 
     @Override
-    public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero){
-        if(!cinema.getFilmesEmCartaz().isEmpty() && !genero.isEmpty()){
-            return admDAO.buscarFilmeGenero(genero);
-        }
-        else{
-            return null;
-        }
-    }
-
-    @Override
-    public Cupom buscarCupons(CinemaRepository cinema, String codigo){
+    public Cupom buscarCupons(String codigo){
         //Função DAO
         try{
-            if(!codigo.equals("") && cinema.getListaDeCupons().containsKey(codigo)){
+            if(!codigo.equals("") && EventoRepository.getListaDeCupons().containsKey(codigo)){
                 return admDAO.buscarCupons(codigo);
             }else{
                 throw new IOException();
@@ -109,7 +64,7 @@ public class AdministradorService implements iAdministradorService{
     }
 
     @Override
-    public Premio buscarPremio(CinemaRepository cinema, int codigo){
+    public Premio buscarPremio(int codigo){
         try{
             if(codigo >= 0){
                 return admDAO.buscarPremio(codigo);
@@ -122,20 +77,10 @@ public class AdministradorService implements iAdministradorService{
     }
 
     @Override
-    public int removerFilmes(CinemaRepository cinema, Filme filme){
-        if(cinema.getFilmesEmCartaz().contains(filme)) {
-            admDAO.removerFilmes(filme);
-            return 0;
-        }else{
-            return -1;
-        }
-    }
-
-    @Override
-    public int removerCupons(CinemaRepository cinema, Cupom cupom){
+    public int removerCupons(Cupom cupom){
         try{
-            System.out.println(cinema.getListaDeCupons().get(cupom.getCodigo()).getCodigo());
-            if(cinema.getListaDeCupons().containsKey(cupom.getCodigo())){
+            System.out.println(EventoRepository.getListaDeCupons().get(cupom.getCodigo()).getCodigo());
+            if(EventoRepository.getListaDeCupons().containsKey(cupom.getCodigo())){
                 admDAO.removerCupons(cupom);
                 return 0;
             }else{
@@ -148,9 +93,9 @@ public class AdministradorService implements iAdministradorService{
         }
     }
     @Override
-    public int removerPremios(CinemaRepository cinema, Premio premio){
+    public int removerPremios(Premio premio){
         try{
-            if(premio != null && cinema.getListaDePremios().containsKey(premio.getIdPremio())){
+            if(premio != null && EventoRepository.getListaDePremios().containsKey(premio.getIdPremio())){
                 admDAO.removerPremios(premio);
                 return 0;
             }else{

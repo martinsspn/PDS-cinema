@@ -4,8 +4,12 @@ import PDSCinema.Controller.AdministradorController;
 import PDSCinema.Controller.EventoController;
 import PDSCinema.model.Administrador;
 import PDSCinema.model.Cliente;
+import PDSCinema.model.Evento;
+import PDSCinema.model.Filme;
 import PDSCinema.repository.CinemaRepository;
+import PDSCinema.repository.EventoRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,7 +17,7 @@ public class CinemaGUI {
     public CinemaGUI() {
         EventoController eventoController = new EventoController();
         AdministradorController admi = new AdministradorController();
-        preencherCinema(eventoController, cinemaRepo, admi);
+        preencherCinema(eventoController, admi);
         boolean val = true;
         Cliente cliente = new Cliente();
         while (val) {
@@ -48,7 +52,7 @@ public class CinemaGUI {
                                 nome = in.nextLine();
                                 System.out.print("CPF: ");
                                 CPF = in.nextLine();
-                                status = eventoController.inserirADM(cinemaRepo, nome, CPF);
+                                status = eventoController.inserirADM(nome, CPF);
                                 System.out.println(status);
                             }
                         }
@@ -57,7 +61,7 @@ public class CinemaGUI {
                         String CPF;
                         System.out.println("Digite seu CPF");
                         CPF = in.nextLine();
-                        adm = eventoController.buscarADM(CPF, cinemaRepo);
+                        adm = eventoController.buscarADM(CPF);
                         if (adm == null) {
                             boolean val3 = true;
                             while (val3) {
@@ -74,7 +78,7 @@ public class CinemaGUI {
                                         while (adm == null && trying) {
                                             System.out.println("Digite seu CPF: ");
                                             CPF = in.nextLine();
-                                            adm = eventoController.buscarADM(CPF, cinemaRepo);
+                                            adm = eventoController.buscarADM(CPF);
                                             if (adm == null) {
                                                 System.out.println("Deseja desistir? 0 - não 1 - sim");
                                                 int input = Integer.parseInt(in.nextLine());
@@ -89,7 +93,7 @@ public class CinemaGUI {
                                     case 2:
                                         System.out.println("Nome: ");
                                         String nome = in.nextLine();
-                                        String status = eventoController.inserirADM(cinemaRepo, CPF, nome);
+                                        String status = eventoController.inserirADM(CPF, nome);
                                         System.out.println(status);
                                         while (status.equals("Erro ao cadastrar o administrador!")) {
                                             System.out.println("Tente novamente");
@@ -97,7 +101,7 @@ public class CinemaGUI {
                                             nome = in.nextLine();
                                             System.out.print("CPF: ");
                                             CPF = in.nextLine();
-                                            status = eventoController.inserirADM(cinemaRepo, nome, CPF);
+                                            status = eventoController.inserirADM(nome, CPF);
                                             System.out.println(status);
                                         }
                                         val3 = false;
@@ -109,11 +113,11 @@ public class CinemaGUI {
                         }
                     }
                     //interace adm
-                    AdministradorGUI administradorGUI = new AdministradorGUI(cinemaRepo);
+                    AdministradorGUI administradorGUI = new AdministradorGUI();
                     val = true;
                     break;
                 case 2:
-                    if (eventoController.buscarTodosCliente(cinemaRepo).isEmpty()) {
+                    if (eventoController.buscarTodosCliente().isEmpty()) {
                         System.out.println("Não há nenhum cliente cadastrado!");
                         System.out.println("Por favor, cadastre-se");
                         String nome;
@@ -122,7 +126,7 @@ public class CinemaGUI {
                         nome = in.nextLine();
                         System.out.print("CPF: ");
                         CPF = in.nextLine();
-                        String status = eventoController.inserirCliente(cinemaRepo, CPF, nome);
+                        String status = eventoController.inserirCliente(CPF, nome);
                         System.out.println(status);
                         if (status.equals("Erro ao cadastrar o cliente!")) {
                             while (status.equals("Erro ao cadastrar o cliente!")) {
@@ -131,16 +135,16 @@ public class CinemaGUI {
                                 nome = in.nextLine();
                                 System.out.print("CPF: ");
                                 CPF = in.nextLine();
-                                status = eventoController.inserirCliente(cinemaRepo, CPF, nome);
+                                status = eventoController.inserirCliente(CPF, nome);
                                 System.out.println(status);
                             }
                         }
-                        cliente = eventoController.buscarCliente(cinemaRepo, CPF);
+                        cliente = eventoController.buscarCliente(CPF);
                     } else {
                         String CPF;
                         System.out.println("Digite seu CPF");
                         CPF = in.nextLine();
-                        cliente = eventoController.buscarCliente(cinemaRepo, CPF);
+                        cliente = eventoController.buscarCliente(CPF);
                         if (cliente == null) {
                             boolean val3 = true;
                             while (val3) {
@@ -154,7 +158,7 @@ public class CinemaGUI {
                                         while (cliente == null && trying) {
                                             System.out.println("Digite seu CPF: ");
                                             CPF = in.nextLine();
-                                            cliente = eventoController.buscarCliente(cinemaRepo, CPF);
+                                            cliente = eventoController.buscarCliente(CPF);
                                             if (cliente == null) {
                                                 System.out.println("Deseja desistir?\n0 - não\n1 - sim");
                                                 int input = in.nextInt();
@@ -168,7 +172,7 @@ public class CinemaGUI {
                                     case 2:
                                         System.out.println("Nome: ");
                                         String nome = in.nextLine();
-                                        String status = eventoController.inserirCliente(cinemaRepo, CPF, nome);
+                                        String status = eventoController.inserirCliente(CPF, nome);
                                         System.out.println(status);
                                         while (status.equals("Erro ao cadastrar o cliente!")) {
                                             System.out.println("Tente novamente");
@@ -176,10 +180,10 @@ public class CinemaGUI {
                                             nome = in.nextLine();
                                             System.out.print("CPF: ");
                                             CPF = in.nextLine();
-                                            status = eventoController.inserirCliente(cinemaRepo, CPF, nome);
+                                            status = eventoController.inserirCliente(CPF, nome);
                                             System.out.println(status);
                                         }
-                                        cliente = eventoController.buscarCliente(cinemaRepo, CPF);
+                                        cliente = eventoController.buscarCliente(CPF);
                                         val3 = false;
                                         break;
                                     default:
@@ -188,7 +192,7 @@ public class CinemaGUI {
                             }
                         }
                     }
-                    ClienteGUI clienteGUI = new ClienteGUI(cinemaRepo, cliente);
+                    ClienteGUI clienteGUI = new ClienteGUI(cliente);
                     val = true;
                     break;
                 case 3:
@@ -204,7 +208,7 @@ public class CinemaGUI {
                             escolha = Integer.parseInt(Sescolha);
                         switch (escolha) {
                             case 1:
-                                double media = eventoController.calcularMediaAvaliacaoServico(cinemaRepo.getAvaliacoesServico(), cinemaRepo.getQuantAvServico());
+                                double media = eventoController.calcularMediaAvaliacaoServico(EventoRepository.getAvaliacoesServico(), EventoRepository.getQuantAvServico());
                                 if(media > 0){
                                     System.out.println("Média: " + media);
                                 }else{
@@ -213,15 +217,19 @@ public class CinemaGUI {
                                 }
                                 break;
                             case 2:
-                                ranking = eventoController.calcularRankingHorarios(cinemaRepo, cinemaRepo.getHorarios(), cinemaRepo.getAvaliacoesHorarios(), cinemaRepo.getQuantAvHorarios());
+                                ranking = eventoController.calcularRankingHorarios(CinemaRepository.getHorarios(), CinemaRepository.getAvaliacoesHorarios(), CinemaRepository.getQuantAvHorarios());
                                 for(int i=ranking.size()-1;i>=0;i--){
-                                    System.out.println(i + " - " + ranking.get(i) + " Media: " + cinemaRepo.getMedias().get(i));
+                                    System.out.println(i + " - " + ranking.get(i) + " Media: " + EventoRepository.getMedias().get(i));
                                 }
                                 break;
                             case 3:
-                                ranking = eventoController.calcularRankingFilme(cinemaRepo, cinemaRepo.getFilmesEmCartaz());
+                                ArrayList<Evento> eventos = new ArrayList<>();
+                                for(Filme filme : CinemaRepository.getFilmesEmCartaz()){
+                                    eventos.add((Evento) filme);
+                                }
+                                ranking = eventoController.calcularRanking(eventos);
                                 for(int i=ranking.size()-1; i>=0;i--){
-                                    System.out.println(ranking.size()-i + " - " + ranking.get(i) + ". Media " + cinemaRepo.getMedias().get(i));
+                                    System.out.println(ranking.size()-i + " - " + ranking.get(i) + ". Media " + EventoRepository.getMedias().get(i));
                                 }
                                 break;
                             default:
@@ -238,20 +246,20 @@ public class CinemaGUI {
         }
     }
 
-    private static void preencherCinema(EventoController cinema, CinemaRepository cinemaRepo, AdministradorController admi){
-        cinema.inserirADM(cinemaRepo, "Gabriel Lucas", "123456");
-        cinema.inserirADM(cinemaRepo, "Acsa Laiane", "789456");
-        cinema.inserirADM(cinemaRepo, "Gabriel Martins", "456789");
-        cinema.inserirCliente(cinemaRepo, "Gabriel Lucas", "123456");
-        cinema.inserirCliente(cinemaRepo, "Acsa Laiane", "789456");
-        cinema.inserirCliente(cinemaRepo, "Gabriel Martins", "456789");
-        admi.cadastrarFilmes(cinemaRepo, "Harry Potter", 120, "Um menino mágico", "14",
+    private static void preencherCinema(EventoController cinema, AdministradorController admi){
+        cinema.inserirADM( "Gabriel Lucas", "123456");
+        cinema.inserirADM( "Acsa Laiane", "789456");
+        cinema.inserirADM( "Gabriel Martins", "456789");
+        cinema.inserirCliente( "Gabriel Lucas", "123456");
+        cinema.inserirCliente( "Acsa Laiane", "789456");
+        cinema.inserirCliente( "Gabriel Martins", "456789");
+        admi.cadastrarEvento( "Harry Potter", 120, "Um menino mágico", "14",
                 "Aventura", "01/10/2000");
-        admi.cadastrarFilmes(cinemaRepo, "Bob Esponja", 100, "Uma esponja que vive no fundo do mar", "Livre",
+        admi.cadastrarEvento( "Bob Esponja", 100, "Uma esponja que vive no fundo do mar", "Livre",
                 "Aventura", "01/10/2000");
-        admi.cadastrarFilmes(cinemaRepo, "Narnia", 120, "Crianças brincando no guardarroupas", "14",
+        admi.cadastrarEvento( "Narnia", 120, "Crianças brincando no guardarroupas", "14",
                 "Fantasia", "01/10/2000");
-        admi.cadastrarCupons(cinemaRepo, "marco20", 20.00);
-        admi.cadastrarPremios(cinemaRepo, "Pipoca grátis", 76, 1);
+        admi.cadastrarCupons( "marco20", 20.00);
+        admi.cadastrarPremios( "Pipoca grátis", 76, 1);
     }
 }

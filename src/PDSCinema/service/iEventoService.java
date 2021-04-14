@@ -19,8 +19,6 @@ public interface iEventoService {
     Administrador buscarADM(String cpf);
     List <Administrador> buscarTodosADM();
     Double calcularMediaAvaliacaoServico(int avaliacoesServico, int quantAvServico);
-    List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz);
     List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios);
-    ArrayList<String> calcularRankingFilme(List<Filme> filmesEmCartaz);
     ArrayList<String> calcularRankingHorarios(List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios);
 }

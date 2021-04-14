@@ -2,6 +2,7 @@ package PDSCinema.service;
 
 import PDSCinema.DAO.EventoDAO;
 import PDSCinema.DAO.EventoDAOmemoria;
+import PDSCinema.DAO.SingletonEventoDAO;
 import PDSCinema.model.Administrador;
 import PDSCinema.repository.AdministradorRepository;
 import PDSCinema.repository.CinemaRepository;
@@ -14,11 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventoService implements iEventoService {
-    private EventoDAO eventoDAO;
-
-	public EventoService() {
-		this.eventoDAO = new EventoDAOmemoria();
-	}
+    private EventoDAO eventoDAO = SingletonEventoDAO.getEvento();
 
 	@Override
 	public int inserirCliente(String cpf, String nome){
@@ -133,24 +130,6 @@ public class EventoService implements iEventoService {
     }
 
 	@Override
-	public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz) {
-		try{
-			List<Double> valor = new ArrayList<>();
-			for (Filme filme : filmesEmCartaz) {
-				if(filme.getQuantAvaliacoes() == 0){
-					valor.add(((double)(filme.getAvaliacoes())));
-				}else{
-					valor.add(((double)(filme.getAvaliacoes()) / (double)(filme.getQuantAvaliacoes())));
-				}
-			}
-			return valor;
-		}catch (ArithmeticException e){
-			return null;
-		}
-	}
-
-
-	@Override
     public List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
     	try{
     		List<Double> valor  = new ArrayList<>();
@@ -165,36 +144,6 @@ public class EventoService implements iEventoService {
 		}catch (ArithmeticException e){
     		return null;
 		}
-	}
-
-	@Override
-	public ArrayList<String> calcularRankingFilme(List<Filme> filmesEmCartaz){
-		List<Double> medias = calcularMediaAvaliacaoFilmes(filmesEmCartaz);
-		ArrayList<String> rankingFilmes = new ArrayList<>();
-		EventoRepository.setMedias(medias);
-
-		for(Filme filme : filmesEmCartaz)
-			rankingFilmes.add(filme.getName());
-
-		int i, j, min;
-		Double aux;
-		String aux2;
-		for (i = 0; i < (filmesEmCartaz.size())-1; i++){
-			min = i;
-			for (j = (i + 1); j < filmesEmCartaz.size(); j++) {
-				if (medias.get(j) < medias.get(min))
-					min = j;
-			}
-			if (i != min) {
-				aux = medias.get(i);
-				aux2 = rankingFilmes.get(i);
-				medias.set(i, medias.get(min));
-				medias.set(min, aux);
-				rankingFilmes.set(i, rankingFilmes.get(min));
-				rankingFilmes.set(min, aux2);
-			}
-		}
-		return rankingFilmes;
 	}
 
 	@Override
