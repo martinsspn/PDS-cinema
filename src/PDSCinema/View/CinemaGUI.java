@@ -9,8 +9,8 @@ import PDSCinema.repository.CinemaRepository;
 import java.util.List;
 import java.util.Scanner;
 
-public class EventoGUI {
-    public EventoGUI() {
+public class CinemaGUI {
+    public CinemaGUI() {
         EventoController eventoController = new EventoController();
         CinemaRepository cinemaRepo = new CinemaRepository();
         AdministradorController admi = new AdministradorController();

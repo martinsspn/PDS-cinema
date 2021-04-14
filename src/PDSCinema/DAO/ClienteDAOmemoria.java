@@ -2,6 +2,7 @@ package PDSCinema.DAO;
 
 import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
+import PDSCinema.repository.EventoRepository;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -11,29 +12,10 @@ import java.util.List;
 public class ClienteDAOmemoria implements ClienteDAO{
 
     @Override
-    public int avaliarServico(CinemaRepository cinema, int avaliacao) {
-        int avaliacoes = cinema.getAvaliacoesServico();
-        cinema.setAvaliacoesServico(avaliacoes+avaliacao);
-        cinema.setQuantAvServico(cinema.getQuantAvServico()+1);
-        return 0;
-    }
-
-    @Override
-    public int avaliarHorario(CinemaRepository cinema, String horario, int avaliacao) throws IOException {
-        int index = 0;
-        List<String> horarios = cinema.getHorarios();
-        for(int i=0;i<horarios.size();i++) {
-            if(horarios.get(i).equals(horario)) {
-                index = i;
-                break;
-            }else {
-                if(i == horarios.size()-1) {
-                    throw new IOException();
-                }
-            }
-        }
-        cinema.getAvaliacoesHorarios().set(index, cinema.getAvaliacoesHorarios().get(index)+avaliacao);
-        cinema.getQuantAvHorarios().set(index, cinema.getQuantAvHorarios().get(index)+1);
+    public int avaliarServico(int avaliacao) {
+        int avaliacoes = EventoRepository.getAvaliacoesServico();
+        EventoRepository.setAvaliacoesServico(avaliacoes+avaliacao);
+        EventoRepository.setQuantAvServico(EventoRepository.getQuantAvServico()+1);
         return 0;
     }
 

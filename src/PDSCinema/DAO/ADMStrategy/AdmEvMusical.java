@@ -1,4 +1,4 @@
-package PDSCinema.DAO;
+package PDSCinema.DAO.ADMStrategy;
 
 import PDSCinema.model.Evento;
 

@@ -6,6 +6,8 @@ import PDSCinema.DAO.ClienteDAO;
 import PDSCinema.DAO.ClienteDAOmemoria;
 import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
+import PDSCinema.repository.ClienteRepository;
+import PDSCinema.repository.EventoRepository;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
 public class ClienteService implements iClienteService{
@@ -122,9 +124,9 @@ public class ClienteService implements iClienteService{
     }
 
 	@Override
-	public String resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo) {
+	public String resgatarPremio(ClienteRepository clienteRepository, EventoRepository eventoRepository, Cliente cliente, int codigo) {
 		try{
-			if(cinema.getListaClientes().contains(cliente)&&cinema.getListaDePremios().containsKey(codigo)){
+			if(clienteRepository.getListaClientes().contains(cliente)&& eventoRepository.getListaDePremios().containsKey(codigo)){
 				Premio premio = clienteDAO.resgatarPremio(cinema, cliente, codigo);
 				if(premio == null){
 					throw new NullPointerException();
