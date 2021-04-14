@@ -1,4 +1,4 @@
-package PDSCinema.service;
+package PDSCinema.service.ClienteStrategy;
 
 public abstract class ClienteStrategyAbstractEvento {
     public abstract void avaliarEvento();

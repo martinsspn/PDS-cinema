@@ -12,11 +12,11 @@ import java.util.List;
 public class EventoDAOmemoria implements EventoDAO {
 
     @Override
-    public void inserirCliente(ClienteRepository clienteRepository, String cpf, String nome){
+    public void inserirCliente(String cpf, String nome){
         Cupom cupom = new Cupom();
         cupom.setCodigo(nome+cpf);
         cupom.setTipoDeCupom(10.00);
-        clienteRepository.getListaClientesCpf().add(cpf);
+        ClienteRepository.getListaClientesCpf().add(cpf);
         Cliente cliente = new Cliente();
         cliente.getCuponsUsados().add(cupom);
         for(int id : EventoRepository.getListaDePremios().keySet()){
@@ -25,57 +25,57 @@ public class EventoDAOmemoria implements EventoDAO {
         }
         cliente.setNome(nome);
         cliente.setCpf(cpf);
-        clienteRepository.getListaClientes().add(cliente);
+        ClienteRepository.getListaClientes().add(cliente);
     }
 
     @Override
-    public void removerCliente(ClienteRepository clienteRepository, Cliente cliente) {
-        clienteRepository.getListaClientesCpf().remove(cliente.getCpf());
-        clienteRepository.getListaClientes().remove(cliente);
+    public void removerCliente(Cliente cliente) {
+        ClienteRepository.getListaClientesCpf().remove(cliente.getCpf());
+        ClienteRepository.getListaClientes().remove(cliente);
     }
 
     @Override
-    public Cliente buscarCliente(ClienteRepository clienteRepository, String cpf) {
-        for (int i = 0; i < clienteRepository.getListaClientesCpf().size(); i++) {
-            if (cpf.equals(clienteRepository.getListaClientesCpf().get(i))) {
-                return clienteRepository.getListaClientes().get(i);
+    public Cliente buscarCliente(String cpf) {
+        for (int i = 0; i < ClienteRepository.getListaClientesCpf().size(); i++) {
+            if (cpf.equals(ClienteRepository.getListaClientesCpf().get(i))) {
+                return ClienteRepository.getListaClientes().get(i);
             }
         }
         return null;
     }
 
     @Override
-    public List<Cliente> buscarTodosCliente(ClienteRepository clienteRepository) {
-        return clienteRepository.getListaClientes();
+    public List<Cliente> buscarTodosCliente() {
+        return ClienteRepository.getListaClientes();
     }
 
     @Override
-    public void inserirADM(AdministradorRepository administradorRepository, String nome, String cpf) {
-        administradorRepository.getListaAdministradorCpf().add(cpf);
+    public void inserirADM(String nome, String cpf) {
+        AdministradorRepository.getListaAdministradorCpf().add(cpf);
         Administrador administrador = new Administrador();
         administrador.setNome(nome);
         administrador.setCpf(cpf);
-        administradorRepository.getListaAdministrador().add(administrador);
+        AdministradorRepository.getListaAdministrador().add(administrador);
     }
 
     @Override
-    public void removerADM(AdministradorRepository administradorRepository, Administrador adm) {
-        administradorRepository.getListaAdministradorCpf().remove(adm.getCpf());
-        administradorRepository.getListaAdministrador().remove(adm);
+    public void removerADM(Administrador adm) {
+        AdministradorRepository.getListaAdministradorCpf().remove(adm.getCpf());
+        AdministradorRepository.getListaAdministrador().remove(adm);
     }
 
     @Override
-    public Administrador buscarADM(AdministradorRepository administradorRepository, String cpf) {
-        for (int i = 0; i < administradorRepository.getListaAdministradorCpf().size(); i++) {
-            if (cpf.equals(administradorRepository.getListaAdministradorCpf().get(i))) {
-                return administradorRepository.getListaAdministrador().get(i);
+    public Administrador buscarADM(String cpf) {
+        for (int i = 0; i < AdministradorRepository.getListaAdministradorCpf().size(); i++) {
+            if (cpf.equals(AdministradorRepository.getListaAdministradorCpf().get(i))) {
+                return AdministradorRepository.getListaAdministrador().get(i);
             }
         }
         return null;
     }
 
     @Override
-    public List<Administrador> buscarTodosADM(AdministradorRepository administradorRepository) {
-        return administradorRepository.getListaAdministrador();
+    public List<Administrador> buscarTodosADM() {
+        return AdministradorRepository.getListaAdministrador();
     }
 }

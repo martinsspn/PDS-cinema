@@ -1,31 +1,38 @@
 package PDSCinema.DAO;
 
-public class SingletonEventoDAO {
-    private AdministradorDAO adm = new AdministradorDAOmemoria();
-    private ClienteDAO cliente = new ClienteDAOmemoria();
-    private EventoDAO evento = new EventoDAOmemoria();
+import PDSCinema.DAO.ADMStrategy.AdmCinema;
+import PDSCinema.DAO.ClienteStrategy.ClienteCinema;
+import PDSCinema.DAO.ClienteStrategy.ClienteStrategyEventoDAO;
+import PDSCinema.DAO.ADMStrategy.AdmStrategyAbstractEvento;
 
-    public AdministradorDAO getAdm() {
+public abstract class SingletonEventoDAO {
+    private static AdmStrategyAbstractEvento admStrategyAbstractEvento = new AdmCinema();
+    private static ClienteStrategyEventoDAO clienteStrategyEventoDAO = new ClienteCinema();
+    private static AdministradorDAO adm = new AdministradorDAOmemoria(admStrategyAbstractEvento);
+    private static ClienteDAO cliente = new ClienteDAOmemoria(clienteStrategyEventoDAO);
+    private static EventoDAO evento = new EventoDAOmemoria();
+
+    public static AdministradorDAO getAdm() {
         return adm;
     }
 
-    public void setAdm(AdministradorDAO adm) {
-        this.adm = adm;
+    public static void setAdm(AdministradorDAO adm) {
+        SingletonEventoDAO.adm = adm;
     }
 
-    public ClienteDAO getCliente() {
+    public static ClienteDAO getCliente() {
         return cliente;
     }
 
-    public void setCliente(ClienteDAO cliente) {
-        this.cliente = cliente;
+    public static void setCliente(ClienteDAO cliente) {
+        SingletonEventoDAO.cliente = cliente;
     }
 
-    public EventoDAO getEvento() {
+    public static EventoDAO getEvento() {
         return evento;
     }
 
-    public void setEvento(EventoDAO evento) {
-        this.evento = evento;
+    public static void setEvento(EventoDAO evento) {
+        SingletonEventoDAO.evento = evento;
     }
 }

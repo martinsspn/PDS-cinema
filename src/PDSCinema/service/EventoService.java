@@ -3,9 +3,12 @@ package PDSCinema.service;
 import PDSCinema.DAO.EventoDAO;
 import PDSCinema.DAO.EventoDAOmemoria;
 import PDSCinema.model.Administrador;
+import PDSCinema.repository.AdministradorRepository;
 import PDSCinema.repository.CinemaRepository;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
+import PDSCinema.repository.ClienteRepository;
+import PDSCinema.repository.EventoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +21,11 @@ public class EventoService implements iEventoService {
 	}
 
 	@Override
-	public int inserirCliente(CinemaRepository cinema, String cpf, String nome){
+	public int inserirCliente(String cpf, String nome){
 		try {
 			if(nome != null && cpf != null) {
-				if(!(cinema.getListaClientesCpf().contains(cpf))){
-					eventoDAO.inserirCliente(cinema, cpf, nome);
+				if(!(ClienteRepository.getListaClientesCpf().contains(cpf))){
+					eventoDAO.inserirCliente(cpf, nome);
 					return 0;
 				}else{
 					throw new Exception();
@@ -39,10 +42,10 @@ public class EventoService implements iEventoService {
 		}
 	}
      @Override
-    public int removerCliente(Cliente cliente, CinemaRepository cinema){
+    public int removerCliente(Cliente cliente){
     	try {
-     		if(cinema.getListaClientesCpf().contains(cliente.getCpf())) {
-				eventoDAO.removerCliente(cinema, cliente);
+     		if(ClienteRepository.getListaClientesCpf().contains(cliente.getCpf())) {
+				eventoDAO.removerCliente(cliente);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -53,10 +56,10 @@ public class EventoService implements iEventoService {
      	}
     }
     @Override
-    public Cliente buscarCliente(CinemaRepository cinema, String cpf){
+    public Cliente buscarCliente(String cpf){
     	try {
-      		if(cinema.getListaClientesCpf().contains(cpf)) {
-      			return (eventoDAO.buscarCliente(cinema, cpf));
+      		if(ClienteRepository.getListaClientesCpf().contains(cpf)) {
+      			return (eventoDAO.buscarCliente(cpf));
       		}else {
       			throw new NumberFormatException();
       		}
@@ -67,16 +70,16 @@ public class EventoService implements iEventoService {
 
     } 
     @Override
-    public List <Cliente> buscarTodosCliente(CinemaRepository cinema){
-		return eventoDAO.buscarTodosCliente(cinema);
+    public List <Cliente> buscarTodosCliente(){
+		return eventoDAO.buscarTodosCliente();
     }
 
     @Override
-    public int inserirADM(CinemaRepository cinema, String nome, String cpf){
+    public int inserirADM(String nome, String cpf){
     	 try {
      		if(nome != null && cpf != null) {
-     			if(!(cinema.getListaAdministradorCpf().contains(cpf))){
-					eventoDAO.inserirADM(cinema, nome, cpf);
+     			if(!(AdministradorRepository.getListaAdministradorCpf().contains(cpf))){
+					eventoDAO.inserirADM(nome, cpf);
 					return 0;
 				}else{
      				throw new Exception();
@@ -93,10 +96,10 @@ public class EventoService implements iEventoService {
 		 }
     }
     @Override
-    public int removerADM(Administrador ADM, CinemaRepository cinema){
+    public int removerADM(Administrador ADM){
     	try {
-     		if(cinema.getListaAdministradorCpf().contains(ADM.getCpf())) {
-				eventoDAO.removerADM(cinema, ADM);
+     		if(AdministradorRepository.getListaAdministradorCpf().contains(ADM.getCpf())) {
+				eventoDAO.removerADM(ADM);
      			return 0;
      		}else {
      			throw new NumberFormatException();
@@ -107,10 +110,10 @@ public class EventoService implements iEventoService {
      	}
     }
      @Override
-    public Administrador buscarADM(String cpf, CinemaRepository cinema){
+    public Administrador buscarADM(String cpf){
     	try {
-    		if(cinema.getListaAdministradorCpf().contains(cpf)){
-       			return (eventoDAO.buscarADM(cinema, cpf));
+    		if(AdministradorRepository.getListaAdministradorCpf().contains(cpf)){
+       			return (eventoDAO.buscarADM(cpf));
        		}else {
        			throw new NumberFormatException();
        		}
@@ -120,14 +123,13 @@ public class EventoService implements iEventoService {
        	}
     } 
     @Override
-    public List <Administrador> buscarTodosADM(CinemaRepository cinema){
-		return eventoDAO.buscarTodosADM(cinema);
+    public List <Administrador> buscarTodosADM(){
+		return eventoDAO.buscarTodosADM();
     }
 
     @Override
     public Double calcularMediaAvaliacaoServico(int avaliacoesServico, int quantAvServico){
     	 return ((double)avaliacoesServico/(double)quantAvServico);
-
     }
 
 	@Override
@@ -166,10 +168,10 @@ public class EventoService implements iEventoService {
 	}
 
 	@Override
-	public ArrayList<String> calcularRankingFilme(CinemaRepository cinemaRepository, List<Filme> filmesEmCartaz){
+	public ArrayList<String> calcularRankingFilme(List<Filme> filmesEmCartaz){
 		List<Double> medias = calcularMediaAvaliacaoFilmes(filmesEmCartaz);
 		ArrayList<String> rankingFilmes = new ArrayList<>();
-		cinemaRepository.setMedias(medias);
+		EventoRepository.setMedias(medias);
 
 		for(Filme filme : filmesEmCartaz)
 			rankingFilmes.add(filme.getName());
@@ -196,10 +198,10 @@ public class EventoService implements iEventoService {
 	}
 
 	@Override
-	public ArrayList<String> calcularRankingHorarios(CinemaRepository cinemaRepository, List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios) {
+	public ArrayList<String> calcularRankingHorarios(List<String> horarios, List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios) {
 		List<Double> medias = calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);
 		ArrayList<String> rankingHorarios = new ArrayList<>();
-		cinemaRepository.setMedias(medias);
+		EventoRepository.setMedias(medias);
 
 		for(String horario : horarios)
 			rankingHorarios.add(horario);

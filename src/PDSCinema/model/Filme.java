@@ -1,47 +1,13 @@
 package PDSCinema.model;
 
-public class Filme {
+public class Filme extends Evento {
 
-	private String name;
-	private int duracao;
-	private int avaliacoes;
-	private int quantAvaliacoes;
+
 	private String sinopse;
 	private String classificacaoIndicativa;
 	private String genero;
 	private String diaDeEstreia;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getDuracao() {
-		return duracao;
-	}
-
-	public void setDuracao(int duracao) {
-		this.duracao = duracao;
-	}
-
-	public int getAvaliacoes() {
-		return avaliacoes;
-	}
-
-	public void setAvaliacoes(int avaliacoes) {
-		this.avaliacoes = avaliacoes;
-	}
-
-	public int getQuantAvaliacoes() {
-		return quantAvaliacoes;
-	}
-
-	public void setQuantAvaliacoes(int quantAvaliacoes) {
-		this.quantAvaliacoes = quantAvaliacoes;
-	}
 
 	public String getSinopse() {
 		return sinopse;
