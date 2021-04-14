@@ -8,13 +8,11 @@ import PDSCinema.service.ClienteService;
 import java.util.Scanner;
 
 public class ClienteGUI {
-    private CinemaRepository cinemaRepository;
 
-    public ClienteGUI(CinemaRepository cinemaRepository, Cliente cliente){
+    public ClienteGUI(Cliente cliente){
         Scanner in = new Scanner(System.in);
         ClienteService clienteService = new ClienteService();
         ClienteController clienteController = new ClienteController(clienteService);
-        this.cinemaRepository = cinemaRepository;
         System.out.println("Bem vindo ao cinema!!!");
         int op;
         int codigo;
@@ -35,9 +33,9 @@ public class ClienteGUI {
                 op = Integer.parseInt(Sop);
             switch(op){
                 case 1: codigo = 1;
-                        if(cinemaRepository.getFilmesEmCartaz().size()>0){
+                        if(CinemaRepository.getFilmesEmCartaz().size()>0){
                             System.out.println("Filmes em cartaz:");
-                            for(Filme f: cinemaRepository.getFilmesEmCartaz()){
+                            for(Filme f: CinemaRepository.getFilmesEmCartaz()){
                                 System.out.println("- " + f.getName() + ". Código: " + codigo);
                                 codigo++;
                             }
@@ -48,7 +46,7 @@ public class ClienteGUI {
                 case 2: System.out.println("Digite o código do filme que você deseja comprar: ");
                         String Scodigo = in.nextLine();
                         codigo = Integer.parseInt(Scodigo);
-                        if(codigo < 0 || codigo > cinemaRepository.getFilmesEmCartaz().size()){
+                        if(codigo < 0 || codigo > CinemaRepository.getFilmesEmCartaz().size()){
                             System.out.println("Filme não encontrado!");
                             break;
                         }
@@ -57,17 +55,17 @@ public class ClienteGUI {
                         boolean running = true;
                         do {
                             System.out.println("Horários disponíveis:");
-                            for(int i=0;i<cinemaRepository.getHorarios().size();i++){
-                                System.out.println((i+1) + " - " +cinemaRepository.getHorarios().get(i));
+                            for(int i=0;i<CinemaRepository.getHorarios().size();i++){
+                                System.out.println((i+1) + " - " +CinemaRepository.getHorarios().get(i));
                             }
                             System.out.println("Escolha o horário do filme:");
                             String SescolhaHorario = in.nextLine();
                             if(!SescolhaHorario.isEmpty())
                                 escolhaHorario = Integer.parseInt(SescolhaHorario);
-                            if(escolhaHorario < 0 || escolhaHorario >= cinemaRepository.getHorarios().size()){
+                            if(escolhaHorario < 0 || escolhaHorario >= CinemaRepository.getHorarios().size()){
                                 System.out.println("Opção inválida");
                             }else{
-                                horario = cinemaRepository.getHorarios().get(escolhaHorario-1);
+                                horario = CinemaRepository.getHorarios().get(escolhaHorario-1);
                                 running = false;
                             }
                         }while(running);
@@ -85,9 +83,9 @@ public class ClienteGUI {
                                 default: System.out.println("Opção inválida");
                             }
                         }while(dcup != 1 && dcup != 2);
-                        Ingresso ingresso = new Ingresso();
+                        IngressoCinema ingresso = new IngressoCinema();
                         ingresso.setHorario(horario);
-                        ingresso.setFilme(cinemaRepository.getFilmesEmCartaz().get(codigo-1));
+                        ingresso.setFilme(CinemaRepository.getFilmesEmCartaz().get(codigo-1));
                         ingresso.setSala(1);
                         ingresso.setPreco(25);
                         if(dcup == 1){
@@ -104,7 +102,7 @@ public class ClienteGUI {
                                         case 1:
                                             System.out.println("Digite o código do cupom:");
                                             codigoCup = in.nextLine();
-                                            String status = clienteController.resgatarCupom(cinemaRepository, cliente, codigoCup);
+                                            String status = clienteController.resgatarCupom(cliente, codigoCup);
                                             System.out.println(status);
                                             if(status.equals("Cupom resgatado com sucesso")){
                                                 System.out.println("Preço do ingresso: R$" + (25-cliente.getCuponsAtivos().get(cliente.getCuponsAtivos().size()-1).getTipoDeCupom()));
@@ -161,19 +159,19 @@ public class ClienteGUI {
                 case 3:
                     System.out.println("Digite o código do cupom:");
                     String codigoCup = in.nextLine();
-                    String status = clienteController.resgatarCupom(cinemaRepository, cliente, codigoCup);
+                    String status = clienteController.resgatarCupom(cliente, codigoCup);
                     System.out.println(status);
                     break;
                 case 4: System.out.println("Prêmios resgatados:");
                         for(Premio p: cliente.getPremios())
-                            clienteController.resgatarPremio(cinemaRepository, cliente, p.getIdPremio());
+                            clienteController.resgatarPremio(cliente, p.getIdPremio());
                         break;
                 case 5: System.out.println("Digite o código do filme:");
                         int codigoFilme = -1;
                         String ScodigoFilme = in.nextLine();
                         if(!ScodigoFilme.isEmpty())
                             codigoFilme = Integer.parseInt(ScodigoFilme);
-                        if(codigoFilme < 0 || codigoFilme-1 >= cinemaRepository.getFilmesEmCartaz().size()){
+                        if(codigoFilme < 0 || codigoFilme-1 >= CinemaRepository.getFilmesEmCartaz().size()){
                             System.out.println("Código digitado não possui filme cadastrado");
                         }else{
                             System.out.println("Digite a sua avaliação de 0 a 5:");
@@ -181,7 +179,7 @@ public class ClienteGUI {
                             ScodigoFilme = in.nextLine();
                             if(!ScodigoFilme.isEmpty())
                                 avaliacao = Integer.parseInt(ScodigoFilme);
-                            status = clienteController.avaliarFilme(cinemaRepository.getFilmesEmCartaz().get(codigoFilme-1), avaliacao);
+                            status = clienteController.avaliarFilme(CinemaRepository.getFilmesEmCartaz().get(codigoFilme-1), avaliacao);
                             System.out.println(status);
                         }
                         break;
@@ -190,28 +188,28 @@ public class ClienteGUI {
                         int avSercivo = -1;
                         if(!SavServico.isEmpty())
                             avSercivo = Integer.parseInt(SavServico);
-                        status = clienteController.avaliarServico(cinemaRepository, avSercivo);
+                        status = clienteController.avaliarServico(avSercivo);
                         System.out.println(status);
                         break;
                 case 7: System.out.println("Horários disponíveis para avaliar:");
-                    for(int i=0;i<cinemaRepository.getHorarios().size();i++){
-                        System.out.println((i+1) + " - " +cinemaRepository.getHorarios().get(i));
+                    for(int i=0;i<CinemaRepository.getHorarios().size();i++){
+                        System.out.println((i+1) + " - " +CinemaRepository.getHorarios().get(i));
                     }
                     System.out.println("Escolha o horário que deseja avaliar:");
                     String SescolhaHorario = in.nextLine();
                     escolhaHorario = -1;
                     if(!SescolhaHorario.isEmpty())
                         escolhaHorario = Integer.parseInt(SescolhaHorario);
-                    if(escolhaHorario < 0 || escolhaHorario >= cinemaRepository.getHorarios().size()){
+                    if(escolhaHorario < 0 || escolhaHorario >= CinemaRepository.getHorarios().size()){
                         System.out.println("Opção inválida");
                     }else{
-                        horario = cinemaRepository.getHorarios().get(escolhaHorario-1);
+                        horario = CinemaRepository.getHorarios().get(escolhaHorario-1);
                         System.out.println("Digite sua avaliação de 0 a 5:");
                         String Savaliacao = in.nextLine();
                         int avaliacao = -1;
                         if(!Savaliacao.isEmpty())
                             avaliacao = Integer.parseInt(Savaliacao);
-                        status = clienteController.avaliarHorario(cinemaRepository, horario, avaliacao);
+                        status = clienteController.avaliarHorario(horario, avaliacao);
                         System.out.println(status);
                     }
                     break;

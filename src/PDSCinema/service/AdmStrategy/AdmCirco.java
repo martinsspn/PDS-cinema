@@ -1,16 +1,14 @@
 package PDSCinema.service.AdmStrategy;
 
+import PDSCinema.model.Evento;
+
 public class AdmCirco extends AdmStrategyAbstractEvento{
     @Override
-    public  void cadastrarEvento(){
-
+    public Evento buscarEvento(String nome){
+        return null;
     }
     @Override
-    public  void buscarEvento(){
-
-    }
-    @Override
-    public  void removerEvento(){
-
+    public int removerEvento(Evento evento){
+        return 0;
     }
 }

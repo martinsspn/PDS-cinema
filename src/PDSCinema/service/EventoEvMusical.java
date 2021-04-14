@@ -1,12 +1,17 @@
 package PDSCinema.service;
 
+import PDSCinema.model.Evento;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class EventoEvMusical extends EventoStrategyAbstractEvento{
     @Override
     public void calcularMediaAv(){
 
     }
     @Override
-    public void calcularRanking(){
-
+    public ArrayList<String> calcularRanking(List<Evento> listaDeEventos){
+        return null;
     }
 }

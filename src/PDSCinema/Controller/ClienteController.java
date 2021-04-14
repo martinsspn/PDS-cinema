@@ -5,39 +5,43 @@ import PDSCinema.model.Cupom;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
 import PDSCinema.repository.CinemaRepository;
+import PDSCinema.service.ClientePolimorfismo.AvaliarEvento;
 import PDSCinema.service.ClienteService;
+import PDSCinema.service.ClienteStrategy.ClienteCinema;
+import PDSCinema.service.ClienteStrategy.ClienteStrategyAbstractEvento;
 
 public class ClienteController {
+    private ClienteCinema clienteCinema = new ClienteCinema();
     private final ClienteService cliente;
     public ClienteController(ClienteService cliente){
         this.cliente = cliente;
     }
-    public String avaliarServico(CinemaRepository cinema, int avaliacao){
-        int status = cliente.avaliarServico(cinema, avaliacao);
+    public String avaliarServico(int avaliacao){
+        int status = cliente.avaliarServico(avaliacao);
         if(status == 0){
             return ("Avaliação cadastrada");
         }else{
             return ("Avaliação inválida!");
         }
     }
-    public String avaliarHorario(CinemaRepository cinema, String horario ,int avaliacao){
-        int status = cliente.avaliarHorario(cinema, horario, avaliacao);
+    public String avaliarHorario(String horario ,int avaliacao){
+        int status = clienteCinema.avaliarHorario(horario, avaliacao);
         if(status == 0){
             return ("Avaliação cadastrada");
         }else{
             return ("Avaliação inválida!");
         }
     }
-    public String resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo){
-        int status = this.cliente.resgatarCupom(cinema, cliente, codigo);
+    public String resgatarCupom(Cliente cliente, String codigo){
+        int status = this.cliente.resgatarCupom(cliente, codigo);
         if(status == 0){
             return ("Cupom resgatado com sucesso");
         }else{
             return ("Cupom inválido!");
         }
     }
-    public String resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo){
-        String status = this.cliente.resgatarPremio(cinema, cliente, codigo);
+    public String resgatarPremio(Cliente cliente, int codigo){
+        String status = this.cliente.resgatarPremio(cliente, codigo);
         if(status == "-1" || status == "-2"){
             return ("Premio inválido!");
         }else{
@@ -45,7 +49,7 @@ public class ClienteController {
         }
     }
     public String avaliarFilme(Filme filme, int avaliacao){
-        int status = cliente.avaliarFilme(filme, avaliacao);
+        int status = AvaliarEvento.avaliarEvento(filme, avaliacao);
         if(status == 0){
             return ("Avaliação cadastrada com sucesso");
         }else {

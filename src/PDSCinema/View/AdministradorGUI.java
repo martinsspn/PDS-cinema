@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class AdministradorGUI {
 
-    public AdministradorGUI(CinemaRepository cinemaRepository){
+    public AdministradorGUI(){
         AdministradorController administradorController = new AdministradorController();
         Scanner in = new Scanner(System.in);
         System.out.println("Seja bem vindo ADM");
@@ -55,7 +55,7 @@ public class AdministradorGUI {
                         genero = in.nextLine();
                         System.out.println("Digite o dia da estreia:");
                         diaDeEstreia = in.nextLine();
-                        status = administradorController.cadastrarFilmes(cinemaRepository, nome,
+                        status = administradorController.cadastrarEvento(nome,
                                 duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
                         System.out.println(status);
                         System.out.println("Deseja continuar cadastrando outros filmes?\n0 - não\n1 - sim");
@@ -70,7 +70,7 @@ public class AdministradorGUI {
                 case 2:
                     System.out.println("Digite o nome do filme:");
                     nome = in.nextLine();
-                    Filme filme = administradorController.buscarFilme(cinemaRepository, nome);
+                    Filme filme = (Filme) administradorController.buscarEvento(nome);
                     if(filme != null){
                         System.out.println("Informações encontradas:");
                         System.out.println("Nome: " + filme.getName());
@@ -86,7 +86,7 @@ public class AdministradorGUI {
                 case 3:
                     System.out.println("Digite o nome do genero:");
                     genero = in.nextLine();
-                    ArrayList<Filme> filmeGenero = administradorController.buscarFilmeGenero(cinemaRepository, genero);
+                    ArrayList<Filme> filmeGenero = administradorController.buscarFilmeGenero(genero);
                     if(!filmeGenero.isEmpty()){
                         System.out.println("Filmes encontrados do genero " + genero + ":");
                         for(Filme f : filmeGenero){
@@ -100,8 +100,8 @@ public class AdministradorGUI {
                 case 4:
                     System.out.println("Digite o nome do filme:");
                     String nomeFilme = in.nextLine();
-                    Filme f = administradorController.buscarFilme(cinemaRepository, nomeFilme);
-                    status = administradorController.removerFilmes(cinemaRepository, f);
+                    Filme f = (Filme) administradorController.buscarEvento(nomeFilme);
+                    status = administradorController.removerEvento(f);
                     System.out.println(status);
                     break;
                 case 5:
@@ -111,13 +111,13 @@ public class AdministradorGUI {
                     String StipoCupom = in.nextLine();
                     if(!StipoCupom.isEmpty())
                         tipoCupom = Double.parseDouble(StipoCupom);
-                    status = administradorController.cadastrarCupons(cinemaRepository, nomeCupom, tipoCupom);
+                    status = administradorController.cadastrarCupons(nomeCupom, tipoCupom);
                     System.out.println(status);
                     break;
                 case 6:
                     System.out.print("Código do cupom: ");
                     nomeCupom = in.nextLine();
-                    Cupom cupom = administradorController.buscarCupons(cinemaRepository, nomeCupom);
+                    Cupom cupom = administradorController.buscarCupons(nomeCupom);
                     if(cupom != null) {
                         System.out.println("Código do cupom: " + cupom.getCodigo());
                         System.out.println("Valor de desconto: R$" + cupom.getTipoDeCupom());
@@ -128,9 +128,9 @@ public class AdministradorGUI {
                 case 7:
                     System.out.print("Código do cupom: ");
                     nomeCupom = in.nextLine();
-                    cupom = administradorController.buscarCupons(cinemaRepository, nomeCupom);
+                    cupom = administradorController.buscarCupons(nomeCupom);
                     if(cupom != null) {
-                        System.out.println(administradorController.removerCupons(cinemaRepository, cupom));
+                        System.out.println(administradorController.removerCupons(cupom));
                     }else{
                         System.out.println("Cupom não cadastrado.");
                     }
@@ -147,7 +147,7 @@ public class AdministradorGUI {
                     if(!ScondicaoPremio.isEmpty()){
                         condicaoPremio = Integer.parseInt(ScondicaoPremio);
                     }
-                    status = administradorController.cadastrarPremios(cinemaRepository, descricaoPremio, codigoPremio, condicaoPremio);
+                    status = administradorController.cadastrarPremios(descricaoPremio, codigoPremio, condicaoPremio);
                     System.out.println(status);
                     break;
                 case 9:
@@ -155,7 +155,7 @@ public class AdministradorGUI {
                     ScodigoPremio = in.nextLine();
                     if(!ScodigoPremio.isEmpty())
                         codigoPremio = Integer.parseInt(ScodigoPremio);
-                    Premio premio = administradorController.buscarPremio(cinemaRepository, codigoPremio);
+                    Premio premio = administradorController.buscarPremio(codigoPremio);
                     if(premio != null) {
                         System.out.println("Id: " + premio.getIdPremio());
                         System.out.println("Descrição: " + premio.getDescricao());
@@ -169,9 +169,9 @@ public class AdministradorGUI {
                     ScodigoPremio = in.nextLine();
                     if(!ScodigoPremio.isEmpty())
                         codigoPremio = Integer.parseInt(ScodigoPremio);
-                    premio = administradorController.buscarPremio(cinemaRepository, codigoPremio);
+                    premio = administradorController.buscarPremio(codigoPremio);
                     if(premio != null) {
-                        System.out.println(administradorController.removerPremios(cinemaRepository, premio));
+                        System.out.println(administradorController.removerPremios(premio));
                     }else{
                         System.out.println("Premio não cadastrado.");
                     }
