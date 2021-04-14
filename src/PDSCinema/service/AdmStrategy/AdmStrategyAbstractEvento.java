@@ -1,4 +1,4 @@
-package PDSCinema.service;
+package PDSCinema.service.AdmStrategy;
 
 public abstract class AdmStrategyAbstractEvento {
     public abstract void cadastrarEvento();

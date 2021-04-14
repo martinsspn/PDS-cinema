@@ -2,22 +2,17 @@ package PDSCinema.repository;
 
 import PDSCinema.model.Cliente;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteRepository {
-    protected List<String> listaClientesCpf;
-    protected List<Cliente> listaClientes;
+    protected static List<String> listaClientesCpf = new ArrayList<>();
+    protected static List<Cliente> listaClientes = new ArrayList<>();
 
-    public List<Cliente> getListaClientes() {
+    public static List<Cliente> getListaClientes() {
         return listaClientes;
     }
-    public void setListaClientes(List<Cliente> listaClientes) {
-        this.listaClientes = listaClientes;
-    }
-    public List<String> getListaClientesCpf() {
+    public static List<String> getListaClientesCpf() {
         return listaClientesCpf;
-    }
-    public void setListaClientesCpf(List<String> listaClientesCpf) {
-        this.listaClientesCpf = listaClientesCpf;
     }
 }

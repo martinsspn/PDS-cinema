@@ -8,12 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class CinemaRepository extends EventoRepository{
-    private static List<Integer> salas;
-    private static List<Filme> filmesEmCartaz;
-    private static List<String> horarios;
-    private static List<Integer> avaliacoesHorarios;
-    private static List<Integer> quantAvHorarios;
+    private static List<Integer> salas = new ArrayList<>();
+    private static List<Filme> filmesEmCartaz = new ArrayList<>();
+    private static List<String> horarios = new ArrayList<>();
+    private static List<Integer> avaliacoesHorarios = new ArrayList<>();
+    private static List<Integer> quantAvHorarios = new ArrayList<>();
 
+    /*
     public CinemaRepository() {
         CinemaRepository.salas = new ArrayList<>();
         CinemaRepository.filmesEmCartaz = new ArrayList<>();
@@ -40,7 +41,7 @@ public abstract class CinemaRepository extends EventoRepository{
         }
 
     }
-
+*/
     public static List<Integer> getSalas() {
         return salas;
     }

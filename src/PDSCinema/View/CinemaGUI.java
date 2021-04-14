@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class CinemaGUI {
     public CinemaGUI() {
         EventoController eventoController = new EventoController();
-        CinemaRepository cinemaRepo = new CinemaRepository();
         AdministradorController admi = new AdministradorController();
         preencherCinema(eventoController, cinemaRepo, admi);
         boolean val = true;
@@ -31,7 +30,7 @@ public class CinemaGUI {
                 op = Integer.parseInt(sel);
             switch (op) {
                 case 1:
-                    if (eventoController.buscarTodosADM(cinemaRepo).isEmpty()) {
+                    if (eventoController.buscarTodosADM().isEmpty()) {
                         System.out.println("Não há nenhum administrador cadastrado!");
                         System.out.println("Por favor, cadastre-se");
                         String nome;
@@ -40,7 +39,7 @@ public class CinemaGUI {
                         nome = in.nextLine();
                         System.out.print("CPF: ");
                         CPF = in.nextLine();
-                        String status = eventoController.inserirADM(cinemaRepo, nome, CPF);
+                        String status = eventoController.inserirADM(nome, CPF);
                         System.out.println(status);
                         if (status.equals("Erro ao cadastrar o administrador!")) {
                             while (status.equals("Erro ao cadastrar o administrador!")) {

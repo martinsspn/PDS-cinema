@@ -5,16 +5,17 @@ import PDSCinema.model.Cliente;
 import PDSCinema.model.Cupom;
 import PDSCinema.model.Premio;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public abstract class EventoRepository {
 
-    protected static int avaliacoesServico;
-    protected static int quantAvServico;
-    protected static List<Double> medias;
-    protected static HashMap<String, Cupom> listaDeCupons;
-    protected static HashMap<Integer, Premio> listaDePremios;
+    protected static int avaliacoesServico = 0;
+    protected static int quantAvServico = 0;
+    protected static List<Double> medias = new ArrayList<>();
+    protected static HashMap<String, Cupom> listaDeCupons = new HashMap<>();
+    protected static HashMap<Integer, Premio> listaDePremios = new HashMap<>();
 
     public static List<Double> getMedias() {
         return medias;

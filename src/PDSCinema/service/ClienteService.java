@@ -2,8 +2,7 @@ package PDSCinema.service;
 
 import java.io.IOException;
 
-import PDSCinema.DAO.ClienteDAO;
-import PDSCinema.DAO.ClienteDAOmemoria;
+import PDSCinema.DAO.SingletonEventoDAO;
 import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
 import PDSCinema.repository.ClienteRepository;
@@ -11,17 +10,12 @@ import PDSCinema.repository.EventoRepository;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
 public class ClienteService implements iClienteService{
-	private final ClienteDAO clienteDAO;
-
-	public ClienteService() {
-		this.clienteDAO = new ClienteDAOmemoria();
-	}
 
 	@Override
     public double comprarIngresso(Ingresso ingresso, Cliente cliente, double pagamento, Cupom cupom) {
     	try {
     		if(ingresso.getPreco() <= pagamento + cupom.getTipoDeCupom()) {
-    			clienteDAO.comprarIngresso(ingresso, cliente, cupom);
+				SingletonEventoDAO.getCliente().comprarIngresso(ingresso, cliente, cupom);
     			return pagamento+cupom.getTipoDeCupom() - ingresso.getPreco();
     		}else {
     			throw new NumberFormatException();
@@ -37,7 +31,7 @@ public class ClienteService implements iClienteService{
 	public double comprarIngresso(Ingresso ingresso, Cliente cliente,double pagamento) {
 		try {
 			if(ingresso.getPreco() <= pagamento) {
-				clienteDAO.comprarIngresso(ingresso, cliente);
+				SingletonEventoDAO.getCliente().comprarIngresso(ingresso, cliente);
 				return pagamento - ingresso.getPreco();
 			}else {
 				throw new NumberFormatException();
@@ -49,12 +43,12 @@ public class ClienteService implements iClienteService{
 		}
 	}
     @Override
-    public int avaliarFilme(Filme filme, int avaliacao) {
+    public int avaliarEvento(Evento evento, int avaliacao) {
     	try {
     		if(avaliacao > 5 || avaliacao < 0) {
     			throw new NumberFormatException();
     		}
-    		clienteDAO.avaliarFilme(filme, avaliacao);
+			SingletonEventoDAO.getCliente().avaliarEvento(evento, avaliacao);
 
     		return 0;
     	}catch(NumberFormatException e) {
@@ -65,12 +59,12 @@ public class ClienteService implements iClienteService{
     }
 
     @Override
-    public int avaliarServico(CinemaRepository cinema, int avaliacao) {
+    public int avaliarServico(int avaliacao) {
     	try {
     		if(avaliacao > 5 || avaliacao < 0) {
     			throw new NumberFormatException();
     		}
-    		clienteDAO.avaliarServico(cinema, avaliacao);
+			SingletonEventoDAO.getCliente().avaliarServico(avaliacao);
     		return 0;
     	}catch(NumberFormatException e) {
     		return -1;
@@ -79,34 +73,13 @@ public class ClienteService implements iClienteService{
 		}
     }
 
-    @Override
-    public int avaliarHorario(CinemaRepository cinema, String horario, int avaliacao) {
-		try {
-			if(avaliacao > 5 || avaliacao < 0) {
-				throw new NumberFormatException();
-			}
-			if(horario.isEmpty()){
-				throw new Invalid();
-			}
-			clienteDAO.avaliarHorario(cinema, horario, avaliacao);
-			return 0;
-		}catch(NumberFormatException e) {
-			return -1;
-		}catch (NullPointerException e){
-			return -2;
-		}catch(IOException e) {
-			return -3;
-		} catch (Invalid e) {
-			return -4;
-		}
-	}
 
     @Override
-    public int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo){
+    public int resgatarCupom(Cliente cliente, String codigo){
     	try {
-    		if(!codigo.equals("") && cinema.getListaDeCupons().containsKey(codigo)){
-				if(!cliente.getCuponsAtivos().contains(cinema.getListaDeCupons().get(codigo)) && !cliente.getCuponsUsados().contains(cinema.getListaDeCupons().get(codigo))){
-    				clienteDAO.resgatarCupom(cinema, cliente, codigo);
+    		if(!codigo.equals("") && EventoRepository.getListaDeCupons().containsKey(codigo)){
+				if(!cliente.getCuponsAtivos().contains(EventoRepository.getListaDeCupons().get(codigo)) && !cliente.getCuponsUsados().contains(EventoRepository.getListaDeCupons().get(codigo))){
+					SingletonEventoDAO.getCliente().resgatarCupom(cliente, codigo);
     				return 0;
 				}else{
     				throw new IOException();
@@ -124,10 +97,10 @@ public class ClienteService implements iClienteService{
     }
 
 	@Override
-	public String resgatarPremio(ClienteRepository clienteRepository, EventoRepository eventoRepository, Cliente cliente, int codigo) {
+	public String resgatarPremio(Cliente cliente, int codigo) {
 		try{
-			if(clienteRepository.getListaClientes().contains(cliente)&& eventoRepository.getListaDePremios().containsKey(codigo)){
-				Premio premio = clienteDAO.resgatarPremio(cinema, cliente, codigo);
+			if(ClienteRepository.getListaClientes().contains(cliente)&& EventoRepository.getListaDePremios().containsKey(codigo)){
+				Premio premio = SingletonEventoDAO.getCliente().resgatarPremio(cliente, codigo);
 				if(premio == null){
 					throw new NullPointerException();
 				}
@@ -140,7 +113,7 @@ public class ClienteService implements iClienteService{
 				}
 				if(premio.getCondicao() <= cliente.getCondicoesPremios().get(auxiliar)){
 					System.out.println(premio.getDescricao());
-					clienteDAO.alterarCondicaoPremio(cliente, auxiliar, 0);
+					SingletonEventoDAO.getCliente().alterarCondicaoPremio(cliente, auxiliar, 0);
 					return premio.getDescricao();
 				}else {
 					return "-2";
@@ -158,7 +131,7 @@ public class ClienteService implements iClienteService{
 	@Override
     public String compartilharCupom(Cliente cliente) {
 		try{
-			String compartilhar = clienteDAO.compartilharCupom(cliente);
+			String compartilhar = SingletonEventoDAO.getCliente().compartilharCupom(cliente);
 			return compartilhar;
 		}catch (NullPointerException e){
 			return "Cliente não existe";

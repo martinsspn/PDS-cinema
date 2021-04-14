@@ -1,18 +1,21 @@
 package PDSCinema.service;
 
-import PDSCinema.model.Cliente;
-import PDSCinema.model.Cupom;
-import PDSCinema.model.Filme;
-import PDSCinema.model.Ingresso;
+import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
 
 public interface iClienteService {
-    int avaliarServico(CinemaRepository cinema, int avaliacao);
-    int avaliarHorario(CinemaRepository cinema, String horario ,int avaliacao);
-    int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo);
-    String resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo);
-    int avaliarFilme(Filme filme, int avaliacao);
-    double comprarIngresso(Ingresso ingresso, Cliente cliente,double pagamento);
-    double comprarIngresso(Ingresso ingresso, Cliente cliente,double pagamento, Cupom cupom);
+
+    double comprarIngresso(Ingresso ingresso, Cliente cliente, double pagamento, Cupom cupom);
+
+    double comprarIngresso(Ingresso ingresso, Cliente cliente, double pagamento);
+
+    int avaliarEvento(Evento evento, int avaliacao);
+
+    int avaliarServico(int avaliacao);
+
+    int resgatarCupom(Cliente cliente, String codigo);
+
+    String resgatarPremio(Cliente cliente, int codigo);
+
     String compartilharCupom(Cliente cliente);
 }
