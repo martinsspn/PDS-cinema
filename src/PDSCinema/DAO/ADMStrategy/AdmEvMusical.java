@@ -3,14 +3,12 @@ package PDSCinema.DAO.ADMStrategy;
 import PDSCinema.model.Evento;
 
 public class AdmEvMusical extends AdmStrategyAbstractEvento {
-    @Override
-    public void cadastrarEvento(){
 
-    }
     @Override
-    public void buscarEvento(){
-
+    public Evento buscarEvento(String evento){
+        return null;
     }
+
     @Override
     public void removerEvento(Evento evento){
 

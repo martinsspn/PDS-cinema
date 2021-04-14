@@ -1,5 +1,9 @@
 package PDSCinema.DAO;
 
+import PDSCinema.DAO.ADMStrategy.AdmCinema;
+import PDSCinema.DAO.ADMStrategy.AdmStrategyAbstractEvento;
+import PDSCinema.DAO.ClienteStrategy.ClienteCinema;
+import PDSCinema.DAO.ClienteStrategy.ClienteStrategyEventoDAO;
 import PDSCinema.model.*;
 import PDSCinema.repository.CinemaRepository;
 import PDSCinema.repository.EventoRepository;
@@ -11,6 +15,16 @@ import java.util.List;
 
 public class ClienteDAOmemoria implements ClienteDAO{
 
+    private ClienteStrategyEventoDAO clienteStrategyEventoDAO;
+
+    public ClienteDAOmemoria(ClienteStrategyEventoDAO clienteStrategyEventoDAO){
+        this.clienteStrategyEventoDAO = clienteStrategyEventoDAO;
+    }
+
+    public ClienteStrategyEventoDAO getClienteStrategyEventoDAO() {
+        return clienteStrategyEventoDAO;
+    }
+
     @Override
     public int avaliarServico(int avaliacao) {
         int avaliacoes = EventoRepository.getAvaliacoesServico();
@@ -20,8 +34,8 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo)  {
-        cliente.getCuponsAtivos().add(cinema.getListaDeCupons().get(codigo));
+    public int resgatarCupom(Cliente cliente, String codigo)  {
+        cliente.getCuponsAtivos().add(EventoRepository.getListaDeCupons().get(codigo));
         return 0;
     }
 
@@ -33,7 +47,7 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public Premio resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo){
+    public Premio resgatarPremio(Cliente cliente, int codigo){
         for(Premio p: cliente.getPremios()){
             if(p.getIdPremio() == codigo){
                 return p;
@@ -48,10 +62,8 @@ public class ClienteDAOmemoria implements ClienteDAO{
     }
 
     @Override
-    public int avaliarFilme(Filme filme, int avaliacao) {
-        int avaliacoes = filme.getAvaliacoes();
-        filme.setAvaliacoes(avaliacoes+avaliacao);
-        filme.setQuantAvaliacoes(filme.getQuantAvaliacoes()+1);
+    public int avaliarEvento(Evento evento, int avaliacao) {
+        clienteStrategyEventoDAO.avaliarEvento(evento, avaliacao);
         return 0;
     }
 

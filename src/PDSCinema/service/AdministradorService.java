@@ -23,7 +23,7 @@ public class AdministradorService implements iAdministradorService{
         try{
             if(cinema != null && !name.isEmpty() && !sinopse.isEmpty()&& !classificacaoIndicativa.isEmpty() && !genero.isEmpty() && !diaDeEstreia.isEmpty()){
                 if(duracao >= 0){
-                    admDAO.cadastrarFilmes(cinema, name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
+                    admDAO.cadastrarEvento(name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
                     return 0;
                 }else{
                     throw new NumberFormatException();
@@ -42,7 +42,7 @@ public class AdministradorService implements iAdministradorService{
     public int cadastrarCupons(CinemaRepository cinema, String _cupom, double tipoDeCupom) {
         try{
             if(!_cupom.equals("") && tipoDeCupom >= 0){
-                admDAO.cadastrarCupons(cinema, _cupom, tipoDeCupom);
+                admDAO.cadastrarCupons(_cupom, tipoDeCupom);
                 return 0;
             }else{
                 throw new IOException();
@@ -57,7 +57,7 @@ public class AdministradorService implements iAdministradorService{
         try{
             if(!descricao.equals("") && condicao > 0){
                 if(!cinema.getListaDePremios().containsKey(id)) {
-                    admDAO.cadastrarPremios(cinema, descricao, id, condicao);
+                    admDAO.cadastrarPremios(descricao, id, condicao);
                     return 0;
                 }else{
                     throw new IllegalArgumentException();
@@ -76,7 +76,7 @@ public class AdministradorService implements iAdministradorService{
     public Filme buscarFilme(CinemaRepository cinema, String nome){
         try {
             if(!cinema.getFilmesEmCartaz().isEmpty()) {
-                return admDAO.buscarFilme(cinema, nome);
+                return admDAO.buscarFilme(nome);
             }
             return null;
         }catch(Exception e){
@@ -87,7 +87,7 @@ public class AdministradorService implements iAdministradorService{
     @Override
     public ArrayList<Filme> buscarFilmeGenero(CinemaRepository cinema, String genero){
         if(!cinema.getFilmesEmCartaz().isEmpty() && !genero.isEmpty()){
-            return admDAO.buscarFilmeGenero(cinema, genero);
+            return admDAO.buscarFilmeGenero(genero);
         }
         else{
             return null;
@@ -99,7 +99,7 @@ public class AdministradorService implements iAdministradorService{
         //Função DAO
         try{
             if(!codigo.equals("") && cinema.getListaDeCupons().containsKey(codigo)){
-                return admDAO.buscarCupons(cinema, codigo);
+                return admDAO.buscarCupons(codigo);
             }else{
                 throw new IOException();
             }
@@ -112,7 +112,7 @@ public class AdministradorService implements iAdministradorService{
     public Premio buscarPremio(CinemaRepository cinema, int codigo){
         try{
             if(codigo >= 0){
-                return admDAO.buscarPremio(cinema, codigo);
+                return admDAO.buscarPremio(codigo);
             }else{
                 throw new NumberFormatException();
             }
@@ -124,7 +124,7 @@ public class AdministradorService implements iAdministradorService{
     @Override
     public int removerFilmes(CinemaRepository cinema, Filme filme){
         if(cinema.getFilmesEmCartaz().contains(filme)) {
-            admDAO.removerFilmes(cinema, filme);
+            admDAO.removerFilmes(filme);
             return 0;
         }else{
             return -1;
@@ -136,7 +136,7 @@ public class AdministradorService implements iAdministradorService{
         try{
             System.out.println(cinema.getListaDeCupons().get(cupom.getCodigo()).getCodigo());
             if(cinema.getListaDeCupons().containsKey(cupom.getCodigo())){
-                admDAO.removerCupons(cinema, cupom);
+                admDAO.removerCupons(cupom);
                 return 0;
             }else{
                 throw new IOException();
@@ -151,7 +151,7 @@ public class AdministradorService implements iAdministradorService{
     public int removerPremios(CinemaRepository cinema, Premio premio){
         try{
             if(premio != null && cinema.getListaDePremios().containsKey(premio.getIdPremio())){
-                admDAO.removerPremios(cinema, premio);
+                admDAO.removerPremios(premio);
                 return 0;
             }else{
                 throw new Exception();

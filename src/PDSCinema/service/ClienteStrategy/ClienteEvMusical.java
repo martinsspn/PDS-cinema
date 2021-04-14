@@ -1,6 +1,6 @@
-package PDSCinema.service;
+package PDSCinema.service.ClienteStrategy;
 
-public class ClienteCinema extends ClienteStrategyAbstractEvento{
+public class ClienteEvMusical extends ClienteStrategyAbstractEvento{
     @Override
     public void avaliarEvento(){
 

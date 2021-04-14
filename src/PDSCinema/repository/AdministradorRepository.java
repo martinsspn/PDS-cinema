@@ -2,22 +2,23 @@ package PDSCinema.repository;
 
 import PDSCinema.model.Administrador;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AdministradorRepository {
-    protected List<String> listaAdministradorCpf;
-    protected List<Administrador> listaAdministrador;
+public abstract class AdministradorRepository {
+    protected static List<String> listaAdministradorCpf = new ArrayList<>();
+    protected static List<Administrador> listaAdministrador = new ArrayList<>();
 
-    public List<Administrador> getListaAdministrador() {
+    public static List<Administrador> getListaAdministrador() {
         return listaAdministrador;
     }
-    public void setListaAdministrador(List<Administrador> listaAdministrador) {
-        this.listaAdministrador = listaAdministrador;
+    public static void setListaAdministrador(List<Administrador> listaAdministrador) {
+        AdministradorRepository.listaAdministrador = listaAdministrador;
     }
-    public List<String> getListaAdministradorCpf() {
+    public static List<String> getListaAdministradorCpf() {
         return listaAdministradorCpf;
     }
-    public void setListaAdministradorCpf(List<String> listaAdministradorCpf) {
-        this.listaAdministradorCpf = listaAdministradorCpf;
+    public static void setListaAdministradorCpf(List<String> listaAdministradorCpf) {
+        AdministradorRepository.listaAdministradorCpf = listaAdministradorCpf;
     }
 }

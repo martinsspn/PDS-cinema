@@ -1,17 +1,16 @@
 package PDSCinema.DAO;
 
+import PDSCinema.DAO.ClienteStrategy.ClienteStrategyEventoDAO;
 import PDSCinema.model.*;
-import PDSCinema.repository.CinemaRepository;
-
-import java.io.IOException;
 
 public interface ClienteDAO {
+    ClienteStrategyEventoDAO getClienteStrategyEventoDAO();
     int avaliarServico(int avaliacao);
-    int resgatarCupom(CinemaRepository cinema, Cliente cliente, String codigo);
+    int resgatarCupom(Cliente cliente, String codigo);
     void alterarCondicaoPremio(Cliente cliente, int codigo, int condicao);
     String compartilharCupom(Cliente cliente);
-    Premio resgatarPremio(CinemaRepository cinema, Cliente cliente, int codigo);
-    int avaliarFilme(Filme filme, int avaliacao);
+    Premio resgatarPremio(Cliente cliente, int codigo);
+    int avaliarEvento(Evento evento, int avaliacao);
     int comprarIngresso(Ingresso ingresso, Cliente cliente);
     int comprarIngresso(Ingresso ingresso, Cliente cliente, Cupom cupom);
 }

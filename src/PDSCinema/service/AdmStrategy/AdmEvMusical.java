@@ -1,4 +1,4 @@
-package PDSCinema.service;
+package PDSCinema.service.AdmStrategy;
 
 public class AdmEvMusical extends AdmStrategyAbstractEvento{
     @Override
