@@ -7,8 +7,5 @@ public class ClienteEvMusical extends ClienteStrategyEventoDAO{
     public void avaliarEvento(Evento evento, int avaliacao){
 
     }
-    @Override
-    public void comprarIngressoEvento(){
 
-    }
 }

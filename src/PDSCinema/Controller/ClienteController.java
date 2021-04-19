@@ -4,11 +4,9 @@ import PDSCinema.model.Cliente;
 import PDSCinema.model.Cupom;
 import PDSCinema.model.Filme;
 import PDSCinema.model.Ingresso;
-import PDSCinema.repository.CinemaRepository;
 import PDSCinema.service.ClientePolimorfismo.AvaliarEvento;
 import PDSCinema.service.ClienteService;
 import PDSCinema.service.ClienteStrategy.ClienteCinema;
-import PDSCinema.service.ClienteStrategy.ClienteStrategyAbstractEvento;
 
 public class ClienteController {
     private ClienteCinema clienteCinema = new ClienteCinema();
@@ -17,7 +15,7 @@ public class ClienteController {
         this.cliente = cliente;
     }
     public String avaliarServico(int avaliacao){
-        int status = cliente.avaliarServico(avaliacao);
+        int status = cliente.inserirAvaliacaoServico(avaliacao);
         if(status == 0){
             return ("Avaliação cadastrada");
         }else{
@@ -25,7 +23,7 @@ public class ClienteController {
         }
     }
     public String avaliarHorario(String horario ,int avaliacao){
-        int status = clienteCinema.avaliarHorario(horario, avaliacao);
+        int status = clienteCinema.inseriAvaliacaoHorario(horario, avaliacao);
         if(status == 0){
             return ("Avaliação cadastrada");
         }else{

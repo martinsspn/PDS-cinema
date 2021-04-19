@@ -1,4 +1,4 @@
-package PDSCinema.service;
+package PDSCinema.service.EventoStrategy;
 
 import PDSCinema.model.Evento;
 import PDSCinema.model.Filme;

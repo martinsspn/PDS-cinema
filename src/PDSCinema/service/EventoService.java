@@ -1,21 +1,36 @@
 package PDSCinema.service;
 
 import PDSCinema.DAO.EventoDAO;
-import PDSCinema.DAO.EventoDAOmemoria;
 import PDSCinema.DAO.SingletonEventoDAO;
 import PDSCinema.model.Administrador;
+import PDSCinema.model.Evento;
 import PDSCinema.repository.AdministradorRepository;
-import PDSCinema.repository.CinemaRepository;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Filme;
 import PDSCinema.repository.ClienteRepository;
 import PDSCinema.repository.EventoRepository;
+import PDSCinema.service.EventoStrategy.EventoCinema;
+import PDSCinema.service.EventoStrategy.EventoStrategyAbstractEvento;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EventoService implements iEventoService {
     private EventoDAO eventoDAO = SingletonEventoDAO.getEvento();
+    private EventoCinema evento = new EventoCinema();
+
+	public void calcularMediaAv(){
+		evento.calcularMediaAv();
+	}
+
+
+	public ArrayList<String> calcularRanking(List<Evento> listaDeEventos){
+		return evento.calcularRanking(listaDeEventos);
+	}
+
+	public List<Double> calcularMediaAvaliacaoEvento(List<Evento> eventos) {
+		return evento.calcularMediaAvaliacaoEvento(eventos);
+	}
 
 	@Override
 	public int inserirCliente(String cpf, String nome){
@@ -174,5 +189,9 @@ public class EventoService implements iEventoService {
 			}
 		}
 		return rankingHorarios;
+	}
+
+	public EventoStrategyAbstractEvento getEvento() {
+		return evento;
 	}
 }

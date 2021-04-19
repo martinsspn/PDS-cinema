@@ -1,4 +1,4 @@
-package PDSCinema.service;
+package PDSCinema.service.EventoStrategy;
 
 import PDSCinema.model.Evento;
 import PDSCinema.model.Filme;
@@ -18,7 +18,7 @@ public class EventoCinema extends EventoStrategyAbstractEvento{
         for(Evento evento : listaDeEventos){
             filmes.add((Filme) evento);
         }
-        List<Double> medias = calcularMediaAvaliacaoFilmes(filmes);
+        List<Double> medias = calcularMediaAvaliacaoEvento(listaDeEventos);
         ArrayList<String> rankingFilmes = new ArrayList<>();
         EventoRepository.setMedias(medias);
 
@@ -46,14 +46,14 @@ public class EventoCinema extends EventoStrategyAbstractEvento{
         return rankingFilmes;
     }
 
-    public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmesEmCartaz) {
+    public List<Double> calcularMediaAvaliacaoEvento(List<Evento> eventos) {
         try{
             List<Double> valor = new ArrayList<>();
-            for (Filme filme : filmesEmCartaz) {
-                if(filme.getQuantAvaliacoes() == 0){
-                    valor.add(((double)(filme.getAvaliacoes())));
+            for (Evento evento : eventos) {
+                if(evento.getQuantAvaliacoes() == 0){
+                    valor.add(((double)(evento.getAvaliacoes())));
                 }else{
-                    valor.add(((double)(filme.getAvaliacoes()) / (double)(filme.getQuantAvaliacoes())));
+                    valor.add(((double)(evento.getAvaliacoes()) / (double)(evento.getQuantAvaliacoes())));
                 }
             }
             return valor;

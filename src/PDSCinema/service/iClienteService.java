@@ -9,7 +9,7 @@ public interface iClienteService {
 
     double comprarIngresso(Ingresso ingresso, Cliente cliente, double pagamento);
 
-    int avaliarServico(int avaliacao);
+    int inserirAvaliacaoServico(int avaliacao);
 
     int resgatarCupom(Cliente cliente, String codigo);
 

@@ -16,10 +16,7 @@ public class ClienteCinema extends ClienteStrategyEventoDAO {
         evento.setAvaliacoes(avaliacoes+avaliacao);
         evento.setQuantAvaliacoes(evento.getQuantAvaliacoes()+1);
     }
-    @Override
-    public void comprarIngressoEvento(){
 
-    }
 
     public int avaliarHorario(String horario, int avaliacao) throws IOException {
         int index = 0;

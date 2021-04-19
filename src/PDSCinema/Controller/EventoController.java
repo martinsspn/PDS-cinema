@@ -4,10 +4,7 @@ import PDSCinema.model.Administrador;
 import PDSCinema.model.Cliente;
 import PDSCinema.model.Evento;
 import PDSCinema.model.Filme;
-import PDSCinema.repository.CinemaRepository;
-import PDSCinema.service.EventoCinema;
 import PDSCinema.service.EventoService;
-import PDSCinema.service.EventoStrategyAbstractEvento;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,8 +99,11 @@ public class EventoController {
         }
     }
     public List<Double> calcularMediaAvaliacaoFilmes(List<Filme> filmes){
-        EventoCinema eventoCinema = new EventoCinema();
-        List<Double> medias = eventoCinema.calcularMediaAvaliacaoFilmes(filmes);
+        List<Evento> eventos = new ArrayList<>();
+        for(int i=0;i<filmes.size();i++){
+            eventos.add(filmes.get(i));
+        }
+        List<Double> medias = evento.calcularMediaAvaliacaoEvento(eventos);
         if(medias != null){
             System.out.println ("Medias calculadas com sucesso!");
             return medias;
@@ -112,6 +112,7 @@ public class EventoController {
             return null;
         }
     }
+
     public List<Double> calcularMediaAvaliacaoHorario(List<Integer> avaliacoesHorarios, List<Integer> quantAvHorarios){
         List<Double> medias = evento.calcularMediaAvaliacaoHorario(avaliacoesHorarios, quantAvHorarios);
         if(medias != null){
@@ -123,8 +124,7 @@ public class EventoController {
         }
     }
     public ArrayList<String> calcularRanking(List<Evento> filmesEmCartaz){
-        EventoCinema eventoCinema = new EventoCinema();
-        ArrayList<String> ranking = eventoCinema.calcularRanking(filmesEmCartaz);
+        ArrayList<String> ranking = evento.calcularRanking(filmesEmCartaz);
         if(ranking != null){
             return ranking;
         }else{

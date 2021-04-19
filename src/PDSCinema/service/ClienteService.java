@@ -44,7 +44,7 @@ public class ClienteService implements iClienteService{
 	}
 
     @Override
-    public int avaliarServico(int avaliacao) {
+    public int inserirAvaliacaoServico(int avaliacao) {
     	try {
     		if(avaliacao > 5 || avaliacao < 0) {
     			throw new NumberFormatException();

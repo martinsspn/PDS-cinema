@@ -15,7 +15,7 @@ public class ClienteCinema extends ClienteStrategyAbstractEvento{
 
     }
 
-    public int avaliarHorario(String horario, int avaliacao) {
+    public int inseriAvaliacaoHorario(String horario, int avaliacao) {
         try {
             if(avaliacao > 5 || avaliacao < 0) {
                 throw new NumberFormatException();
