@@ -19,10 +19,6 @@ public class EventoService implements iEventoService {
     private EventoDAO eventoDAO = SingletonEventoDAO.getEvento();
     private EventoCinema evento = new EventoCinema();
 
-	public void calcularMediaAv(){
-		evento.calcularMediaAv();
-	}
-
 
 	public ArrayList<String> calcularRanking(List<Evento> listaDeEventos){
 		return evento.calcularRanking(listaDeEventos);

@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventoEvMusical extends EventoStrategyAbstractEvento{
-    @Override
-    public void calcularMediaAv(){
 
+    @Override
+    public List<Double> calcularMediaAvaliacaoEvento(List<Evento> eventos) {
+        return null;
     }
+
     @Override
     public ArrayList<String> calcularRanking(List<Evento> listaDeEventos){
         return null;

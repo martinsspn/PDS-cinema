@@ -11,6 +11,8 @@ public interface iClienteService {
 
     int inserirAvaliacaoServico(int avaliacao);
 
+    int inseriAvaliacaoHorario(String horario, int avaliacao);
+
     int resgatarCupom(Cliente cliente, String codigo);
 
     String resgatarPremio(Cliente cliente, int codigo);

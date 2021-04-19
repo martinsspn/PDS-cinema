@@ -1,15 +1,12 @@
 package PDSCinema.Controller;
 
-import PDSCinema.model.Cliente;
-import PDSCinema.model.Cupom;
-import PDSCinema.model.Filme;
-import PDSCinema.model.Ingresso;
-import PDSCinema.service.ClientePolimorfismo.AvaliarEvento;
+import PDSCinema.model.*;
+import PDSCinema.service.ClientePolimorfismo.InserirAvaliacaoEvento;
 import PDSCinema.service.ClienteService;
 import PDSCinema.service.ClienteStrategy.ClienteCinema;
 
 public class ClienteController {
-    private ClienteCinema clienteCinema = new ClienteCinema();
+
     private final ClienteService cliente;
     public ClienteController(ClienteService cliente){
         this.cliente = cliente;
@@ -23,7 +20,7 @@ public class ClienteController {
         }
     }
     public String avaliarHorario(String horario ,int avaliacao){
-        int status = clienteCinema.inseriAvaliacaoHorario(horario, avaliacao);
+        int status = cliente.inseriAvaliacaoHorario(horario, avaliacao);
         if(status == 0){
             return ("Avaliação cadastrada");
         }else{
@@ -46,14 +43,16 @@ public class ClienteController {
             return "- " + status;
         }
     }
-    public String avaliarFilme(Filme filme, int avaliacao){
-        int status = AvaliarEvento.avaliarEvento(filme, avaliacao);
+    public String avaliarEvento(Evento evento, int avaliacao){
+        int status = cliente.getInserirAvaliacaoEvento().inserirAvaliacaoEvento(evento, avaliacao);
         if(status == 0){
             return ("Avaliação cadastrada com sucesso");
         }else {
             return ("Avaliação inválida!");
         }
     }
+
+
     public String comprarIngresso(Ingresso ingresso, Cliente cliente,double pagamento){
         double status = this.cliente.comprarIngresso(ingresso, cliente, pagamento);
         if(status >= 0){

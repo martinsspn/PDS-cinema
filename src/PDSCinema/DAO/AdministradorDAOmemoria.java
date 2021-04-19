@@ -1,16 +1,18 @@
 package PDSCinema.DAO;
 
 import PDSCinema.DAO.ADMStrategy.AdmStrategyAbstractEvento;
-import PDSCinema.model.*;
-import PDSCinema.repository.CinemaRepository;
+import PDSCinema.DAO.AdmPolimorfismo.CadastrarEvento;
+import PDSCinema.model.Cliente;
+import PDSCinema.model.Cupom;
+import PDSCinema.model.Evento;
+import PDSCinema.model.Premio;
 import PDSCinema.repository.CircoRepository;
 import PDSCinema.repository.ClienteRepository;
 import PDSCinema.repository.EventoRepository;
 
-import java.util.ArrayList;
-
 public class AdministradorDAOmemoria implements AdministradorDAO{
-    private AdmStrategyAbstractEvento admStrategyAbstractEvento;
+    private final AdmStrategyAbstractEvento admStrategyAbstractEvento;
+    private final CadastrarEvento cadastrarEvento = new CadastrarEvento();
 
     AdministradorDAOmemoria(AdmStrategyAbstractEvento admStrategyAbstractEvento){
         this.admStrategyAbstractEvento = admStrategyAbstractEvento;
@@ -66,8 +68,7 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     public int removerCupons(Cupom cupom){
         EventoRepository.getListaDeCupons().remove(cupom.getCodigo());
         for(Cliente c: ClienteRepository.getListaClientes()){
-            if(c.getCuponsAtivos().contains(cupom))
-                c.getCuponsAtivos().remove(cupom);
+            c.getCuponsAtivos().remove(cupom);
         }
         return 1;
     }
@@ -76,9 +77,12 @@ public class AdministradorDAOmemoria implements AdministradorDAO{
     public int removerPremios(Premio premio){
         EventoRepository.getListaDePremios().remove(premio.getIdPremio());
         for(Cliente c: ClienteRepository.getListaClientes()){
-            if(c.getPremios().contains(premio))
-                c.getPremios().remove(premio);
+            c.getPremios().remove(premio);
         }
         return 1;
+    }
+
+    public CadastrarEvento getCadastrarEvento() {
+        return cadastrarEvento;
     }
 }

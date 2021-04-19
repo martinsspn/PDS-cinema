@@ -2,6 +2,7 @@ package PDSCinema.DAO;
 
 import PDSCinema.DAO.ADMStrategy.AdmCinema;
 import PDSCinema.DAO.ADMStrategy.AdmStrategyAbstractEvento;
+import PDSCinema.DAO.ClientePolimorfismo.InserirAvaliacaoEvento;
 import PDSCinema.DAO.ClienteStrategy.ClienteCinema;
 import PDSCinema.DAO.ClienteStrategy.ClienteStrategyEventoDAO;
 import PDSCinema.model.*;
@@ -16,6 +17,8 @@ import java.util.List;
 public class ClienteDAOmemoria implements ClienteDAO{
 
     private ClienteStrategyEventoDAO clienteStrategyEventoDAO;
+
+    private InserirAvaliacaoEvento inserirAvaliacaoEvento = new InserirAvaliacaoEvento();
 
     public ClienteDAOmemoria(ClienteStrategyEventoDAO clienteStrategyEventoDAO){
         this.clienteStrategyEventoDAO = clienteStrategyEventoDAO;
@@ -83,5 +86,9 @@ public class ClienteDAOmemoria implements ClienteDAO{
         cliente.getCuponsUsados().add(cupom);
         cliente.getCuponsAtivos().remove(cupom);
         return 0;
+    }
+
+    public InserirAvaliacaoEvento getInserirAvaliacaoEvento() {
+        return inserirAvaliacaoEvento;
     }
 }

@@ -19,7 +19,7 @@ public class AdministradorController {
     }
     public String cadastrarEvento(String name, int duracao, String sinopse, String classificacaoIndicativa, String genero,
                         String diaDeEstreia){
-        int status = CadastrarEvento.cadastrarEvento(name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
+        int status = adm.getCadastrarEvento().cadastrarEvento(name, duracao, sinopse, classificacaoIndicativa, genero, diaDeEstreia);
         if(status == 0){
             return ("Filme cadastrado com sucesso");
         }else if(status == -1){

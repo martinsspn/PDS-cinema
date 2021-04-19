@@ -179,7 +179,7 @@ public class ClienteGUI {
                             ScodigoFilme = in.nextLine();
                             if(!ScodigoFilme.isEmpty())
                                 avaliacao = Integer.parseInt(ScodigoFilme);
-                            status = clienteController.avaliarFilme(CinemaRepository.getFilmesEmCartaz().get(codigoFilme-1), avaliacao);
+                            status = clienteController.avaliarEvento(CinemaRepository.getFilmesEmCartaz().get(codigoFilme-1), avaliacao);
                             System.out.println(status);
                         }
                         break;

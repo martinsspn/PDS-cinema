@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public interface iAdministradorService {
-
     int cadastrarCupons(String _Cupom, double tipoDeCupom);
     int cadastrarPremios(String descricao, int id, int condicao);
 

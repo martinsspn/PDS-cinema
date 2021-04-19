@@ -2,14 +2,17 @@ package PDSCinema.service;
 
 import java.io.IOException;
 
+import PDSCinema.DAO.ClienteStrategy.ClienteCinema;
 import PDSCinema.DAO.SingletonEventoDAO;
 import PDSCinema.model.*;
-import PDSCinema.repository.CinemaRepository;
 import PDSCinema.repository.ClienteRepository;
 import PDSCinema.repository.EventoRepository;
+import PDSCinema.service.ClientePolimorfismo.InserirAvaliacaoEvento;
 import org.omg.CORBA.DynAnyPackage.Invalid;
 
 public class ClienteService implements iClienteService{
+	private final InserirAvaliacaoEvento inserirAvaliacaoEvento = new InserirAvaliacaoEvento();
+	private final ClienteCinema clienteCinema = new ClienteCinema();
 
 	@Override
     public double comprarIngresso(Ingresso ingresso, Cliente cliente, double pagamento, Cupom cupom) {
@@ -58,6 +61,27 @@ public class ClienteService implements iClienteService{
 		}
     }
 
+	@Override
+	public int inseriAvaliacaoHorario(String horario, int avaliacao) {
+		try {
+			if(avaliacao > 5 || avaliacao < 0) {
+				throw new NumberFormatException();
+			}
+			if(horario.isEmpty()){
+				throw new Invalid();
+			}
+			clienteCinema.inserirAvaliacaoHorario(horario, avaliacao);
+			return 0;
+		}catch(NumberFormatException e) {
+			return -1;
+		}catch (NullPointerException e){
+			return -2;
+		}catch(IOException e) {
+			return -3;
+		} catch (Invalid e) {
+			return -4;
+		}
+	}
 
     @Override
     public int resgatarCupom(Cliente cliente, String codigo){
@@ -113,13 +137,22 @@ public class ClienteService implements iClienteService{
 		}
 	}
 
+
+
 	@Override
     public String compartilharCupom(Cliente cliente) {
 		try{
-			String compartilhar = SingletonEventoDAO.getCliente().compartilharCupom(cliente);
-			return compartilhar;
+			return SingletonEventoDAO.getCliente().compartilharCupom(cliente);
 		}catch (NullPointerException e){
 			return "Cliente não existe";
 		}
     }
+
+	public InserirAvaliacaoEvento getInserirAvaliacaoEvento() {
+		return inserirAvaliacaoEvento;
+	}
+
+	public ClienteCinema getClienteCinema() {
+		return clienteCinema;
+	}
 }

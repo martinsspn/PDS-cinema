@@ -1,5 +1,6 @@
 package PDSCinema.DAO;
 
+import PDSCinema.DAO.ClientePolimorfismo.InserirAvaliacaoEvento;
 import PDSCinema.DAO.ClienteStrategy.ClienteStrategyEventoDAO;
 import PDSCinema.model.*;
 
@@ -12,4 +13,5 @@ public interface ClienteDAO {
     Premio resgatarPremio(Cliente cliente, int codigo);
     int comprarIngresso(Ingresso ingresso, Cliente cliente);
     int comprarIngresso(Ingresso ingresso, Cliente cliente, Cupom cupom);
+    InserirAvaliacaoEvento getInserirAvaliacaoEvento();
 }

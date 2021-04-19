@@ -1,17 +1,15 @@
 package PDSCinema.service;
 
 import PDSCinema.DAO.AdministradorDAO;
-import PDSCinema.DAO.AdministradorDAOmemoria;
 import PDSCinema.DAO.SingletonEventoDAO;
 import PDSCinema.model.*;
-import PDSCinema.repository.CinemaRepository;
 import PDSCinema.repository.EventoRepository;
-
+import PDSCinema.service.AdmPolimorfismo.CadastrarEvento;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class AdministradorService implements iAdministradorService{
     private final AdministradorDAO admDAO = SingletonEventoDAO.getAdm();
+    private final CadastrarEvento cadastrarEvento = new CadastrarEvento(admDAO);
 
     @Override
     public int cadastrarCupons(String _cupom, double tipoDeCupom) {
@@ -105,4 +103,9 @@ public class AdministradorService implements iAdministradorService{
             return 1;
         }
     }
+
+    public CadastrarEvento getCadastrarEvento() {
+        return cadastrarEvento;
+    }
+
 }

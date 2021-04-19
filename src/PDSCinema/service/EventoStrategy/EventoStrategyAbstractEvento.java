@@ -7,6 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class EventoStrategyAbstractEvento {
-    public abstract void calcularMediaAv();
+    public abstract List<Double> calcularMediaAvaliacaoEvento(List<Evento> eventos);
     public abstract ArrayList<String> calcularRanking(List<Evento> listaDeEventos);
 }

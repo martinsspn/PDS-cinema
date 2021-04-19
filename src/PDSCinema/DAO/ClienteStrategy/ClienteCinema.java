@@ -1,24 +1,20 @@
 package PDSCinema.DAO.ClienteStrategy;
 
-import PDSCinema.DAO.ClienteStrategy.ClienteStrategyEventoDAO;
 import PDSCinema.model.Evento;
-import PDSCinema.model.Filme;
 import PDSCinema.repository.CinemaRepository;
-
-
 import java.io.IOException;
 import java.util.List;
 
 public class ClienteCinema extends ClienteStrategyEventoDAO {
     @Override
-    public void avaliarEvento(Evento evento, int avaliacao){
+    public void inserirAvaliacaoEvento(Evento evento, int avaliacao){
         int avaliacoes = evento.getAvaliacoes();
         evento.setAvaliacoes(avaliacoes+avaliacao);
         evento.setQuantAvaliacoes(evento.getQuantAvaliacoes()+1);
     }
 
-
-    public int avaliarHorario(String horario, int avaliacao) throws IOException {
+    @Override
+    public int inserirAvaliacaoHorario(String horario, int avaliacao) throws IOException {
         int index = 0;
         List<String> horarios = CinemaRepository.getHorarios();
         for(int i=0;i<horarios.size();i++) {

@@ -1,8 +1,11 @@
 package PDSCinema.service.ClienteStrategy;
 
-public class ClienteCirco extends ClienteStrategyAbstractEvento{
-    @Override
-    public void comprarIngressoEvento(){
+import PDSCinema.model.Evento;
 
+public class ClienteCirco extends ClienteStrategyAbstractEvento{
+
+    @Override
+    public Evento buscarEvento(String nome) {
+        return null;
     }
 }

@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventoCinema extends EventoStrategyAbstractEvento{
-    @Override
-    public void calcularMediaAv(){
 
-    }
     @Override
     public ArrayList<String> calcularRanking(List<Evento> listaDeEventos){
         ArrayList<Filme> filmes = new ArrayList<>();
