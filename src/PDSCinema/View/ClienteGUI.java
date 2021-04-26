@@ -55,6 +55,7 @@ public class ClienteGUI {
                         boolean running = true;
                         do {
                             System.out.println("Horários disponíveis:");
+                            CinemaRepository.setHorarios();
                             for(int i=0;i<CinemaRepository.getHorarios().size();i++){
                                 System.out.println((i+1) + " - " +CinemaRepository.getHorarios().get(i));
                             }

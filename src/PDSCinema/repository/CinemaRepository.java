@@ -70,8 +70,16 @@ public abstract class CinemaRepository extends EventoRepository{
         return horarios;
     }
 
-    public static void setHorarios(List<String> horarios) {
-        CinemaRepository.horarios = horarios;
+    public static void setHorarios() {
+        horarios.add("12h30min");
+        horarios.add("13h00min");
+        horarios.add("13h30min");
+        horarios.add("14h00min");
+        horarios.add("14h30min");
+        horarios.add("15h30min");
+        horarios.add("17h00min");
+        horarios.add("18h30min");
+        horarios.add("20h00min");
     }
 
     public static List<Integer> getQuantAvHorarios() {
